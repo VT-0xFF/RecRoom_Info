@@ -1,0 +1,3061 @@
+# per-endpoint request/response shapes: wrapper signatures from
+# metadata plus wire body-DTO fields. Wrapper parameters minus
+# CancellationToken are the query/body data the call expects.
+# "also touches" = same wrapper references another route (shared
+# send or shared cache invalidation). "candidate" = Task-returning
+# method on the same client with no send site found (unverified).
+
+api/AppIntegrity/v1/iospaymentqueuefailed  [Auth POST]
+  wrapper : HAOBNMCFICD :: NHBKKPAINND(HDKHLJMABHJ: string, CGHENLMGBFH: bool, PHKFKGGPCFC: bool, BAHJDCJDFHC: string) -> KAHDNIHNJDF
+  body    : DGJAPBCGMIO
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/AppIntegrity/v1/iosproducts  [Auth POST]
+  wrapper : HAOBNMCFICD :: HBCNGDHJHAA(HDKHLJMABHJ: string, CGHENLMGBFH: bool, PHKFKGGPCFC: bool, AGFMGKCIOBM: List<ABOKBGOLCCH>) -> KAHDNIHNJDF
+  body    : DOMDPOIGKBB
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/CampusCard/PS5RecRoomPlusEnabledForAllPlayers  [WWW GET]
+  wrapper : DBDJJHIEHJM :: MDPMHLPADFH() -> PIHPPMDHIHB<bool>
+  body    : (none - GET; query params below if any)
+  returns : bool
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/CampusCard/v1/UpdateAndGetSubscription  [WWW POST]
+  wrapper : DBDJJHIEHJM :: GCOCIEMDFPK(HNDJIGKILAC: string) -> PIHPPMDHIHB<DBMIAIJDIJF>
+  body    : CampusCardV1UpdateAndGetSubscriptionRequest (synthesized)
+  field   : accessToken: string [wrapper]
+  returns : DBMIAIJDIJF
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from wrapper
+
+api/PlayerCheer/v1/SetSelectedCheer  [Auth POST]
+  wrapper : EJGDNLDJHCG :: OIHENBPAMHK(JGEPKJPAACB: ALPKEFMGMHE?) -> KAHDNIHNJDF
+  body    : PlayerCheerV1SetSelectedCheerRequest (synthesized)
+  field   : CheerCategory: ALPKEFMGMHE? [wrapper]
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from wrapper
+
+api/PlayerCheer/v1/create  [Auth POST]
+  wrapper : EJGDNLDJHCG :: MPKKAJIAFHO(KEOJINBLLLG: long, JGEPKJPAACB: ALPKEFMGMHE, IHKHNHPBJCD: bool) -> KAHDNIHNJDF
+  body    : PlayerCheerV1CreateRequest (synthesized)
+  field   : JGEPKJPAACB: ALPKEFMGMHE [wrapper]
+  field   : PlayerIdTo: object [candidate]
+  field   : CheerCategory: object [candidate]
+  field   : Anonymous: object [candidate]
+  field   : RoomId: object [candidate]
+  maybe   : PlayerIdTo (candidate query key)
+  maybe   : CheerCategory (candidate query key)
+  maybe   : Anonymous (candidate query key)
+  maybe   : RoomId (candidate query key)
+  returns : HOLEFKGMIEN
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from candidate+wrapper
+
+api/PlayerReporting/v1/deviceId  [Auth POST]
+  wrapper : BOFKNLKOCOM :: LILALNNGCND(OLEMIMKNCAF: string, JNLKEPDFOOP: string, FHCAFFIDDPJ: GHHMILOBDCH) -> KAHDNIHNJDF
+  body    : PlayerReportingV1DeviceIdRequest (synthesized)
+  field   : FHCAFFIDDPJ: GHHMILOBDCH [wrapper]
+  field   : newDeviceId: object [candidate]
+  field   : oldDeviceId: object [candidate]
+  field   : platform: object [candidate]
+  maybe   : newDeviceId (candidate query key)
+  maybe   : oldDeviceId (candidate query key)
+  maybe   : platform (candidate query key)
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from register pattern; callee not identified
+  note    : verb stashed in builder field
+  note    : service stashed in builder field
+  note    : request DTO synthesized from candidate+wrapper
+
+api/PlayerReporting/v1/hile  [Auth POST]
+  wrapper : BOFKNLKOCOM :: KFJBPLACEPO(EIHDAHDDDEG: KFIDEBCFLAF, ADNFLGLLNKI: string, BAFDAOPJKCB: int?, BGPFNPBCKIL: bool) -> KAHDNIHNJDF
+  body    : PlayerReportingV1HileRequest (synthesized)
+  field   : EIHDAHDDDEG: KFIDEBCFLAF [wrapper]
+  field   : BAFDAOPJKCB: int? [wrapper]
+  field   : Message: object [candidate]
+  field   : Type: object [candidate]
+  field   : ReportedPlayer: object [candidate]
+  maybe   : Message (candidate query key)
+  maybe   : Type (candidate query key)
+  maybe   : ReportedPlayer (candidate query key)
+  returns : bool
+  note    : site from register pattern; callee not identified
+  note    : verb stashed in builder field
+  note    : service stashed in builder field
+  note    : request DTO synthesized from candidate+wrapper
+
+api/PlayerReporting/v1/instantKick  [Auth POST]
+  wrapper : BOFKNLKOCOM :: FCMBCONFJGJ(OLAKCIKKPLA: List<int>) -> PIHPPMDHIHB<HOLEFKGMIEN>
+  body    : KickPlayerDTO
+    - GameSessionId: long
+    - PlayerIds: List<int>
+  returns : HOLEFKGMIEN
+  note    : site from register pattern; callee not identified
+  note    : verb stashed in builder field
+  note    : service stashed in builder field
+
+api/PlayerReporting/v1/modKick  [Auth POST]
+  wrapper : BOFKNLKOCOM :: IDMDPEOHLPI(KEOJINBLLLG: long) -> PIHPPMDHIHB<HOLEFKGMIEN>
+  body    : PlayerReportingV1ModKickRequest (synthesized)
+  field   : GameSessionId: object [candidate]
+  field   : PlayerId: object [candidate]
+  maybe   : GameSessionId (candidate query key)
+  maybe   : PlayerId (candidate query key)
+  returns : HOLEFKGMIEN
+  note    : site from register pattern; callee not identified
+  note    : verb stashed in builder field
+  note    : service stashed in builder field
+  note    : request DTO synthesized from candidate
+
+api/PlayerReporting/v1/moderationBlockDetails  [Auth POST]
+  wrapper : BOFKNLKOCOM :: HOGAPCBEBDC(JHJJFFJOCPL: string) -> PIHPPMDHIHB<NOHMKKKGIJF>
+  body    : PlayerReportingV1ModerationBlockDetailsRequest (synthesized)
+  field   : deviceToken: string [wrapper]
+  returns : NOHMKKKGIJF
+  note    : site from register pattern; callee not identified
+  note    : verb stashed in builder field
+  note    : service stashed in builder field
+  note    : request DTO synthesized from wrapper
+
+api/PlayerReporting/v1/referee  [Auth POST]
+  wrapper : BOFKNLKOCOM :: ODEEKHHLOHL(LJIEGDEDOHM: byte[], APMOCONGJKG: EIMMDGJONED) -> KAHDNIHNJDF
+  body    : PlayerReportingV1RefereeRequest (synthesized)
+  field   : LJIEGDEDOHM: byte[] [wrapper]
+  field   : APMOCONGJKG: EIMMDGJONED [wrapper]
+  field   : meta: object [candidate]
+  field   : data: object [candidate]
+  field   : file.bin: object [candidate]
+  maybe   : meta (candidate query key)
+  maybe   : data (candidate query key)
+  maybe   : file.bin (candidate query key)
+  returns : bool
+  note    : site from register pattern; callee not identified
+  note    : verb stashed in builder field
+  note    : service stashed in builder field
+  note    : request DTO synthesized from candidate+wrapper
+
+api/PlayerReporting/v1/voteToKickReasons  [Auth GET]
+  wrapper : BOFKNLKOCOM :: PMONBPKJNBI() -> KAHDNIHNJDF
+  body    : (none - GET; query params below if any)
+  returns : List<ECDFJHAJIOK>
+  note    : site from register pattern; callee not identified
+  note    : verb stashed in builder field
+  note    : service stashed in builder field
+
+api/PlayerReporting/v3/create  [Auth POST]
+  wrapper : BOFKNLKOCOM :: AIEMEABKJLJ(KEOJINBLLLG: int, DNLJBHKECFG: INJOFAOHPLJ, FAOJDNOALDB: string, IHNNFFFMIIE: float, CKAPIDHDMNK: float?, HBCOIHEMPAB: bool, PKHFIHBEBLN: bool?, EECOCPJCOEB: bool, ANJPDCPHMLF: bool) -> PIHPPMDHIHB<HOLEFKGMIEN>
+  body    : PlayerReportingV3CreateRequest (synthesized)
+  field   : DNLJBHKECFG: INJOFAOHPLJ [wrapper]
+  field   : CKAPIDHDMNK: float? [wrapper]
+  field   : PKHFIHBEBLN: bool? [wrapper]
+  field   : IsFullBodyAvatarReport: object [candidate]
+  field   : IsReporterFullBodyAvatar: object [candidate]
+  field   : IsGiftingReport: object [candidate]
+  field   : ReportCategory: object [candidate]
+  field   : HeightReporter: object [candidate]
+  maybe   : IsFullBodyAvatarReport (candidate query key)
+  maybe   : IsReporterFullBodyAvatar (candidate query key)
+  maybe   : IsGiftingReport (candidate query key)
+  maybe   : ReportCategory (candidate query key)
+  maybe   : HeightReporter (candidate query key)
+  returns : HOLEFKGMIEN
+  note    : site from register pattern; callee not identified
+  note    : verb stashed in builder field
+  note    : service stashed in builder field
+  note    : request DTO synthesized from candidate+wrapper
+
+api/PlayerReporting/v3/voteToKick  [Auth POST]
+  wrapper : BOFKNLKOCOM :: PFPABIKJKIC(KEOJINBLLLG: long, CLPFGJJLCLL: bool, HJGNFPCEHLP: string) -> PIHPPMDHIHB<HOLEFKGMIEN>
+  body    : PlayerReportingV3VoteToKickRequest (synthesized)
+  field   : Response: object [candidate]
+  field   : GameSessionId: object [candidate]
+  field   : PlayerId: object [candidate]
+  field   : Reason: object [candidate]
+  maybe   : Response (candidate query key)
+  maybe   : GameSessionId (candidate query key)
+  maybe   : PlayerId (candidate query key)
+  maybe   : Reason (candidate query key)
+  returns : HOLEFKGMIEN
+  note    : site from register pattern; callee not identified
+  note    : verb stashed in builder field
+  note    : service stashed in builder field
+  note    : request DTO synthesized from candidate
+
+api/activities/charades/v1/words/{aAPHMIBGBBM}  [Auth GET]
+  wrapper : JELFAMLBPGN :: OKNHKDONMHO(AAPHMIBGBBM: JPLDJCIHLHL) -> PIHPPMDHIHB<List<LBKOJBJOIHP>>
+  body    : (none - GET; query params below if any)
+  returns : List<LBKOJBJOIHP>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/ageverification/generateCode  [Auth POST]
+  wrapper : NDFMKOOLOPD :: KHPPLKGMLFL() -> PIHPPMDHIHB<DHGKIHNLHNC<string>>
+  body    : (none - wrappers take no parameters)
+  returns : DHGKIHNLHNC<string>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/announcement/v1/get  [Auth GET]
+  wrapper : EJKJDNAKJGI :: AMCHPPJKFHP() -> PIHPPMDHIHB<List<FFMEOGIJLJM>>
+  body    : (none - GET; query params below if any)
+  returns : List<FFMEOGIJLJM>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/apple/musicpromotion/active  [Auth GET]
+  wrapper : GDHIDCLBPIM :: OKJNNJCOOBE() -> PIHPPMDHIHB<bool>
+  body    : (none - GET; query params below if any)
+  returns : bool
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/apple/musicpromotion/code  [Auth GET]
+  wrapper : GDHIDCLBPIM :: NIHKEDAEOLG() -> PIHPPMDHIHB<AppleMusicPromotionResponseDTO>
+  body    : (none - GET; query params below if any)
+  returns : AppleMusicPromotionResponseDTO
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/avatar/v1/defaultbaseavataritems  [WWW GET]
+  wrapper : NMNGEJCEAAN :: EMDMAMOHJGB() -> PIHPPMDHIHB<List<DABDBMEKDGF>>
+  body    : (none - GET; query params below if any)
+  returns : List<CNHMAFDFNKJ>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/avatar/v1/defaultunlocked  [WWW GET]
+  wrapper : NMNGEJCEAAN :: HCPNKHJDFIN() -> PIHPPMDHIHB<List<DABDBMEKDGF>>
+  body    : (none - GET; query params below if any)
+  returns : List<CNHMAFDFNKJ>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/avatar/v1/lockeditems  [WWW GET]
+  wrapper : NMNGEJCEAAN :: PKLODOBMFBF(LEGGPKCAFLN: List<LGIGHIHBKAO>) -> PIHPPMDHIHB<List<DABDBMEKDGF>>
+  body    : AvatarV1LockeditemsRequest (synthesized)
+  field   : desc: List<LGIGHIHBKAO> [wrapper]
+  returns : List<CNHMAFDFNKJ>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from wrapper
+
+api/avatar/v1/lockeditems/bulk  [WWW POST]
+  wrapper : NMNGEJCEAAN :: FNBEKEPPDEE(LEGGPKCAFLN: List<LGIGHIHBKAO>) -> PIHPPMDHIHB<List<DABDBMEKDGF>>
+  body    : KKILMPCFNBI
+    - <DLFDLPKLGIA>k__BackingField: List<string>
+  returns : List<CNHMAFDFNKJ>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/avatar/v2/gifts  [WWW GET]
+  wrapper : PNNCAMFDMGA :: JPMKPOFHOGO() -> PIHPPMDHIHB<List<NIBHFOAJOCD>>
+  body    : (none - GET; query params below if any)
+  returns : List<NIBHFOAJOCD>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/avatar/v2/gifts/consume/  [WWW ?]
+  wrapper : PNNCAMFDMGA :: PIJOCJNCENG(HLHPEGBENCC: NIBHFOAJOCD) -> KAHDNIHNJDF
+  body    : ? (verb unknown; params below if any)
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from resolved signature
+  note    : service in r8 at call
+
+api/avatar/v2/gifts/generate  [WWW POST]
+  wrapper : PNNCAMFDMGA :: NECAGGJCCOO(GFIAFOEJCDD: PMGDMILOFIB, IBOHNOOLCNF: PMGDMILOFIB?, OLFFBCJEHED: bool, ADNFLGLLNKI: string) -> PIHPPMDHIHB<NIBHFOAJOCD>
+  wrapper : PNNCAMFDMGA :: NECAGGJCCOO(GFIAFOEJCDD: PMGDMILOFIB, ADNFLGLLNKI: string) -> PIHPPMDHIHB<NIBHFOAJOCD>
+  also touches: api/avatar/v3/gifts/generate
+  body    : AvatarV2GiftsGenerateRequest (synthesized)
+  field   : GFIAFOEJCDD: PMGDMILOFIB [wrapper]
+  field   : IBOHNOOLCNF: PMGDMILOFIB? [wrapper]
+  field   : AlternateGiftContext: object [candidate]
+  field   : GiftContext: object [candidate]
+  field   : IsGameGift: object [candidate]
+  field   : Message: object [candidate]
+  maybe   : AlternateGiftContext (candidate query key)
+  maybe   : GiftContext (candidate query key)
+  maybe   : IsGameGift (candidate query key)
+  maybe   : Message (candidate query key)
+  returns : NIBHFOAJOCD
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from candidate+wrapper
+
+api/avatar/v3/gifts/generate  [WWW POST]
+  wrapper : PNNCAMFDMGA :: NECAGGJCCOO(GFIAFOEJCDD: PMGDMILOFIB, IBOHNOOLCNF: PMGDMILOFIB?, OLFFBCJEHED: bool, ADNFLGLLNKI: string) -> PIHPPMDHIHB<NIBHFOAJOCD>
+  wrapper : PNNCAMFDMGA :: NECAGGJCCOO(GFIAFOEJCDD: PMGDMILOFIB, ADNFLGLLNKI: string) -> PIHPPMDHIHB<NIBHFOAJOCD>
+  also touches: api/avatar/v2/gifts/generate
+  body    : AvatarV3GiftsGenerateRequest (synthesized)
+  field   : GFIAFOEJCDD: PMGDMILOFIB [wrapper]
+  field   : IBOHNOOLCNF: PMGDMILOFIB? [wrapper]
+  field   : GiftContext: object [candidate]
+  field   : Message: object [candidate]
+  maybe   : GiftContext (candidate query key)
+  maybe   : Message (candidate query key)
+  returns : NIBHFOAJOCD
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from candidate+wrapper
+
+api/avatar/v4/items  [WWW GET]
+  wrapper : NMNGEJCEAAN :: CFBGHLOAPMM() -> PIHPPMDHIHB<List<DABDBMEKDGF>>
+  body    : (none - GET; query params below if any)
+  returns : List<CNHMAFDFNKJ>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/banappeal/generateCode  [Auth GET]
+  wrapper : BOFKNLKOCOM :: ODIJDKADKHJ() -> PIHPPMDHIHB<string>
+  body    : (none - GET; query params below if any)
+  returns : DHGKIHNLHNC<string>
+  note    : site from register pattern; callee not identified
+  note    : verb stashed in builder field
+  note    : service stashed in builder field
+
+api/catalog/v1/all?onlyAvailableSkus=true  [API GET]
+  wrapper : DBDJJHIEHJM :: DMEGMKMOHLG() -> void
+  wrapper : DBDJJHIEHJM :: KOHMNBICKLF(DLHHPMHGOIH: bool) -> PIHPPMDHIHB<List<HIMCECHAION>>
+  wrapper : DBDJJHIEHJM/<>c :: AHMOLPOBIBI(...)
+  body    : (none - GET; query params below if any)
+  returns : List<HIMCECHAION>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/chatreport/createChatReport  [Auth POST]
+  wrapper : OJPJDBGGIED :: COKNKHMOKAA(ADNFLGLLNKI: ChatMessage, DNLJBHKECFG: KEBMMPDEFPH, BCFKEJMHNBP: string) -> KAHDNIHNJDF
+  body    : ChatreportCreateChatReportRequest (synthesized)
+  field   : ADNFLGLLNKI: ChatMessage [wrapper]
+  field   : DNLJBHKECFG: KEBMMPDEFPH [wrapper]
+  field   : ReportDescription: object [candidate]
+  field   : ReportCategory: object [candidate]
+  field   : ChatThreadId: object [candidate]
+  field   : ChatMessageId: object [candidate]
+  maybe   : ReportDescription (candidate query key)
+  maybe   : ReportCategory (candidate query key)
+  maybe   : ChatThreadId (candidate query key)
+  maybe   : ChatMessageId (candidate query key)
+  returns : LMDMKCADPNK
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from candidate+wrapper
+
+api/checklist/v1/complete  [WWW POST]
+  wrapper : HLIPNAMNJDA :: IJFAMHGFPCB(GMEEBKHBEPA: int) -> PIHPPMDHIHB<NIBHFOAJOCD>
+  body    : ChecklistCompletionDTO
+  returns : NIBHFOAJOCD
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/checklist/v1/current  [WWW GET]
+  wrapper : HLIPNAMNJDA :: HGPBJNKMFAO() -> PIHPPMDHIHB<List<GFPGFHGGPDG>>
+  body    : (none - GET; query params below if any)
+  returns : List<GFPGFHGGPDG>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/clubreporting/v1/report  [Auth POST]
+  wrapper : POEHBPNPMGG :: BLDKLPOMIEG(HKLGPCDOILD: long, DNLJBHKECFG: INJOFAOHPLJ, FAOJDNOALDB: string) -> KAHDNIHNJDF
+  body    : ClubreportingV1ReportRequest (synthesized)
+  field   : DNLJBHKECFG: INJOFAOHPLJ [wrapper]
+  field   : details: object [candidate]
+  field   : clubId: object [candidate]
+  field   : reportCategory: object [candidate]
+  maybe   : details (candidate query key)
+  maybe   : clubId (candidate query key)
+  maybe   : reportCategory (candidate query key)
+  returns : HOLEFKGMIEN
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from candidate+wrapper
+
+api/communityboard/v2/current  [Auth GET]
+  wrapper : GICDMALDCLO :: GOBBALNFECD() -> PIHPPMDHIHB<LNLJLIPBGML>
+  body    : (none - GET; query params below if any)
+  returns : LNLJLIPBGML
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/config/  [Auth GET]
+  wrapper : BAALPGFKKHO :: BDJKFMMDNDM(BCMKDGDGINB: int) -> PIHPPMDHIHB<List<HEBNACGNJHE>>
+  also touches: api/config/v1/cohortnux/{bCMKDGDGINB}
+  body    : (none - GET; query params below if any)
+  returns : List<HEBNACGNJHE>
+  note    : site from register pattern; callee not identified
+  note    : verb from window before call (any reg)
+  note    : service filled from same-area sibling
+
+api/config/v1/azurespeech  [Auth GET]
+  wrapper : BAALPGFKKHO :: CDEOMFOFKIC() -> PIHPPMDHIHB<ELBMPEMFEDL>
+  body    : (none - GET; query params below if any)
+  returns : ELBMPEMFEDL
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/config/v1/backtrace  [Auth GET]
+  wrapper : BAALPGFKKHO :: NBIOMMHMNCJ() -> KAHDNIHNJDF
+  body    : ConfigV1BacktraceRequest (synthesized)
+  field   : allocate: object [candidate]
+  field   : platformType: object [candidate]
+  maybe   : allocate (candidate query key)
+  maybe   : platformType (candidate query key)
+  returns : HDFKDAEGNDE
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from candidate
+
+api/config/v1/cohortnux/{bCMKDGDGINB}  [Auth GET]
+  wrapper : BAALPGFKKHO :: BDJKFMMDNDM(BCMKDGDGINB: int) -> PIHPPMDHIHB<List<HEBNACGNJHE>>
+  also touches: api/config/
+  body    : (none - GET; query params below if any)
+  returns : List<HEBNACGNJHE>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/config/v1/freegiftbutton  [Auth GET]
+  wrapper : BAALPGFKKHO :: DHLNNMALNGB() -> PIHPPMDHIHB<bool>
+  body    : (none - GET; query params below if any)
+  returns : bool
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/config/v2  [Auth GET]
+  wrapper : BAALPGFKKHO :: OLHPECPHOJN() -> KAHDNIHNJDF
+  body    : (none - GET; query params below if any)
+  returns : BJCFKOOODIO
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/consumables/  [WWW GET]
+  wrapper : EKAFEJJIJCE :: OGEPMLLCADF(ALJDJALAAAJ: int) -> PIHPPMDHIHB<List<ACKPECFGPDI>>
+  also touches: api/consumables/v1/getTransferable/{aLJDJALAAAJ}
+  body    : (none - GET; query params below if any)
+  returns : List<ACCIGEJJAJI>
+  note    : site from register pattern; callee not identified
+  note    : verb from window before call (any reg)
+  note    : service filled from same-area sibling
+
+api/consumables/v1/consume  [WWW POST]
+  wrapper : EKAFEJJIJCE :: JPFKIDFFCGB(DJLFEENHANO: ACKPECFGPDI, LNNHIOEADKE: int) -> KAHDNIHNJDF
+  body    : ConsumableItemRequest
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/consumables/v1/getTransferable/{aLJDJALAAAJ}  [WWW GET]
+  wrapper : EKAFEJJIJCE :: OGEPMLLCADF(ALJDJALAAAJ: int) -> PIHPPMDHIHB<List<ACKPECFGPDI>>
+  also touches: api/consumables/
+  body    : (none - GET; query params below if any)
+  returns : List<ACCIGEJJAJI>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/consumables/v1/transfer  [WWW POST]
+  wrapper : EKAFEJJIJCE :: KFKMBMBPOFO(DJLFEENHANO: ACKPECFGPDI, ALJDJALAAAJ: int) -> KAHDNIHNJDF
+  body    : TransferConsumableRequest
+  returns : LMDMKCADPNK
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/consumables/v1/updateActive  [WWW POST]
+  wrapper : EKAFEJJIJCE :: MPIMFDEGDAG(DJLFEENHANO: ACKPECFGPDI, LCMOPOCGFLA: bool) -> KAHDNIHNJDF
+  body    : ActivateConsumableItemRequest
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/consumables/v2/getUnlocked  [WWW GET]
+  wrapper : EKAFEJJIJCE :: PPLODGGLJGH() -> PIHPPMDHIHB<List<ACKPECFGPDI>>
+  body    : (none - GET; query params below if any)
+  returns : List<ACCIGEJJAJI>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/customAvatarItems/GetCustomAvatarItemCurrentSavesForCustomAvatarItemIds/v2  [Auth ?]
+  wrapper : ALDLHCNCJOG/NEFHJMGOKOF :: MoveNext(...)
+  body    : INCIAAAHBOL
+    - <PAKBLIPBLAD>k__BackingField: List<Guid>
+    - <HICFDFLHALM>k__BackingField: byte
+    - <KFNLGPEKILL>k__BackingField: int
+  returns : EOFCHGFMINF
+  note    : site from resolved signature
+  note    : service in r8 at call
+
+api/customAvatarItems/v1  [Auth POST]
+  wrapper : ALDLHCNCJOG :: NKMALEDHLIO(EPPPGDEIJCI: string, KFMEELLINJF: string, PIDLLHEIKHK: int, DOLLCOMDHFP: long, CPIPMBOAGCD: NONJPEHBDOG, CKDIMGPMNKK: FDNBJFELIPF, MPPHEKPICOP: PCEMLAIOGNP, KCOHBODCGBC: PCEMLAIOGNP, OHBNEOGIOKM: string) -> PIHPPMDHIHB<ADIPFKJJNGC>
+  body    : CustomAvatarItemsV1Request (synthesized)
+  field   : CPIPMBOAGCD: NONJPEHBDOG [wrapper]
+  field   : CKDIMGPMNKK: FDNBJFELIPF [wrapper]
+  field   : MPPHEKPICOP: PCEMLAIOGNP [wrapper]
+  field   : KCOHBODCGBC: PCEMLAIOGNP [wrapper]
+  field   : metadata: object [candidate]
+  field   : thumbnailImage: object [candidate]
+  field   : design: object [candidate]
+  field   : file.bin: object [candidate]
+  maybe   : metadata (candidate query key)
+  maybe   : thumbnailImage (candidate query key)
+  maybe   : design (candidate query key)
+  maybe   : file.bin (candidate query key)
+  returns : GCHGIGLMILD<ADIPFKJJNGC>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from candidate+wrapper
+
+api/customAvatarItems/v1/bulk  [Auth ?]
+  wrapper : ALDLHCNCJOG/CKCEJBCKKNB :: MoveNext(...)
+  body    : Guid
+    - _a: int
+    - _b: short
+    - _c: short
+    - _d: byte
+    - _e: byte
+    - _f: byte
+    - _g: byte
+    - _h: byte
+    - _i: byte
+    - _j: byte
+    - _k: byte
+  param   : customAvatarItemIds: List<Guid>
+  returns : List<ADIPFKJJNGC>
+  note    : site from resolved signature
+  note    : service in r8 at call
+
+api/customAvatarItems/v1/design  [Auth GET]
+  wrapper : ALDLHCNCJOG :: ACLJKOCBHAN() -> KAHDNIHNJDF
+  wrapper : ALDLHCNCJOG :: HINJBJCENLI(GIJOMBNPMCG: PCEMLAIOGNP, OHBNEOGIOKM: string, DOLLCOMDHFP: int) -> KAHDNIHNJDF
+  wrapper : ALDLHCNCJOG :: PGFGOPFAHCP() -> PIHPPMDHIHB<KGDCOCFKEIM>
+  body    : CustomAvatarItemsV1DesignRequest (synthesized)
+  field   : metadata: object [candidate]
+  field   : design: object [candidate]
+  field   : file.bin: object [candidate]
+  maybe   : metadata (candidate query key)
+  maybe   : design (candidate query key)
+  maybe   : file.bin (candidate query key)
+  returns : KGDCOCFKEIM
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from candidate
+
+api/customAvatarItems/v1/featured  [Auth GET]
+  wrapper : ALDLHCNCJOG :: HJMFIMJJLBM() -> PIHPPMDHIHB<List<ADIPFKJJNGC>>
+  body    : (none - GET; query params below if any)
+  returns : List<ADIPFKJJNGC>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/customAvatarItems/v1/hot  [Auth GET]
+  wrapper : ALDLHCNCJOG :: EKBILCNKKBB() -> PIHPPMDHIHB<List<ADIPFKJJNGC>>
+  body    : (none - GET; query params below if any)
+  returns : List<ADIPFKJJNGC>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/customAvatarItems/v1/isCreationAllowedForAccount  [Auth GET]
+  wrapper : ALDLHCNCJOG :: ILLNNNALJMD() -> PIHPPMDHIHB<bool>
+  body    : (none - GET; query params below if any)
+  returns : LMDMKCADPNK
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/customAvatarItems/v1/isCreationEnabled  [Auth GET]
+  wrapper : ALDLHCNCJOG :: PJBKFNMAIEB(LPPDEFJLPOP: bool) -> PIHPPMDHIHB<bool>
+  body    : (none - GET; query params below if any)
+  returns : bool
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/customAvatarItems/v1/isRenderingEnabled  [Auth GET]
+  wrapper : ALDLHCNCJOG :: NKMLOCGLGFB(LPPDEFJLPOP: bool) -> PIHPPMDHIHB<bool>
+  body    : (none - GET; query params below if any)
+  returns : bool
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/customAvatarItems/v1/me  [Auth GET]
+  wrapper : ALDLHCNCJOG :: FICGLCHKBHM(GOPAINAIJLD: int, EICGAEHHLBE: int) -> PIHPPMDHIHB<KDFFCJDNKAI>
+  body    : CustomAvatarItemsV1MeRequest (synthesized)
+  field   : take: object [candidate]
+  field   : skip: object [candidate]
+  maybe   : take (candidate query key)
+  maybe   : skip (candidate query key)
+  returns : KDFFCJDNKAI
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from candidate
+
+api/customAvatarItems/v1/minPriceForPublicItem  [Auth GET]
+  wrapper : ALDLHCNCJOG :: BNCMJNPAEBM(LPPDEFJLPOP: bool) -> PIHPPMDHIHB<EHOHNPNOPCK>
+  body    : (none - GET; query params below if any)
+  returns : int
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/customAvatarItems/v1/search  [Auth GET]
+  wrapper : ALDLHCNCJOG :: PMJPINMPNKC(CBMHDCMOFLF: string, GOPAINAIJLD: int, EICGAEHHLBE: int, FMADBFKNKCE: string, DJJLDBJMNLK: int?, AHNCEHAIPOG: GFFLFNOLLGN?, BPIFHJNHENB: int?, LINJMEELMIF: int?, COOAECJJFHJ: bool?, BCFLOKDHLCA: bool?, KKIDCJBHCGK: PCMLBLEGBPC?) -> PIHPPMDHIHB<List<ADIPFKJJNGC>>
+  body    : CustomAvatarItemsV1SearchRequest (synthesized)
+  field   : minPrice: object [candidate]
+  field   : isOwned: object [candidate]
+  field   : itemTypes: object [candidate]
+  field   : isFeatured: object [candidate]
+  field   : creatorUsername: object [candidate]
+  maybe   : minPrice (candidate query key)
+  maybe   : isOwned (candidate query key)
+  maybe   : itemTypes (candidate query key)
+  maybe   : isFeatured (candidate query key)
+  maybe   : creatorUsername (candidate query key)
+  returns : List<ADIPFKJJNGC>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from candidate
+
+api/customAvatarItems/v1/{customAvatarItemId}  [Auth PUT]
+  wrapper : ALDLHCNCJOG :: AADABOJJLGH(LKJJNNCNEFN: Guid, EPPPGDEIJCI: string, KFMEELLINJF: string, PIDLLHEIKHK: int?, CPIPMBOAGCD: NONJPEHBDOG?) -> PIHPPMDHIHB<ADIPFKJJNGC>
+  also touches: api/customAvatarItems
+  wrapper : ALDLHCNCJOG :: MLPHBLLIHJH(LKJJNNCNEFN: Guid) -> KAHDNIHNJDF
+  also touches: api/customAvatarItems
+  body    : HMAKBFBDKKN
+    - <OKALIFKJOOM>k__BackingField: string
+    - <LBIJKLJACFK>k__BackingField: string
+    - <HCIJCMLNLNB>k__BackingField: int?
+    - <GMHKEHJIIKM>k__BackingField: NONJPEHBDOG?
+  returns : LMDMKCADPNK
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/customAvatarItems/v1/{customAvatarItemId}/report  [Auth POST]
+  wrapper : ALDLHCNCJOG :: LADGEECHOAM(LKJJNNCNEFN: Guid, OOGDAKLIBDA: CMIJLKKPHLL, FAOJDNOALDB: string, DEGIDBADEHN: int?, BGKPBOKAOCM: bool) -> KAHDNIHNJDF
+  also touches: api/customAvatarItems
+  body    : HDOFPDFLBJH
+    - <PNHJFAHIHPK>k__BackingField: CMIJLKKPHLL
+    - <EGAEBAFODEA>k__BackingField: string
+    - <FEGIBEDLDFJ>k__BackingField: int?
+  returns : LMDMKCADPNK
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/customAvatarItems/v2/fromCreator/{dJJLDBJMNLK}  [Auth GET]
+  wrapper : ALDLHCNCJOG :: NCBOPOAEAPN(DJJLDBJMNLK: int) -> PIHPPMDHIHB<KDFFCJDNKAI>
+  also touches: api/customAvatarItems
+  body    : (none - GET; query params below if any)
+  returns : KDFFCJDNKAI
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/equipment/v1/update  [WWW POST]
+  wrapper : GBMAHOGOACJ :: GEGAIMNPNFH(LHIHKPJEJBH: List<MBBBDAJFAHE>) -> void
+  body    : MBBBDAJFAHE
+    - <IEAMDMNBNCL>k__BackingField: string
+    - <KANLGOJAIJM>k__BackingField: string
+    - <OAIECCOBDDP>k__BackingField: string
+    - <DDJINPPGCGI>k__BackingField: string
+    - <EPKDDCNOKOE>k__BackingField: HEEPEEMBHIG
+    - <COLGLAPGPID>k__BackingField: string
+    - HCLPHHFACPE: bool
+    - <ADEDMLNIFKC>k__BackingField: bool
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/equipment/v2/getUnlocked  [WWW GET]
+  wrapper : GBMAHOGOACJ :: JPJLMOJPLKG() -> PIHPPMDHIHB<List<MBBBDAJFAHE>>
+  body    : (none - GET; query params below if any)
+  returns : List<MBBBDAJFAHE>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/externalfriendinvite/v1/createplatforminvite  [Auth POST]
+  wrapper : MMALEBNFKAB :: IKHECCAKKBD(AILDICMMLHC: string) -> KAHDNIHNJDF
+  body    : ExternalfriendinviteV1CreateplatforminviteRequest (synthesized)
+  field   : platformId: string [wrapper]
+  returns : LMDMKCADPNK
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from wrapper
+
+api/externalfriendinvite/v1/getplatformreferrers  [Auth POST]
+  wrapper : MMALEBNFKAB :: MOLBDIGJNDM() -> PIHPPMDHIHB<List<int>>
+  body    : (none - wrappers take no parameters)
+  returns : List<int>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/externalfriendinvite/v1/gettextmessagereferrers  [Auth POST]
+  wrapper : MMALEBNFKAB :: AEJHGBMMOJM() -> PIHPPMDHIHB<List<int>>
+  body    : (none - wrappers take no parameters)
+  returns : List<int>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/externalfriendinvite/v1/sendtextmessageinvite  [Auth POST]
+  wrapper : MMALEBNFKAB :: IAIACHFHAPD(CHIOCKNLBBD: string, PAAANCGAJAC: string, BGFAHLECOEP: string) -> KAHDNIHNJDF
+  body    : ExternalfriendinviteV1SendtextmessageinviteRequest (synthesized)
+  field   : phoneNumber: object [candidate]
+  field   : senderName: object [candidate]
+  field   : friendCode: object [candidate]
+  maybe   : phoneNumber (candidate query key)
+  maybe   : senderName (candidate query key)
+  maybe   : friendCode (candidate query key)
+  returns : LMDMKCADPNK
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from candidate
+
+api/freegifts/v1/sendmultiple  [WWW POST]
+  wrapper : PFINFKLHAJP :: EFJNADONPNL(HKAHAELAHBK: List<int>, ADNFLGLLNKI: string, FHICOFNGBMG: PMGDMILOFIB) -> KAHDNIHNJDF
+  body    : MultiRecipientFreeGiftRequestDTO
+    - <ToPlayerIds>k__BackingField: List<int>
+    - <Message>k__BackingField: string
+    - <GiftContext>k__BackingField: PMGDMILOFIB
+  returns : LMDMKCADPNK
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/gameconfigs/v1/all  [Lists ?]
+  wrapper : PBECFCBMELN :: .cctor() -> void
+  body    : ? (verb unknown; params below if any)
+  returns : ? (wrappers non-generic - likely no content)
+  note    : no call site found consuming this literal
+  note    : service from builder field store
+
+api/gamerewards/v1/pending  [WWW GET]
+  wrapper : MEGCBJANELJ :: AIPAJAAPIJD() -> KAHDNIHNJDF
+  body    : (none - GET; query params below if any)
+  returns : List<NPJGBFOECAC>
+  note    : site from register pattern; callee not identified
+  note    : verb stashed in builder field
+  note    : service stashed in builder field
+
+api/gamerewards/v1/request  [WWW POST]
+  wrapper : MEGCBJANELJ :: JBBAGEPDDOK(FMLKEBCBCCC: NGJHLHMNGKE, FHICOFNGBMG: PMGDMILOFIB?, ADNFLGLLNKI: string) -> KAHDNIHNJDF
+  body    : GamerewardsV1RequestRequest (synthesized)
+  field   : FMLKEBCBCCC: NGJHLHMNGKE [wrapper]
+  field   : FHICOFNGBMG: PMGDMILOFIB? [wrapper]
+  field   : rewardType: object [candidate]
+  field   : Message: object [candidate]
+  field   : giftContext: object [candidate]
+  maybe   : rewardType (candidate query key)
+  maybe   : Message (candidate query key)
+  maybe   : giftContext (candidate query key)
+  returns : LMDMKCADPNK
+  note    : site from register pattern; callee not identified
+  note    : verb stashed in builder field
+  note    : service stashed in builder field
+  note    : request DTO synthesized from candidate+wrapper
+
+api/gamerewards/v1/select  [WWW POST]
+  wrapper : MEGCBJANELJ :: CJJEFBKIAFG(HBGCHGOIICD: NPJGBFOECAC, PNEPLOMLFAO: int) -> KAHDNIHNJDF
+  body    : GamerewardsV1SelectRequest (synthesized)
+  field   : HBGCHGOIICD: NPJGBFOECAC [wrapper]
+  field   : rewardSelectionId: object [candidate]
+  field   : giftDropId: object [candidate]
+  maybe   : rewardSelectionId (candidate query key)
+  maybe   : giftDropId (candidate query key)
+  returns : LMDMKCADPNK
+  note    : site from register pattern; callee not identified
+  note    : verb stashed in builder field
+  note    : service stashed in builder field
+  note    : request DTO synthesized from candidate+wrapper
+
+api/images/  [Auth GET]
+  wrapper : CCCGDPMPMOG :: ILHJOFOJEJA(HDECDPOHILC: long) -> PIHPPMDHIHB<IReadOnlyList<int>>
+  also touches: api/images/v6/{hDECDPOHILC}
+  wrapper : CCCGDPMPMOG :: INMEAIPKJMF(HBNHEKOLHND: int, KDJPBLKDFCN: GEBHPDNBHOL) -> PIHPPMDHIHB<List<BFJJOMAOEAN>>
+  also touches: api/images/v5/player/{playerId}
+  wrapper : CCCGDPMPMOG :: MNPNGIHNNKD(HDECDPOHILC: long) -> KAHDNIHNJDF
+  also touches: api/images/v1/{hDECDPOHILC}/report
+  wrapper : CCCGDPMPMOG/LOPHHBEFEJL :: BKDNLJEKKMD(...)
+  also touches: api/images/v5/player/{playerId}
+  wrapper : CCCGDPMPMOG/OMNLOFLOLHC :: JKPPOJIPLIE(...)
+  also touches: api/images/v4/room/{roomId}
+  candidate: CCCGDPMPMOG :: FACAHMJHPHC(CCMEAEBIKLN: IReadOnlyList<long>, DDNLBFLLCLM: CancellationToken) -> Task<List<BFJJOMAOEAN>>
+  candidate: CCCGDPMPMOG :: ECFEDHANGAF(CLPFGJJLCLL: MGHNAALDLME, DDNLBFLLCLM: CancellationToken) -> Task<DKLBANCOKPN>
+  candidate: CCCGDPMPMOG :: KIOONADOFFB(GGHFEPFKDAK: string, NOBDBIEALKI: uint?, FGABBPFKJNI: bool, DDNLBFLLCLM: CancellationToken) -> Task<byte[]>
+  candidate: CCCGDPMPMOG :: IPGJNHILEEG(AMEPFGBDFAH: string, JFPHDLHBFCI: bool, DDNLBFLLCLM: CancellationToken) -> Task<byte[]>
+  candidate: CCCGDPMPMOG :: FACAHMJHPHC(CCMEAEBIKLN: IReadOnlyList<long>, DDNLBFLLCLM: CancellationToken) -> Task<List<BFJJOMAOEAN>>
+  candidate: CCCGDPMPMOG :: ECFEDHANGAF(CLPFGJJLCLL: MGHNAALDLME, DDNLBFLLCLM: CancellationToken) -> Task<DKLBANCOKPN>
+  candidate: CCCGDPMPMOG :: KIOONADOFFB(GGHFEPFKDAK: string, NOBDBIEALKI: uint?, FGABBPFKJNI: bool, DDNLBFLLCLM: CancellationToken) -> Task<byte[]>
+  candidate: CCCGDPMPMOG :: IPGJNHILEEG(AMEPFGBDFAH: string, JFPHDLHBFCI: bool, DDNLBFLLCLM: CancellationToken) -> Task<byte[]>
+  candidate: CCCGDPMPMOG :: FACAHMJHPHC(CCMEAEBIKLN: IReadOnlyList<long>, DDNLBFLLCLM: CancellationToken) -> Task<List<BFJJOMAOEAN>>
+  candidate: CCCGDPMPMOG :: ECFEDHANGAF(CLPFGJJLCLL: MGHNAALDLME, DDNLBFLLCLM: CancellationToken) -> Task<DKLBANCOKPN>
+  body    : ImagesRequest (synthesized)
+  field   : sort: object [candidate]
+  field   : filter: object [candidate]
+  field   : take: object [candidate]
+  field   : skip: object [candidate]
+  maybe   : sort (candidate query key)
+  maybe   : filter (candidate query key)
+  maybe   : take (candidate query key)
+  maybe   : skip (candidate query key)
+  returns : HNDLEJJBOHF
+  note    : site from register pattern; callee not identified
+  note    : verb from window before call (any reg)
+  note    : service filled from same-area sibling
+  note    : request DTO synthesized from candidate
+
+api/images/v1/cheer  [Auth POST]
+  wrapper : CCCGDPMPMOG :: EPCLCECHBKH(HDECDPOHILC: long, KNOKKFKIMJM: bool) -> KAHDNIHNJDF
+  body    : EIMIDDNKOAO
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/images/v1/deletesaved  [Auth POST]
+  wrapper : CCCGDPMPMOG :: AFJEPNKABGM(GGHFEPFKDAK: string, HDECDPOHILC: long) -> KAHDNIHNJDF
+  body    : KFFNGAHHLFK
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/images/v1/listsaved  [Auth GET]
+  wrapper : CCCGDPMPMOG :: KELNMJCLPEO() -> PIHPPMDHIHB<List<string>>
+  body    : (none - GET; query params below if any)
+  returns : OLPONGGBNKJ
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/images/v1/modifyaccessibility  [Auth POST]
+  wrapper : CCCGDPMPMOG :: DJIKFGHGBBD(GGHFEPFKDAK: string, HDECDPOHILC: long, CPIPMBOAGCD: NACLCKGMEFH) -> KAHDNIHNJDF
+  body    : MHDAIKMENBH
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/images/v1/modifydescription  [Auth POST]
+  wrapper : CCCGDPMPMOG :: NFMBBEJCMLH(GGHFEPFKDAK: string, HDECDPOHILC: long, KFMEELLINJF: string) -> KAHDNIHNJDF
+  body    : NNAKHCLOMNE
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/images/v1/sendlink  [Auth POST]
+  wrapper : CCCGDPMPMOG :: IFJILHBAINF(GGHFEPFKDAK: string) -> KAHDNIHNJDF
+  body    : KFFNGAHHLFK
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/images/v1/slideshow  [Auth GET]
+  wrapper : CCCGDPMPMOG :: EPNJEKGEDJF() -> PIHPPMDHIHB<ABCAMFKJBKB>
+  body    : (none - GET; query params below if any)
+  returns : ABCAMFKJBKB
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/images/v1/{hDECDPOHILC}/report  [Auth POST]
+  wrapper : CCCGDPMPMOG :: MNPNGIHNNKD(HDECDPOHILC: long) -> KAHDNIHNJDF
+  also touches: api/images/
+  body    : ?
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/images/v2/named  [Auth GET]
+  wrapper : CCCGDPMPMOG :: BOCBEJHKGJB() -> KAHDNIHNJDF
+  body    : (none - GET; query params below if any)
+  returns : List<JEIKGCBMDBN>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/images/v4/room/{roomId}  [Auth GET]
+  wrapper : CCCGDPMPMOG/OMNLOFLOLHC :: JKPPOJIPLIE(...)
+  also touches: api/images/
+  body    : ImagesV4RoomRoomIdRequest (synthesized)
+  field   : filter: object [candidate]
+  field   : sort: object [candidate]
+  field   : take: object [candidate]
+  field   : skip: object [candidate]
+  maybe   : filter (candidate query key)
+  maybe   : sort (candidate query key)
+  maybe   : take (candidate query key)
+  maybe   : skip (candidate query key)
+  returns : List<HNDLEJJBOHF>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from candidate
+
+api/images/v4/uploadsaved  [Auth POST]
+  wrapper : CCCGDPMPMOG :: BKPDOOBKJEI(GIJOMBNPMCG: PCEMLAIOGNP, JELGCDINPML: SavedImageMetaDTO) -> PIHPPMDHIHB<string>
+  wrapper : CCCGDPMPMOG :: BKPDOOBKJEI(GIJOMBNPMCG: PCEMLAIOGNP, LIGJPJLEPAA: DLFOPPIAEPE, OLAKCIKKPLA: IEnumerable<ObscuredInt>, DCMPEFACGMB: NACLCKGMEFH?, KFMEELLINJF: string) -> PIHPPMDHIHB<string>
+  body    : SavedImageMetaDTO
+  returns : KFFNGAHHLFK
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/images/v5/bulk  [Auth ?]
+  wrapper : CCCGDPMPMOG/NCDNEMNDOLP :: MoveNext(...)
+  body    : ImagesV5BulkRequest (synthesized)
+  field   : ids: List<long> [param]
+  returns : List<BFJJOMAOEAN>
+  note    : site from resolved signature
+  note    : service in r8 at call
+  note    : request DTO synthesized from param
+
+api/images/v5/cheered/bulk  [Auth ?]
+  wrapper : CCCGDPMPMOG :: GFNFFJJEOHC(CCMEAEBIKLN: IEnumerable<long>) -> PIHPPMDHIHB<List<GDEOEBGOPGI>>
+  body    : ImagesV5CheeredBulkRequest (synthesized)
+  field   : id: List<long> [param]
+  returns : List<GDEOEBGOPGI>
+  note    : site from resolved signature
+  note    : service in r8 at call
+  note    : verb chosen at runtime (HttpMethod factory call)
+  note    : request DTO synthesized from param
+
+api/images/v5/player/{playerId}  [Auth GET]
+  wrapper : CCCGDPMPMOG :: INMEAIPKJMF(HBNHEKOLHND: int, KDJPBLKDFCN: GEBHPDNBHOL) -> PIHPPMDHIHB<List<BFJJOMAOEAN>>
+  also touches: api/images/
+  wrapper : CCCGDPMPMOG/LOPHHBEFEJL :: BKDNLJEKKMD(...)
+  also touches: api/images/
+  body    : ImagesV5PlayerPlayerIdRequest (synthesized)
+  field   : sort: object [candidate]
+  maybe   : sort (candidate query key)
+  returns : List<BFJJOMAOEAN>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from candidate
+
+api/images/v6  [Auth GET]
+  wrapper : CCCGDPMPMOG :: GDPOOMKFDMM(HIDEFGPPMMK: string) -> PIHPPMDHIHB<BFJJOMAOEAN>
+  body    : ImagesV6Request (synthesized)
+  field   : name: string [wrapper]
+  returns : HNDLEJJBOHF
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from wrapper
+
+api/images/v6/{hDECDPOHILC}  [Auth GET]
+  wrapper : CCCGDPMPMOG :: ILHJOFOJEJA(HDECDPOHILC: long) -> PIHPPMDHIHB<IReadOnlyList<int>>
+  also touches: api/images/
+  body    : (none - GET; query params below if any)
+  returns : HNDLEJJBOHF
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/incentivizedreferrals/claim  [WWW POST]
+  wrapper : GBNCNEDFMAB :: DNHPMABEEOO(PGNMNPHHODO: int) -> PIHPPMDHIHB<List<NPJGBFOECAC>>
+  body    : IncentivizedreferralsClaimRequest (synthesized)
+  field   : ReferralRewardId: int [wrapper]
+  returns : DEOJCCDCNHA<NPJGBFOECAC>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from wrapper
+
+api/incentivizedreferrals/progress  [WWW GET]
+  wrapper : GBNCNEDFMAB :: MNIKCBPHMKA() -> PIHPPMDHIHB<CMPHDOIPPFC>
+  body    : (none - GET; query params below if any)
+  returns : GCHGIGLMILD<CMPHDOIPPFC>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/incentivizedreferrals/referrals  [WWW GET]
+  wrapper : GBNCNEDFMAB :: NLMODLBEDBD(EICGAEHHLBE: int?, GMLKONKCPIE: string) -> PIHPPMDHIHB<NAAILBMDLEP>
+  body    : IncentivizedreferralsReferralsRequest (synthesized)
+  field   : continuationToken: object [candidate]
+  field   : take: object [candidate]
+  maybe   : continuationToken (candidate query key)
+  maybe   : take (candidate query key)
+  returns : NAAILBMDLEP
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from candidate
+
+api/influencerpartnerprogram/influencer  [WWW GET]
+  wrapper : HHNAHJFLMJK :: MMIFKNEPIFP(HBNHEKOLHND: int) -> PIHPPMDHIHB<int?>
+  body    : InfluencerpartnerprogramInfluencerRequest (synthesized)
+  field   : accountId: int [wrapper]
+  returns : int
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from wrapper
+
+api/influencerpartnerprogram/influencers  [WWW GET]
+  wrapper : HHNAHJFLMJK :: NNGMFAMDKON(GMLKONKCPIE: string) -> PIHPPMDHIHB<List<int>>
+  body    : InfluencerpartnerprogramInfluencersRequest (synthesized)
+  field   : continuationToken: object [candidate]
+  field   : take: object [candidate]
+  maybe   : continuationToken (candidate query key)
+  maybe   : take (candidate query key)
+  returns : KDLKLPFFAPH
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from candidate
+
+api/influencerpartnerprogram/myinfluencer  [WWW GET]
+  wrapper : HHNAHJFLMJK :: DAOFDGNOCOI() -> PIHPPMDHIHB<int?>
+  body    : (none - GET; query params below if any)
+  returns : int
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/influencerpartnerprogram/remove  [WWW POST]
+  wrapper : HHNAHJFLMJK :: NKEHIPKPLIP(ONKDDOJOFGC: int) -> KAHDNIHNJDF
+  body    : InfluencerpartnerprogramRemoveRequest (synthesized)
+  field   : influencerAccountId: int [wrapper]
+  returns : LMDMKCADPNK
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from wrapper
+
+api/influencerpartnerprogram/support  [WWW POST]
+  wrapper : HHNAHJFLMJK :: OMLOCFIDLMH(ONKDDOJOFGC: int) -> KAHDNIHNJDF
+  body    : InfluencerpartnerprogramSupportRequest (synthesized)
+  field   : influencerAccountId: int [wrapper]
+  returns : LMDMKCADPNK
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from wrapper
+
+api/inventions/  [Auth ?]
+  wrapper : PPEBEJBHHNI :: AONDFKPOIJD(EEGPJCABCPF: long) -> void
+  also touches: api/inventions/v1/details
+  wrapper : PPEBEJBHHNI :: CFCBPJKLCNJ(EEGPJCABCPF: long) -> string
+  wrapper : PPEBEJBHHNI :: IECEIDHDLFO(EEGPJCABCPF: long, FPABFPCFLGO: int) -> string
+  also touches: api/inventions/v1/version
+  wrapper : PPEBEJBHHNI :: LPGGEJNEOAM(EEGPJCABCPF: long) -> void
+  wrapper : PPEBEJBHHNI :: MAHCFMLDBGC(MMNCPOOFGEF: long) -> string
+  also touches: api/inventions/v1/room
+  wrapper : PPEBEJBHHNI :: MFDPNOKFAJG(EEGPJCABCPF: long) -> string
+  also touches: api/inventions/v1/personaldetails/{eEGPJCABCPF}
+  candidate: PPEBEJBHHNI :: ILLNEGHPGKI(LJIEGDEDOHM: byte[], EEGPJCABCPF: long, AFIKAOJOGFD: bool, GAACDAOPPAK: int, GALFCACCMHG: int, EPGMGFHBDCO: int, IGBDHBBBLEB: int, LPHNCOBFALG: int, KCNMGLBEJIH: byte, DLLMIOJKDDB: IReadOnlyCollection<string>, CNCJDAJFKOC: List<long>, GIEHLKABADJ: List<string>) -> Task<BIIKCHNMPGB>
+  candidate: PPEBEJBHHNI :: EMGHPIENELL(EINNDIFLJFM: IReadOnlyList<long>, DDNLBFLLCLM: CancellationToken) -> Task<List<CHMIDPMDMJO>>
+  candidate: PPEBEJBHHNI :: KEIEPANODEO(HNHNHNNEMKO: JJCFLNMPBHK, DDNLBFLLCLM: CancellationToken) -> Task<JFKBIJGPOEC<byte>>
+  candidate: PPEBEJBHHNI :: KMPPNEHLJJD(EEGPJCABCPF: long, FPABFPCFLGO: int) -> Task<NMANDIAIDGE<ReadOnlySequence<byte>>>
+  candidate: PPEBEJBHHNI :: ILLNEGHPGKI(LJIEGDEDOHM: byte[], EEGPJCABCPF: long, AFIKAOJOGFD: bool, GAACDAOPPAK: int, GALFCACCMHG: int, EPGMGFHBDCO: int, IGBDHBBBLEB: int, LPHNCOBFALG: int, KCNMGLBEJIH: byte, DLLMIOJKDDB: IReadOnlyCollection<string>, CNCJDAJFKOC: List<long>, GIEHLKABADJ: List<string>) -> Task<BIIKCHNMPGB>
+  candidate: PPEBEJBHHNI :: EMGHPIENELL(EINNDIFLJFM: IReadOnlyList<long>, DDNLBFLLCLM: CancellationToken) -> Task<List<CHMIDPMDMJO>>
+  candidate: PPEBEJBHHNI :: KEIEPANODEO(HNHNHNNEMKO: JJCFLNMPBHK, DDNLBFLLCLM: CancellationToken) -> Task<JFKBIJGPOEC<byte>>
+  candidate: PPEBEJBHHNI :: KMPPNEHLJJD(EEGPJCABCPF: long, FPABFPCFLGO: int) -> Task<NMANDIAIDGE<ReadOnlySequence<byte>>>
+  candidate: PPEBEJBHHNI :: ILLNEGHPGKI(LJIEGDEDOHM: byte[], EEGPJCABCPF: long, AFIKAOJOGFD: bool, GAACDAOPPAK: int, GALFCACCMHG: int, EPGMGFHBDCO: int, IGBDHBBBLEB: int, LPHNCOBFALG: int, KCNMGLBEJIH: byte, DLLMIOJKDDB: IReadOnlyCollection<string>, CNCJDAJFKOC: List<long>, GIEHLKABADJ: List<string>) -> Task<BIIKCHNMPGB>
+  candidate: PPEBEJBHHNI :: EMGHPIENELL(EINNDIFLJFM: IReadOnlyList<long>, DDNLBFLLCLM: CancellationToken) -> Task<List<CHMIDPMDMJO>>
+  body    : ? (verb unknown; params below if any)
+  returns : ? (wrappers non-generic - likely no content)
+  note    : no call site found consuming this literal
+  note    : service filled from same-area sibling
+
+api/inventions/v1/cheer  [Auth POST]
+  wrapper : PPEBEJBHHNI :: KIFPNENJNKA(EEGPJCABCPF: long, KNOKKFKIMJM: bool) -> PIHPPMDHIHB<BIIKCHNMPGB>
+  body    : CheerRequest
+    - InventionId: long
+    - Cheer: bool
+  returns : BIIKCHNMPGB
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/inventions/v1/delete  [Auth GET]
+  wrapper : PPEBEJBHHNI :: FMJBEIOLHLF(ABCPHPMJHCC: CHMIDPMDMJO) -> PIHPPMDHIHB<BIIKCHNMPGB>
+  body    : InventionsV1DeleteRequest (synthesized)
+  field   : inventionId: CHMIDPMDMJO [wrapper]
+  returns : BIIKCHNMPGB
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from wrapper
+
+api/inventions/v1/details  [Auth GET]
+  wrapper : PPEBEJBHHNI :: AONDFKPOIJD(EEGPJCABCPF: long) -> void
+  also touches: api/inventions/
+  wrapper : PPEBEJBHHNI :: EALJHIIAGNL(EEGPJCABCPF: long) -> PIHPPMDHIHB<KMHKNEFLNMB>
+  body    : InventionsV1DetailsRequest (synthesized)
+  field   : inventionId: long [wrapper]
+  returns : KMHKNEFLNMB
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from wrapper
+
+api/inventions/v1/dormskinsfromids  [Auth ?]
+  wrapper : PPEBEJBHHNI :: IOEKPPOLLAB(EINNDIFLJFM: IEnumerable<long>) -> PIHPPMDHIHB<IReadOnlyList<long>>
+  body    : InventionsV1DormskinsfromidsRequest (synthesized)
+  field   : ids: List<long> [param]
+  returns : List<long>
+  note    : site from resolved signature
+  note    : service in r8 at call
+  note    : verb chosen at runtime (HttpMethod factory call)
+  note    : request DTO synthesized from param
+
+api/inventions/v1/fulllineageowner  [Auth GET]
+  wrapper : PPEBEJBHHNI :: JCNCINPIDDC(NMLJFCIFJIG: List<long>) -> PIHPPMDHIHB<bool>
+  body    : InventionsV1FulllineageownerRequest (synthesized)
+  field   : id: List<long> [query]
+  returns : bool
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from query
+
+api/inventions/v1/metadata  [Auth PUT]
+  wrapper : PPEBEJBHHNI :: FMPKDMJHBBE(EEGPJCABCPF: long, EPPPGDEIJCI: string, KFMEELLINJF: string, HOMHOBLHAJM: string, DNIICCPPGLC: string) -> PIHPPMDHIHB<BIIKCHNMPGB>
+  body    : UpdateInventionMetadataRequest
+    - <InventionId>k__BackingField: long
+    - <Name>k__BackingField: string
+    - <Description>k__BackingField: string
+    - <LongDescription>k__BackingField: string
+    - <ImageName>k__BackingField: string
+  returns : BIIKCHNMPGB
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/inventions/v1/personaldetails/{eEGPJCABCPF}  [Auth ?]
+  wrapper : PPEBEJBHHNI :: MFDPNOKFAJG(EEGPJCABCPF: long) -> string
+  also touches: api/inventions/
+  candidate: PPEBEJBHHNI :: ILLNEGHPGKI(LJIEGDEDOHM: byte[], EEGPJCABCPF: long, AFIKAOJOGFD: bool, GAACDAOPPAK: int, GALFCACCMHG: int, EPGMGFHBDCO: int, IGBDHBBBLEB: int, LPHNCOBFALG: int, KCNMGLBEJIH: byte, DLLMIOJKDDB: IReadOnlyCollection<string>, CNCJDAJFKOC: List<long>, GIEHLKABADJ: List<string>) -> Task<BIIKCHNMPGB>
+  candidate: PPEBEJBHHNI :: EMGHPIENELL(EINNDIFLJFM: IReadOnlyList<long>, DDNLBFLLCLM: CancellationToken) -> Task<List<CHMIDPMDMJO>>
+  candidate: PPEBEJBHHNI :: KEIEPANODEO(HNHNHNNEMKO: JJCFLNMPBHK, DDNLBFLLCLM: CancellationToken) -> Task<JFKBIJGPOEC<byte>>
+  candidate: PPEBEJBHHNI :: KMPPNEHLJJD(EEGPJCABCPF: long, FPABFPCFLGO: int) -> Task<NMANDIAIDGE<ReadOnlySequence<byte>>>
+  body    : ? (verb unknown; params below if any)
+  returns : ? (wrappers non-generic - likely no content)
+  note    : no call site found consuming this literal
+  note    : service filled from same-area sibling
+
+api/inventions/v1/report  [Auth POST]
+  wrapper : PPEBEJBHHNI :: ABPNABFDDOA(EEGPJCABCPF: long, DNLJBHKECFG: GKJLNJCJMLK, FAOJDNOALDB: string) -> PIHPPMDHIHB<HOLEFKGMIEN>
+  body    : ReportRequest
+    - InventionId: long
+    - Details: string
+    - ReportCategory: GKJLNJCJMLK
+  returns : HOLEFKGMIEN
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/inventions/v1/room  [Auth ?]
+  wrapper : PPEBEJBHHNI :: MAHCFMLDBGC(MMNCPOOFGEF: long) -> string
+  also touches: api/inventions/
+  candidate: PPEBEJBHHNI :: ILLNEGHPGKI(LJIEGDEDOHM: byte[], EEGPJCABCPF: long, AFIKAOJOGFD: bool, GAACDAOPPAK: int, GALFCACCMHG: int, EPGMGFHBDCO: int, IGBDHBBBLEB: int, LPHNCOBFALG: int, KCNMGLBEJIH: byte, DLLMIOJKDDB: IReadOnlyCollection<string>, CNCJDAJFKOC: List<long>, GIEHLKABADJ: List<string>) -> Task<BIIKCHNMPGB>
+  candidate: PPEBEJBHHNI :: EMGHPIENELL(EINNDIFLJFM: IReadOnlyList<long>, DDNLBFLLCLM: CancellationToken) -> Task<List<CHMIDPMDMJO>>
+  candidate: PPEBEJBHHNI :: KEIEPANODEO(HNHNHNNEMKO: JJCFLNMPBHK, DDNLBFLLCLM: CancellationToken) -> Task<JFKBIJGPOEC<byte>>
+  candidate: PPEBEJBHHNI :: KMPPNEHLJJD(EEGPJCABCPF: long, FPABFPCFLGO: int) -> Task<NMANDIAIDGE<ReadOnlySequence<byte>>>
+  body    : ? (verb unknown; params below if any)
+  returns : ? (wrappers non-generic - likely no content)
+  note    : no call site found consuming this literal
+  note    : service filled from same-area sibling
+
+api/inventions/v1/settags  [Auth POST]
+  wrapper : PPEBEJBHHNI :: NDMFJMBBHDG(EEGPJCABCPF: long, GIEHLKABADJ: List<string>, NAJOBNLBLMB: List<string>) -> PIHPPMDHIHB<LFAEOLMHDDO>
+  body    : ModifyTagsRequest
+    - InventionId: long
+    - AutoTags: List<string>
+    - CustomTags: List<string>
+  returns : LFAEOLMHDDO
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/inventions/v1/tagfilters  [Auth GET]
+  wrapper : PPEBEJBHHNI :: BIOIHGJJFMP(LGNGCGEOICD: HDFHBFFGHLD) -> PIHPPMDHIHB<List<string>>
+  body    : (none - GET; query params below if any)
+  returns : NJEHNGHNEHP
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/inventions/v1/unpublish  [Auth GET]
+  wrapper : PPEBEJBHHNI :: HPBJEDFGBIN(EEGPJCABCPF: long) -> PIHPPMDHIHB<BIIKCHNMPGB>
+  body    : InventionsV1UnpublishRequest (synthesized)
+  field   : inventionId: long [wrapper]
+  returns : BIIKCHNMPGB
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from wrapper
+
+api/inventions/v1/update  [Auth GET]
+  wrapper : PPEBEJBHHNI :: AAONIELCKDC(EEGPJCABCPF: long, KFMEELLINJF: string) -> PIHPPMDHIHB<BIIKCHNMPGB>
+  wrapper : PPEBEJBHHNI :: EHJPKBHGMLE(EEGPJCABCPF: long, FABMNJCECNI: DAMOBBEOPGP) -> PIHPPMDHIHB<BIIKCHNMPGB>
+  wrapper : PPEBEJBHHNI :: KJDNKLEKCCD(EEGPJCABCPF: long, EPPPGDEIJCI: string) -> PIHPPMDHIHB<BIIKCHNMPGB>
+  wrapper : PPEBEJBHHNI :: NGJJJNAKNKE(EEGPJCABCPF: long, DNIICCPPGLC: string) -> PIHPPMDHIHB<BIIKCHNMPGB>
+  body    : InventionsV1UpdateRequest (synthesized)
+  field   : name: object [candidate]
+  field   : inventionId: object [candidate]
+  field   : description: object [candidate]
+  field   : imgName: object [candidate]
+  field   : permission: object [candidate]
+  maybe   : name (candidate query key)
+  maybe   : inventionId (candidate query key)
+  maybe   : description (candidate query key)
+  maybe   : imgName (candidate query key)
+  maybe   : permission (candidate query key)
+  returns : BIIKCHNMPGB
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from candidate
+
+api/inventions/v1/updateprice  [Auth POST]
+  wrapper : PPEBEJBHHNI :: BBNELHGFLKD(EEGPJCABCPF: long, PIDLLHEIKHK: int) -> PIHPPMDHIHB<BIIKCHNMPGB>
+  body    : UpdatePriceRequest
+    - InventionId: long
+    - Price: int
+  returns : BIIKCHNMPGB
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/inventions/v1/version  [Auth ?]
+  wrapper : PPEBEJBHHNI :: IECEIDHDLFO(EEGPJCABCPF: long, FPABFPCFLGO: int) -> string
+  also touches: api/inventions/
+  candidate: PPEBEJBHHNI :: ILLNEGHPGKI(LJIEGDEDOHM: byte[], EEGPJCABCPF: long, AFIKAOJOGFD: bool, GAACDAOPPAK: int, GALFCACCMHG: int, EPGMGFHBDCO: int, IGBDHBBBLEB: int, LPHNCOBFALG: int, KCNMGLBEJIH: byte, DLLMIOJKDDB: IReadOnlyCollection<string>, CNCJDAJFKOC: List<long>, GIEHLKABADJ: List<string>) -> Task<BIIKCHNMPGB>
+  candidate: PPEBEJBHHNI :: EMGHPIENELL(EINNDIFLJFM: IReadOnlyList<long>, DDNLBFLLCLM: CancellationToken) -> Task<List<CHMIDPMDMJO>>
+  candidate: PPEBEJBHHNI :: KEIEPANODEO(HNHNHNNEMKO: JJCFLNMPBHK, DDNLBFLLCLM: CancellationToken) -> Task<JFKBIJGPOEC<byte>>
+  candidate: PPEBEJBHHNI :: KMPPNEHLJJD(EEGPJCABCPF: long, FPABFPCFLGO: int) -> Task<NMANDIAIDGE<ReadOnlySequence<byte>>>
+  body    : ? (verb unknown; params below if any)
+  returns : ? (wrappers non-generic - likely no content)
+  note    : no call site found consuming this literal
+  note    : service filled from same-area sibling
+
+api/inventions/v1/versions  [Auth GET]
+  wrapper : PPEBEJBHHNI :: EKJIICCNHNP(EEGPJCABCPF: long) -> PIHPPMDHIHB<List<KGIMMJKBHMJ>>
+  body    : InventionsV1VersionsRequest (synthesized)
+  field   : inventionId: long [wrapper]
+  returns : List<KGIMMJKBHMJ>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from wrapper
+
+api/inventions/v2/batch  [Auth ?]
+  wrapper : PPEBEJBHHNI/CHGKCFEPCNF :: MoveNext(...)
+  body    : InventionsV2BatchRequest (synthesized)
+  field   : id: List<long> [param]
+  returns : List<CHMIDPMDMJO>
+  note    : site from resolved signature
+  note    : service in r8 at call
+  note    : verb chosen at runtime (HttpMethod factory call)
+  note    : request DTO synthesized from param
+
+api/inventions/v2/mine  [Auth ?]
+  wrapper : PPEBEJBHHNI :: .cctor() -> void
+  candidate: PPEBEJBHHNI :: ILLNEGHPGKI(LJIEGDEDOHM: byte[], EEGPJCABCPF: long, AFIKAOJOGFD: bool, GAACDAOPPAK: int, GALFCACCMHG: int, EPGMGFHBDCO: int, IGBDHBBBLEB: int, LPHNCOBFALG: int, KCNMGLBEJIH: byte, DLLMIOJKDDB: IReadOnlyCollection<string>, CNCJDAJFKOC: List<long>, GIEHLKABADJ: List<string>) -> Task<BIIKCHNMPGB>
+  candidate: PPEBEJBHHNI :: EMGHPIENELL(EINNDIFLJFM: IReadOnlyList<long>, DDNLBFLLCLM: CancellationToken) -> Task<List<CHMIDPMDMJO>>
+  candidate: PPEBEJBHHNI :: KEIEPANODEO(HNHNHNNEMKO: JJCFLNMPBHK, DDNLBFLLCLM: CancellationToken) -> Task<JFKBIJGPOEC<byte>>
+  candidate: PPEBEJBHHNI :: KMPPNEHLJJD(EEGPJCABCPF: long, FPABFPCFLGO: int) -> Task<NMANDIAIDGE<ReadOnlySequence<byte>>>
+  body    : ? (verb unknown; params below if any)
+  returns : ? (wrappers non-generic - likely no content)
+  note    : no call site found consuming this literal
+  note    : service filled from same-area sibling
+
+api/inventions/v2/search  [Auth GET]
+  wrapper : PPEBEJBHHNI :: DBPOCFBDPEC(CBMHDCMOFLF: string, GOPAINAIJLD: int, EICGAEHHLBE: int) -> PIHPPMDHIHB<List<CHMIDPMDMJO>>
+  body    : InventionsV2SearchRequest (synthesized)
+  field   : value: object [candidate]
+  field   : take: object [candidate]
+  field   : skip: object [candidate]
+  maybe   : value (candidate query key)
+  maybe   : take (candidate query key)
+  maybe   : skip (candidate query key)
+  returns : List<CHMIDPMDMJO>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from candidate
+
+api/inventions/v3/publish  [Auth GET]
+  wrapper : PPEBEJBHHNI :: PFMGGPCPCPD(EEGPJCABCPF: long, MIOMGFPFHKB: DAMOBBEOPGP, CPIPMBOAGCD: NONJPEHBDOG, PIDLLHEIKHK: int?) -> PIHPPMDHIHB<BIIKCHNMPGB>
+  body    : InventionsV3PublishRequest (synthesized)
+  field   : price: object [candidate]
+  field   : accessibility: object [candidate]
+  field   : permissionLevel: object [candidate]
+  field   : inventionId: object [candidate]
+  maybe   : price (candidate query key)
+  maybe   : accessibility (candidate query key)
+  maybe   : permissionLevel (candidate query key)
+  maybe   : inventionId (candidate query key)
+  returns : BIIKCHNMPGB
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from candidate
+
+api/inventions/v7/addversion  [Auth POST]
+  wrapper : PPEBEJBHHNI/HLFNNHLBOCD :: MoveNext(...)
+  body    : AddVersionInventionRequestDTO
+    - inventionId: long
+    - hasBetaContent: bool
+    - instantiationCost: int
+    - lightsCost: int
+    - chipsCost: int
+    - cloudVariablesCost: int
+    - aiCost: int
+    - ugcVersion: byte
+    - creationRoomId: long
+    - inventionDataFilename: string
+    - referencedInventions: List<long>
+  returns : BIIKCHNMPGB
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/inventions/v8/save  [Auth POST]
+  wrapper : PPEBEJBHHNI/ODDIEKGGGLA :: JDNJDGHACFF(...)
+  body    : NewInventionRequestDTO
+    - name: string
+    - description: string
+    - imageName: string
+    - hasBetaContent: bool
+    - instantiationCost: int
+    - lightsCost: int
+    - chipsCost: int
+    - cloudVariablesCost: int
+    - aiCost: int
+    - ugcVersion: byte
+    - creationRoomId: long
+    - inventionDataFilename: string
+    - referencedInventions: List<long>
+    - creatorAccountRole: EOLJMOIJNHG
+    - convertedFromInventionId: long?
+    - displayMetadataJson: string
+    - longDescription: string
+  returns : BIIKCHNMPGB
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/itemWishlists/v1/isonwishlist/bulk  [WWW POST]
+  wrapper : OLHKFGFEACF :: AOOKEPAAOIB(IPKPANLAIHM: List<int>, NFCADPHGMCH: int) -> PIHPPMDHIHB<List<bool>>
+  body    : ItemWishlistsV1IsonwishlistBulkRequest (synthesized)
+  field   : accountIds: List<int> [form]
+  returns : List<bool>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from form
+
+api/itemWishlists/v1/wishlist/me  [WWW GET]
+  wrapper : OLHKFGFEACF :: NELMDJDNNNK() -> void
+  wrapper : OLHKFGFEACF :: OAPENAAMPAC(HBNHEKOLHND: int, AKNDIGIDNPL: bool) -> PIHPPMDHIHB<List<LIIHIEGBBNF>>
+  also touches: api/itemWishlists
+  body    : (none - GET; query params below if any)
+  returns : List<LIIHIEGBBNF>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/itemWishlists/v1/wishlist/me/{nFCADPHGMCH}  [WWW DELETE]
+  wrapper : OLHKFGFEACF :: EHHLEFGFAND(NFCADPHGMCH: int) -> KAHDNIHNJDF
+  also touches: api/itemWishlists
+  wrapper : OLHKFGFEACF :: HPLDLIKDPDP(NFCADPHGMCH: int) -> PIHPPMDHIHB<LIIHIEGBBNF>
+  also touches: api/itemWishlists
+  body    : (none - GET; query params below if any)
+  returns : GCHGIGLMILD<LIIHIEGBBNF>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/keepsakes  [Auth POST]
+  wrapper : MINIFLHGKGM :: CKNICEHFOHF(MMNCPOOFGEF: long) -> string
+  also touches: api/keepsakes/rooms/{mMNCPOOFGEF}
+  wrapper : MINIFLHGKGM :: EIJLMDECAFD(KLEDGAFGMCL: MHCJLGGOLOL) -> PIHPPMDHIHB<Guid>
+  wrapper : MINIFLHGKGM :: FFJJOIFDGLN(PGHMPIEDMEN: Guid) -> PIHPPMDHIHB<DOFKLNOGMAN>
+  also touches: api/keepsakes/{pGHMPIEDMEN}/collect
+  wrapper : MINIFLHGKGM :: FHNLBDIAMDB(PGHMPIEDMEN: Guid) -> KAHDNIHNJDF
+  also touches: api/keepsakes/{pGHMPIEDMEN}
+  wrapper : MINIFLHGKGM :: IAFDEJCLPMG(MCGEBBCEJDD: long) -> PIHPPMDHIHB<KeepsakeProgressionEventInstancesDTO>
+  also touches: api/keepsakes/events/{mCGEBBCEJDD}
+  wrapper : MINIFLHGKGM :: JGLBLKJEEGP(MCGEBBCEJDD: long) -> string
+  also touches: api/keepsakes/events/{mCGEBBCEJDD}
+  wrapper : MINIFLHGKGM :: PCKFCLJCPBG() -> void
+  body    : AddKeepsakeInstanceRequest
+    - <GLBGDACAKAI>k__BackingField: long
+    - <ADCOLKCDBNK>k__BackingField: long?
+    - <HNJEKEHMIFJ>k__BackingField: MHCJLGGOLOL
+  returns : DHGKIHNLHNC<Guid>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/keepsakes/categories  [Auth GET]
+  wrapper : MINIFLHGKGM :: OLDJIPJAFOK() -> PIHPPMDHIHB<IReadOnlyList<KeepsakeCategoryConfigDTO>>
+  body    : (none - GET; query params below if any)
+  returns : OFBNHEJKOML
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/keepsakes/events/{mCGEBBCEJDD}  [Auth GET]
+  wrapper : MINIFLHGKGM :: IAFDEJCLPMG(MCGEBBCEJDD: long) -> PIHPPMDHIHB<KeepsakeProgressionEventInstancesDTO>
+  also touches: api/keepsakes
+  wrapper : MINIFLHGKGM :: JGLBLKJEEGP(MCGEBBCEJDD: long) -> string
+  also touches: api/keepsakes
+  body    : (none - GET; query params below if any)
+  returns : KeepsakeProgressionEventInstancesDTO
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/keepsakes/globalconfig  [Auth GET]
+  wrapper : MINIFLHGKGM :: JNMDNOKKKHN() -> PIHPPMDHIHB<KeepsakeGlobalConfigDTO>
+  body    : (none - GET; query params below if any)
+  returns : KeepsakeGlobalConfigDTO
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/keepsakes/rooms/{mMNCPOOFGEF}  [Auth ?]
+  wrapper : MINIFLHGKGM :: CKNICEHFOHF(MMNCPOOFGEF: long) -> string
+  also touches: api/keepsakes
+  body    : ? (verb unknown; params below if any)
+  returns : ? (wrappers non-generic - likely no content)
+  note    : no call site found consuming this literal
+  note    : service filled from same-area sibling
+
+api/keepsakes/{pGHMPIEDMEN}  [Auth DELETE]
+  wrapper : MINIFLHGKGM :: FHNLBDIAMDB(PGHMPIEDMEN: Guid) -> KAHDNIHNJDF
+  also touches: api/keepsakes
+  body    : (none - GET; query params below if any)
+  returns : LMDMKCADPNK
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/keepsakes/{pGHMPIEDMEN}/collect  [Auth POST]
+  wrapper : MINIFLHGKGM :: FFJJOIFDGLN(PGHMPIEDMEN: Guid) -> PIHPPMDHIHB<DOFKLNOGMAN>
+  also touches: api/keepsakes
+  body    : KeepsakesPGHMPIEDMENCollectRequest (synthesized)
+  field   : PGHMPIEDMEN: Guid [wrapper]
+  returns : GCHGIGLMILD<DOFKLNOGMAN>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from wrapper
+
+api/memory/experimentparameters/experimentconfig  [Auth GET]
+  wrapper : OJJPDKCEOEG/GJBBKLFDPKA :: MoveNext(...)
+  body    : (none - GET; query params below if any)
+  returns : List<BAAPHHBNCON>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/memory/experimentparameters/overrides  [Auth GET]
+  wrapper : OJJPDKCEOEG/JNBEJKJLCLJ :: MoveNext(...)
+  body    : (none - GET; query params below if any)
+  returns : List<BCMKLOJLAMC>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/messages/v1/friendOnlineStatus  [Auth POST]
+  wrapper : HPPHKOKDPGI :: MJFFMONKCLH() -> PIHPPMDHIHB<NBGKHBINNKA>
+  body    : (none - wrappers take no parameters)
+  returns : GCHGIGLMILD<NBGKHBINNKA>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/messages/v1/sendMultiple  [Auth POST]
+  wrapper : HPPHKOKDPGI :: FJIAMECFBLI(OLAKCIKKPLA: List<long>, HOPMJJMJBFK: JFDLDEDDAIA, LJIEGDEDOHM: string, MMNCPOOFGEF: long?) -> KAHDNIHNJDF
+  body    : ILIOFAHOEHO
+    - <FLHJCLLMJBD>k__BackingField: List<long>
+    - <IKHJKBJKJHL>k__BackingField: JFDLDEDDAIA
+    - <ILHNLEKGAAH>k__BackingField: string
+    - <GLBGDACAKAI>k__BackingField: long?
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/messages/v2/get  [Auth GET]
+  wrapper : HPPHKOKDPGI :: AHJMELKDIBE() -> KAHDNIHNJDF
+  body    : (none - GET; query params below if any)
+  returns : List<KOFNKKPCMEM>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/messages/v2/send  [Auth POST]
+  wrapper : HPPHKOKDPGI :: EMKGGLJECJK(KEOJINBLLLG: long, HOPMJJMJBFK: JFDLDEDDAIA, LJIEGDEDOHM: string, MMNCPOOFGEF: long?) -> KAHDNIHNJDF
+  body    : MessagesV2SendRequest (synthesized)
+  field   : HOPMJJMJBFK: JFDLDEDDAIA [wrapper]
+  field   : MMNCPOOFGEF: long? [wrapper]
+  field   : ToPlayerId: object [candidate]
+  field   : Type: object [candidate]
+  field   : Data: object [candidate]
+  field   : RoomId: object [candidate]
+  maybe   : ToPlayerId (candidate query key)
+  maybe   : Type (candidate query key)
+  maybe   : Data (candidate query key)
+  maybe   : RoomId (candidate query key)
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from candidate+wrapper
+
+api/messages/v3/delete  [Auth POST]
+  wrapper : HPPHKOKDPGI :: MJMOODGDGEM(MJBADOJFGMH: IEnumerable<long>) -> KAHDNIHNJDF
+  body    : DeleteMessagesRequestDTO
+    - MessageIds: List<long>
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/objectives/v1/cleargroup  [WWW POST]
+  wrapper : DCLLCHDHKJO :: FMPEGMLJDIA(BCMKDGDGINB: int) -> PIHPPMDHIHB<IIADNOHEHMG>
+  body    : ObjectiveGroupRequest
+  returns : IIADNOHEHMG
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/objectives/v1/completegroup  [WWW POST]
+  wrapper : DCLLCHDHKJO/NAADAJCDHHN :: MoveNext(...)
+  also touches: api/objectives/v1/updateobjective
+  body    : ObjectiveGroupRequest
+  returns : IIADNOHEHMG
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/objectives/v1/myprogress  [WWW GET]
+  wrapper : DCLLCHDHKJO :: OAJJPNFEDIN() -> KAHDNIHNJDF
+  body    : (none - GET; query params below if any)
+  returns : AGFKICMDNBD
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/objectives/v1/updateobjective  [WWW POST]
+  wrapper : DCLLCHDHKJO/NAADAJCDHHN :: MoveNext(...)
+  also touches: api/objectives/v1/completegroup
+  body    : BHHKLBINEHM
+    - <OAKAJGIIKNC>k__BackingField: int
+    - <EIHGFGEFLAA>k__BackingField: int
+    - <DDLFLOMGPDC>k__BackingField: float
+    - <MMANIJGNJJG>k__BackingField: float
+    - <KENGPFOAMBG>k__BackingField: bool
+    - <HDNCCKKOCKF>k__BackingField: bool
+    - <ADEDMLNIFKC>k__BackingField: bool
+  returns : IIADNOHEHMG
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/offlineinvite/v1/send  [Auth POST]
+  wrapper : HPPHKOKDPGI :: ILGGDAMDEFL(KEOJINBLLLG: long) -> PIHPPMDHIHB<string>
+  body    : OfflineinviteV1SendRequest (synthesized)
+  field   : PlayerId: long [wrapper]
+  returns : GPIEPKCDLFF
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from wrapper
+
+api/playerevents/v1  [Auth GET]
+  wrapper : NGPNPCLJCHN :: GAHHALIIAND(DDNLBFLLCLM: CancellationToken) -> Task<List<GKJCNNICHNE>>
+  body    : (none - GET; query params below if any)
+  returns : List<GKJCNNICHNE>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service bound to client NGPNPCLJCHN
+
+api/playerevents/v1/all  [Auth GET]
+  wrapper : NGPNPCLJCHN :: MDCCODICOHM(DDNLBFLLCLM: CancellationToken) -> Task<CDJEOGJIPPM>
+  body    : (none - GET; query params below if any)
+  returns : CDJEOGJIPPM
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service bound to client NGPNPCLJCHN
+
+api/playerevents/v1/all/{hBNHEKOLHND}  [Auth GET]
+  wrapper : NGPNPCLJCHN :: KCFPIGMHJEE(HBNHEKOLHND: int, DDNLBFLLCLM: CancellationToken) -> Task<CDJEOGJIPPM>
+  body    : (none - GET; query params below if any)
+  returns : CDJEOGJIPPM
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service bound to client NGPNPCLJCHN
+
+api/playerevents/v1/broadcast  [Auth POST]
+  wrapper : KHILLFGPFDJ :: OCGPMIMNJOL() -> PIHPPMDHIHB<OFEIABFFMND>
+  wrapper : KHILLFGPFDJ :: OCGPMIMNJOL(FPLMANFAOAI: long, LJMFKKLGDFD: long?) -> PIHPPMDHIHB<OFEIABFFMND>
+  wrapper : NGPNPCLJCHN :: OCGPMIMNJOL(NBBLELEGKIJ: long, LJMFKKLGDFD: long?, DDNLBFLLCLM: CancellationToken) -> Task<OFEIABFFMND>
+  body    : BroadcastRoomInstanceRequest
+    - <PBNOMPALLJK>k__BackingField: long
+    - <KEBHJPNLJIO>k__BackingField: long?
+  returns : OFEIABFFMND
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service bound to client NGPNPCLJCHN
+
+api/playerevents/v1/bulk  [Auth POST]
+  wrapper : NGPNPCLJCHN :: LOLKDCIHMOP(MPJBAENBMKC: IReadOnlyList<long>, DDNLBFLLCLM: CancellationToken) -> Task<List<GKJCNNICHNE>>
+  body    : PlayereventsV1BulkRequest (synthesized)
+  field   : Ids: List<long> [form]
+  returns : List<GKJCNNICHNE>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service bound to client NGPNPCLJCHN
+  note    : request DTO synthesized from form
+
+api/playerevents/v1/bulkInvite  [Auth POST]
+  wrapper : KHILLFGPFDJ :: CKABGFANGAK(FPLMANFAOAI: long, DDECLINCOHK: List<int>) -> PIHPPMDHIHB<FKNBKBMAGFO>
+  wrapper : NGPNPCLJCHN :: CKABGFANGAK(NBBLELEGKIJ: long, OLAKCIKKPLA: List<int>, DDNLBFLLCLM: CancellationToken) -> Task<FKNBKBMAGFO>
+  body    : BulkInviteRequest
+    - PlayerEventId: long
+    - InvitedPlayerIds: List<int>
+  returns : FKNBKBMAGFO
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service bound to client NGPNPCLJCHN
+
+api/playerevents/v1/club/{clubId}  [Auth GET]
+  wrapper : NGPNPCLJCHN :: HDINKHAFOEG(HKLGPCDOILD: long, EICGAEHHLBE: int?, GMLKONKCPIE: string, DDNLBFLLCLM: CancellationToken) -> Task<GHNDDPBLJII>
+  body    : (none - GET; query params below if any)
+  returns : GHNDDPBLJII
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service bound to client NGPNPCLJCHN
+
+api/playerevents/v1/clubs  [Auth POST]
+  wrapper : NGPNPCLJCHN :: AKGKHCNPHPE(DPJNDJDHFND: IReadOnlyCollection<long>, DDNLBFLLCLM: CancellationToken) -> Task<List<GKJCNNICHNE>>
+  body    : PlayereventsV1ClubsRequest (synthesized)
+  field   : DPJNDJDHFND: IReadOnlyCollection<long> [wrapper]
+  returns : List<GKJCNNICHNE>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service bound to client NGPNPCLJCHN
+  note    : request DTO synthesized from wrapper
+
+api/playerevents/v1/deleteResponse  [Auth POST]
+  wrapper : KHILLFGPFDJ :: PFBPFIPFLOP(FPLMANFAOAI: long, GEGNMMCCHJA: EOCAIFGDPEF) -> PIHPPMDHIHB<EAOGBOLEGLE>
+  wrapper : NGPNPCLJCHN :: PFBPFIPFLOP(NBBLELEGKIJ: long, CLPFGJJLCLL: EOCAIFGDPEF, DDNLBFLLCLM: CancellationToken) -> Task<HGCNNGEPLJP>
+  body    : DeleteResponseRequest
+    - PlayerEventId: long
+  returns : HGCNNGEPLJP
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service bound to client NGPNPCLJCHN
+
+api/playerevents/v1/report  [Auth POST]
+  wrapper : CGJMDBPOHFM :: LNHLLNCDIBI(FPLMANFAOAI: long, DNLJBHKECFG: INJOFAOHPLJ, FAOJDNOALDB: string) -> PIHPPMDHIHB<HOLEFKGMIEN>
+  wrapper : KHILLFGPFDJ :: LNHLLNCDIBI(FPLMANFAOAI: long, DNLJBHKECFG: INJOFAOHPLJ, FAOJDNOALDB: string) -> PIHPPMDHIHB<HOLEFKGMIEN>
+  wrapper : NGPNPCLJCHN :: LNHLLNCDIBI(NBBLELEGKIJ: long, DNLJBHKECFG: INJOFAOHPLJ, FAOJDNOALDB: string, DDNLBFLLCLM: CancellationToken) -> Task<HOLEFKGMIEN>
+  body    : AKGBCHBHJGC
+    - <PNHJFAHIHPK>k__BackingField: INJOFAOHPLJ
+    - <PBNOMPALLJK>k__BackingField: long
+    - <EGAEBAFODEA>k__BackingField: string
+  returns : HOLEFKGMIEN
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service bound to client NGPNPCLJCHN
+
+api/playerevents/v1/respond  [Auth POST]
+  wrapper : KHILLFGPFDJ :: JIMPHOCHHOI(FPLMANFAOAI: long, GEGNMMCCHJA: EOCAIFGDPEF) -> PIHPPMDHIHB<EAOGBOLEGLE>
+  wrapper : NGPNPCLJCHN :: JIMPHOCHHOI(NBBLELEGKIJ: long, CLPFGJJLCLL: EOCAIFGDPEF, DDNLBFLLCLM: CancellationToken) -> Task<HGCNNGEPLJP>
+  body    : FOIKGNALCKN
+    - <PBNOMPALLJK>k__BackingField: long
+    - <IKHJKBJKJHL>k__BackingField: EOCAIFGDPEF
+  returns : HGCNNGEPLJP
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service bound to client NGPNPCLJCHN
+
+api/playerevents/v1/room/{mMNCPOOFGEF}  [Auth GET]
+  wrapper : NGPNPCLJCHN :: BJCKILLKKDC(MMNCPOOFGEF: long, DDNLBFLLCLM: CancellationToken) -> Task<List<GKJCNNICHNE>>
+  body    : (none - GET; query params below if any)
+  returns : List<GKJCNNICHNE>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service bound to client NGPNPCLJCHN
+
+api/playerevents/v1/search  [Auth GET]
+  wrapper : NGPNPCLJCHN :: IAGBPNJDOAL(AGPDEIFDIDJ: string, FBFOPDDNDDG: GGPKJOBLMCE, PKIBIPHNADE: PHPGNPDGMPG?, DDNLBFLLCLM: CancellationToken) -> Task<List<GKJCNNICHNE>>
+  body    : (none - GET; query params below if any)
+  returns : List<GKJCNNICHNE>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service bound to client NGPNPCLJCHN
+
+api/playerevents/v1/searchlive  [Auth GET]
+  wrapper : NGPNPCLJCHN :: MELDKANFEIE(AGPDEIFDIDJ: string, DDNLBFLLCLM: CancellationToken) -> Task<List<GBLHALNEFKK>>
+  body    : (none - GET; query params below if any)
+  returns : List<GBLHALNEFKK>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service bound to client NGPNPCLJCHN
+
+api/playerevents/v1/tagfilters  [Auth GET]
+  wrapper : NGPNPCLJCHN :: JHLMPKOFGPK(DDNLBFLLCLM: CancellationToken) -> Task<NJEHNGHNEHP>
+  body    : (none - GET; query params below if any)
+  returns : NJEHNGHNEHP
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service bound to client NGPNPCLJCHN
+
+api/playerevents/v1/{eventId}  [Auth GET]
+  wrapper : KHILLFGPFDJ/DBMHHAFLKCN :: MoveNext(...)
+  wrapper : NGPNPCLJCHN :: DLOMCGNJKJP(NBBLELEGKIJ: long, HKLGPCDOILD: long, DDNLBFLLCLM: CancellationToken) -> Task<IEMNMJMENBO>
+  wrapper : NGPNPCLJCHN :: GAOCLCILMKI(NBBLELEGKIJ: long, DDNLBFLLCLM: CancellationToken) -> Task<GKJCNNICHNE>
+  wrapper : NGPNPCLJCHN :: LDPIJAAOOCL(NBBLELEGKIJ: long, DDNLBFLLCLM: CancellationToken) -> Task<IEMNMJMENBO>
+  body    : (none - GET; query params below if any)
+  returns : IEMNMJMENBO
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service bound to client NGPNPCLJCHN
+
+api/playerevents/v1/{nBBLELEGKIJ}/responses  [Auth GET]
+  wrapper : NGPNPCLJCHN :: PHIKBCOHADN(NBBLELEGKIJ: long, DDNLBFLLCLM: CancellationToken) -> Task<List<CJMGHIJONIC>>
+  body    : (none - GET; query params below if any)
+  returns : List<CJMGHIJONIC>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service bound to client NGPNPCLJCHN
+
+api/playerevents/v2  [Auth POST]
+  wrapper : KHILLFGPFDJ :: KLHCMLENOJO(MMNCPOOFGEF: long, JHDHANNEHLK: long?, HKLGPCDOILD: long?, EPPPGDEIJCI: string, KFMEELLINJF: string, CJKIOJKDEFA: List<string>, GGHFEPFKDAK: string, AMCBJCFOACD: DateTime, OAPFHJLNELE: DateTime, CPIPMBOAGCD: LCPKAEBANNE, POEPOIEBFHJ: bool, LMKHMJIAICI: bool, KPIMPCHHECN: NOIIHHDFDPD, ODEMBPJEPJO: NOIIHHDFDPD) -> PIHPPMDHIHB<OFEIABFFMND>
+  wrapper : NGPNPCLJCHN :: KLHCMLENOJO(MMNCPOOFGEF: long, JHDHANNEHLK: long?, HKLGPCDOILD: long?, EPPPGDEIJCI: string, KFMEELLINJF: string, CJKIOJKDEFA: List<string>, GGHFEPFKDAK: string, AMCBJCFOACD: DateTime, OAPFHJLNELE: DateTime, CPIPMBOAGCD: LCPKAEBANNE, POEPOIEBFHJ: bool, LMKHMJIAICI: bool, KPIMPCHHECN: NOIIHHDFDPD, ODEMBPJEPJO: NOIIHHDFDPD, DDNLBFLLCLM: CancellationToken) -> Task<OFEIABFFMND>
+  body    : GLEJLDOJKMM
+    - <GLBGDACAKAI>k__BackingField: long
+    - <ADCOLKCDBNK>k__BackingField: long?
+    - <BELNFPNDHNH>k__BackingField: long?
+    - <OKALIFKJOOM>k__BackingField: string
+    - <LBIJKLJACFK>k__BackingField: string
+    - <NLPFFKPLPAH>k__BackingField: List<string>
+    - <MADILCJEGCE>k__BackingField: string
+    - <KHNMAANJEFI>k__BackingField: DateTime
+    - <LCDOHPBCDBM>k__BackingField: DateTime
+    - <GMHKEHJIIKM>k__BackingField: LCPKAEBANNE
+    - <NEJPCLOHHEN>k__BackingField: bool
+    - <BPBEKPPGDKH>k__BackingField: bool
+    - <AFKBLCDDKAK>k__BackingField: NOIIHHDFDPD
+    - <LIMOIMOOJLM>k__BackingField: NOIIHHDFDPD
+  returns : OFEIABFFMND
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service bound to client NGPNPCLJCHN
+
+api/playerevents/v2/delete/{eventId}  [Auth POST]
+  wrapper : CGJMDBPOHFM :: AEPGGNCCJJE(PFBNCDJEJDK: GKJCNNICHNE) -> PIHPPMDHIHB<OFEIABFFMND>
+  wrapper : KHILLFGPFDJ :: AEPGGNCCJJE(PFBNCDJEJDK: GKJCNNICHNE) -> PIHPPMDHIHB<OFEIABFFMND>
+  wrapper : NGPNPCLJCHN :: AEPGGNCCJJE(NBBLELEGKIJ: long, DDNLBFLLCLM: CancellationToken) -> Task<OFEIABFFMND>
+  body    : PlayereventsV2DeleteEventIdRequest (synthesized)
+  field   : PFBNCDJEJDK: GKJCNNICHNE [wrapper]
+  returns : OFEIABFFMND
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service bound to client NGPNPCLJCHN
+  note    : request DTO synthesized from wrapper
+
+api/playerevents/v2/{eventId}  [Auth POST]
+  wrapper : KHILLFGPFDJ :: MJJFOOOCBLE(PFBNCDJEJDK: GKJCNNICHNE, MMNCPOOFGEF: long, JHDHANNEHLK: long?, EPPPGDEIJCI: string, KFMEELLINJF: string, CJKIOJKDEFA: List<string>, GGHFEPFKDAK: string, AMCBJCFOACD: DateTime, OAPFHJLNELE: DateTime, CPIPMBOAGCD: LCPKAEBANNE, HKLGPCDOILD: long?, POEPOIEBFHJ: bool) -> PIHPPMDHIHB<OFEIABFFMND>
+  wrapper : NGPNPCLJCHN :: MJJFOOOCBLE(NBBLELEGKIJ: long, MMNCPOOFGEF: long, JHDHANNEHLK: long?, EPPPGDEIJCI: string, KFMEELLINJF: string, CJKIOJKDEFA: List<string>, GGHFEPFKDAK: string, AMCBJCFOACD: DateTime, OAPFHJLNELE: DateTime, CPIPMBOAGCD: LCPKAEBANNE, HKLGPCDOILD: long?, POEPOIEBFHJ: bool, DDNLBFLLCLM: CancellationToken) -> Task<OFEIABFFMND>
+  body    : GLEJLDOJKMM
+    - <GLBGDACAKAI>k__BackingField: long
+    - <ADCOLKCDBNK>k__BackingField: long?
+    - <BELNFPNDHNH>k__BackingField: long?
+    - <OKALIFKJOOM>k__BackingField: string
+    - <LBIJKLJACFK>k__BackingField: string
+    - <NLPFFKPLPAH>k__BackingField: List<string>
+    - <MADILCJEGCE>k__BackingField: string
+    - <KHNMAANJEFI>k__BackingField: DateTime
+    - <LCDOHPBCDBM>k__BackingField: DateTime
+    - <GMHKEHJIIKM>k__BackingField: LCPKAEBANNE
+    - <NEJPCLOHHEN>k__BackingField: bool
+    - <BPBEKPPGDKH>k__BackingField: bool
+    - <AFKBLCDDKAK>k__BackingField: NOIIHHDFDPD
+    - <LIMOIMOOJLM>k__BackingField: NOIIHHDFDPD
+  returns : OFEIABFFMND
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service bound to client NGPNPCLJCHN
+
+api/playerevents/v2/{eventId}/accessibility  [Auth PUT]
+  wrapper : KHILLFGPFDJ :: AIAPIHCIDDN(PFBNCDJEJDK: GKJCNNICHNE, CJCPHCEPFCH: LCPKAEBANNE) -> PIHPPMDHIHB<OFEIABFFMND>
+  wrapper : NGPNPCLJCHN :: AIAPIHCIDDN(NBBLELEGKIJ: long, CPIPMBOAGCD: LCPKAEBANNE, DDNLBFLLCLM: CancellationToken) -> Task<OFEIABFFMND>
+  body    : PlayereventsV2EventIdAccessibilityRequest (synthesized)
+  field   : PFBNCDJEJDK: GKJCNNICHNE [wrapper]
+  field   : CJCPHCEPFCH: LCPKAEBANNE [wrapper]
+  field   : CPIPMBOAGCD: LCPKAEBANNE [wrapper]
+  returns : OFEIABFFMND
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service bound to client NGPNPCLJCHN
+  note    : request DTO synthesized from wrapper
+
+api/playerevents/v2/{eventId}/club  [Auth PUT]
+  wrapper : KHILLFGPFDJ :: EKEDKHFNGFM(PFBNCDJEJDK: GKJCNNICHNE, ODMPGCIDEHA: long?) -> PIHPPMDHIHB<OFEIABFFMND>
+  wrapper : NGPNPCLJCHN :: EKEDKHFNGFM(NBBLELEGKIJ: long, HKLGPCDOILD: long?, DDNLBFLLCLM: CancellationToken) -> Task<OFEIABFFMND>
+  body    : PlayereventsV2EventIdClubRequest (synthesized)
+  field   : PFBNCDJEJDK: GKJCNNICHNE [wrapper]
+  field   : ODMPGCIDEHA: long? [wrapper]
+  field   : HKLGPCDOILD: long? [wrapper]
+  returns : OFEIABFFMND
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service bound to client NGPNPCLJCHN
+  note    : request DTO synthesized from wrapper
+
+api/playerevents/v2/{eventId}/description  [Auth PUT]
+  wrapper : KHILLFGPFDJ :: HDHHNMANHDI(PFBNCDJEJDK: GKJCNNICHNE, EMDNCHEFIHJ: string) -> PIHPPMDHIHB<OFEIABFFMND>
+  wrapper : NGPNPCLJCHN :: HDHHNMANHDI(NBBLELEGKIJ: long, KFMEELLINJF: string, DDNLBFLLCLM: CancellationToken) -> Task<OFEIABFFMND>
+  body    : PlayereventsV2EventIdDescriptionRequest (synthesized)
+  field   : PFBNCDJEJDK: GKJCNNICHNE [wrapper]
+  returns : OFEIABFFMND
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service bound to client NGPNPCLJCHN
+  note    : request DTO synthesized from wrapper
+
+api/playerevents/v2/{eventId}/image  [Auth PUT]
+  wrapper : KHILLFGPFDJ :: ICKOLILKFBH(PFBNCDJEJDK: GKJCNNICHNE, MLBHNFECBFL: string) -> PIHPPMDHIHB<OFEIABFFMND>
+  wrapper : NGPNPCLJCHN :: ICKOLILKFBH(NBBLELEGKIJ: long, GGHFEPFKDAK: string, DDNLBFLLCLM: CancellationToken) -> Task<OFEIABFFMND>
+  body    : PlayereventsV2EventIdImageRequest (synthesized)
+  field   : PFBNCDJEJDK: GKJCNNICHNE [wrapper]
+  returns : OFEIABFFMND
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service bound to client NGPNPCLJCHN
+  note    : request DTO synthesized from wrapper
+
+api/playerevents/v2/{eventId}/multiinstance  [Auth PUT]
+  wrapper : KHILLFGPFDJ :: IACJLJOODLF(PFBNCDJEJDK: GKJCNNICHNE, OADEGCLHPOP: bool, PIFGAEPBDBG: bool, KPIMPCHHECN: NOIIHHDFDPD, IHGDBLMHNBH: NOIIHHDFDPD) -> PIHPPMDHIHB<OFEIABFFMND>
+  wrapper : NGPNPCLJCHN :: IACJLJOODLF(NBBLELEGKIJ: long, POEPOIEBFHJ: bool, MDDGEMLHELH: bool, KPIMPCHHECN: NOIIHHDFDPD, IHGDBLMHNBH: NOIIHHDFDPD, DDNLBFLLCLM: CancellationToken) -> Task<OFEIABFFMND>
+  body    : PlayereventsV2EventIdMultiinstanceRequest (synthesized)
+  field   : PFBNCDJEJDK: GKJCNNICHNE [wrapper]
+  field   : KPIMPCHHECN: NOIIHHDFDPD [wrapper]
+  field   : IHGDBLMHNBH: NOIIHHDFDPD [wrapper]
+  returns : OFEIABFFMND
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service bound to client NGPNPCLJCHN
+  note    : request DTO synthesized from wrapper
+
+api/playerevents/v2/{eventId}/name  [Auth PUT]
+  wrapper : KHILLFGPFDJ :: PKIMEGNHKPL(PFBNCDJEJDK: GKJCNNICHNE, CKNPCFBJILM: string) -> PIHPPMDHIHB<OFEIABFFMND>
+  wrapper : NGPNPCLJCHN :: PKIMEGNHKPL(NBBLELEGKIJ: long, EPPPGDEIJCI: string, DDNLBFLLCLM: CancellationToken) -> Task<OFEIABFFMND>
+  body    : PlayereventsV2EventIdNameRequest (synthesized)
+  field   : PFBNCDJEJDK: GKJCNNICHNE [wrapper]
+  returns : OFEIABFFMND
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service bound to client NGPNPCLJCHN
+  note    : request DTO synthesized from wrapper
+
+api/playerevents/v2/{eventId}/room  [Auth PUT]
+  wrapper : KHILLFGPFDJ :: AMJDLAJJBKL(PFBNCDJEJDK: GKJCNNICHNE, OEAAGJHNHBK: long, KLENIECPFOG: long?) -> PIHPPMDHIHB<OFEIABFFMND>
+  wrapper : NGPNPCLJCHN :: AMJDLAJJBKL(NBBLELEGKIJ: long, MMNCPOOFGEF: long, JHDHANNEHLK: long?, DDNLBFLLCLM: CancellationToken) -> Task<OFEIABFFMND>
+  body    : PlayereventsV2EventIdRoomRequest (synthesized)
+  field   : PFBNCDJEJDK: GKJCNNICHNE [wrapper]
+  field   : KLENIECPFOG: long? [wrapper]
+  field   : JHDHANNEHLK: long? [wrapper]
+  returns : OFEIABFFMND
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service bound to client NGPNPCLJCHN
+  note    : request DTO synthesized from wrapper
+
+api/playerevents/v2/{eventId}/tags  [Auth PUT]
+  wrapper : KHILLFGPFDJ :: CNOOCMIIKBK(PFBNCDJEJDK: GKJCNNICHNE, OHALIEJMGLM: List<string>) -> PIHPPMDHIHB<OFEIABFFMND>
+  wrapper : NGPNPCLJCHN :: CNOOCMIIKBK(NBBLELEGKIJ: long, CJKIOJKDEFA: List<string>, DDNLBFLLCLM: CancellationToken) -> Task<OFEIABFFMND>
+  body    : List<string>
+  returns : OFEIABFFMND
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service bound to client NGPNPCLJCHN
+
+api/playerevents/v2/{eventId}/time  [Auth PUT]
+  wrapper : KHILLFGPFDJ :: DICCNIMCKMH(PFBNCDJEJDK: GKJCNNICHNE, JMMGDJFPAON: DateTime, IEHDLEJAIME: DateTime) -> PIHPPMDHIHB<OFEIABFFMND>
+  wrapper : NGPNPCLJCHN :: DICCNIMCKMH(NBBLELEGKIJ: long, AMCBJCFOACD: DateTime, OAPFHJLNELE: DateTime, DDNLBFLLCLM: CancellationToken) -> Task<OFEIABFFMND>
+  body    : PlayereventsV2EventIdTimeRequest (synthesized)
+  field   : PFBNCDJEJDK: GKJCNNICHNE [wrapper]
+  field   : JMMGDJFPAON: DateTime [wrapper]
+  field   : IEHDLEJAIME: DateTime [wrapper]
+  field   : AMCBJCFOACD: DateTime [wrapper]
+  field   : OAPFHJLNELE: DateTime [wrapper]
+  returns : OFEIABFFMND
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service bound to client NGPNPCLJCHN
+  note    : request DTO synthesized from wrapper
+
+api/playeritems/v1/isavataritemowned/bulk  [WWW POST]
+  wrapper : MAHGJBCPOII :: AOOPBLCHNLF(IPKPANLAIHM: List<int>, NLJPJFBHJII: int) -> PIHPPMDHIHB<List<bool>>
+  body    : PlayeritemsV1IsavataritemownedBulkRequest (synthesized)
+  field   : accountIds: List<int> [form]
+  returns : List<bool>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from form
+
+api/playeritems/v1/isavataritemowned/{hBNHEKOLHND}/{nLJPJFBHJII}  [WWW GET]
+  wrapper : MAHGJBCPOII :: MNDHBMIIGIA(HBNHEKOLHND: int, NLJPJFBHJII: int) -> PIHPPMDHIHB<bool>
+  body    : (none - GET; query params below if any)
+  returns : bool
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/playeritems/v1/isequipmentitemowned/bulk  [WWW POST]
+  wrapper : MAHGJBCPOII :: NMLCENIEILA(IPKPANLAIHM: List<int>, OLAGDEILGIM: int) -> PIHPPMDHIHB<List<bool>>
+  body    : PlayeritemsV1IsequipmentitemownedBulkRequest (synthesized)
+  field   : accountIds: List<int> [form]
+  returns : List<bool>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from form
+
+api/playeritems/v1/isequipmentitemowned/{hBNHEKOLHND}/{oLAGDEILGIM}  [WWW GET]
+  wrapper : MAHGJBCPOII :: HMNGEOPNAHC(HBNHEKOLHND: int, OLAGDEILGIM: int) -> PIHPPMDHIHB<bool>
+  body    : (none - GET; query params below if any)
+  returns : bool
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/players/v1/progression/xpEarnedToday  [Auth GET]
+  wrapper : AMIGLKGEOAB :: OFIDNNGHHJL() -> Task<int>
+  wrapper : MFJGPMNCANL/AMGBDHCPLOC :: MoveNext(...)
+  body    : (none - GET; query params below if any)
+  returns : int
+  note    : site from register pattern; callee not identified
+  note    : verb stashed in builder field
+  note    : service stashed in builder field
+
+api/players/v4/current/contact  [Auth PUT]
+  wrapper : PPLHAFBEPMN/IDKLALADFKF :: EJLAPAHLLMD(...)
+  body    : PIEMFAGJIJI
+  returns : ?
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/playerwarnings  [Auth POST]
+  wrapper : BOFKNLKOCOM :: AEDIOPIANHL(KEOJINBLLLG: int, DNLJBHKECFG: INJOFAOHPLJ, MMHEJAMPIBH: string, OIELNNKNKCC: string) -> PIHPPMDHIHB<LMDMKCADPNK>
+  body    : PlayerwarningsRequest (synthesized)
+  field   : DNLJBHKECFG: INJOFAOHPLJ [wrapper]
+  field   : ModeratorNote: object [candidate]
+  field   : WarnedPlayerId: object [candidate]
+  field   : ReportCategory: object [candidate]
+  field   : DisplayReason: object [candidate]
+  maybe   : ModeratorNote (candidate query key)
+  maybe   : WarnedPlayerId (candidate query key)
+  maybe   : ReportCategory (candidate query key)
+  maybe   : DisplayReason (candidate query key)
+  returns : LMDMKCADPNK
+  note    : site from register pattern; callee not identified
+  note    : verb stashed in builder field
+  note    : service stashed in builder field
+  note    : request DTO synthesized from candidate+wrapper
+
+api/playerwarnings/acknowledge  [Auth POST]
+  wrapper : BOFKNLKOCOM :: KDPJHMPEDLN() -> PIHPPMDHIHB<LMDMKCADPNK>
+  body    : (none - wrappers take no parameters)
+  returns : LMDMKCADPNK
+  note    : site from register pattern; callee not identified
+  note    : verb stashed in builder field
+  note    : service stashed in builder field
+
+api/playstationplus/expire  [Auth POST]
+  wrapper : KJBPOHFIBMG :: DDJIHJAIGLI(HHHLLLIKMIG: bool) -> KAHDNIHNJDF
+  also touches: api/playstationplus/membership
+  body    : ?
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from register pattern; callee not identified
+  note    : verb stashed in builder field
+  note    : service stashed in builder field
+
+api/playstationplus/membership  [Auth POST]
+  wrapper : KJBPOHFIBMG :: DDJIHJAIGLI(HHHLLLIKMIG: bool) -> KAHDNIHNJDF
+  also touches: api/playstationplus/expire
+  body    : ?
+  returns : ? (wrappers non-generic - likely no content)
+  note    : no call site found consuming this literal
+  note    : service filled from same-area sibling
+
+api/progressionEvents/active  [Auth GET]
+  wrapper : NMIOLPEBBHH :: POPPAJHCEAG() -> PIHPPMDHIHB<long?>
+  body    : (none - GET; query params below if any)
+  returns : long?
+  note    : site from register pattern; callee not identified
+  note    : verb stashed in builder field
+  note    : service stashed in builder field
+
+api/progressionEvents/collect/{nBBLELEGKIJ}/{mNNKNPFNJAO}  [Auth POST]
+  wrapper : NMIOLPEBBHH :: NCMGKFNNCLI(NBBLELEGKIJ: long, MNNKNPFNJAO: int) -> PIHPPMDHIHB<NIBHFOAJOCD>
+  also touches: api/progressionEvents
+  body    : ?
+  returns : NIBHFOAJOCD
+  note    : site from register pattern; callee not identified
+  note    : verb stashed in builder field
+  note    : service stashed in builder field
+
+api/progressionEvents/event/{nBBLELEGKIJ}  [Auth GET]
+  wrapper : NMIOLPEBBHH :: IAKHBMMMLGP(NBBLELEGKIJ: long) -> PIHPPMDHIHB<ProgressionEventDTO>
+  also touches: api/progressionEvents
+  body    : (none - GET; query params below if any)
+  returns : ProgressionEventDTO
+  note    : site from register pattern; callee not identified
+  note    : verb stashed in builder field
+  note    : service stashed in builder field
+
+api/progressionEvents/record/{recordId}  [Auth GET]
+  wrapper : NMIOLPEBBHH :: PPHCGBFBDGM(NBBLELEGKIJ: long, HKBHBNPJIIL: bool) -> PIHPPMDHIHB<ProgressionEventRecordDTO>
+  also touches: api/progressionEvents
+  body    : (none - GET; query params below if any)
+  returns : ProgressionEventRecordDTO
+  note    : site from register pattern; callee not identified
+  note    : verb stashed in builder field
+  note    : service stashed in builder field
+
+api/progressionEvents/{nBBLELEGKIJ}/xpboosts  [Auth GET]
+  wrapper : NMIOLPEBBHH :: KOINKGAOONC(NBBLELEGKIJ: long) -> PIHPPMDHIHB<List<ProgressionEventPurchasableXpBoostDTO>>
+  also touches: api/progressionEvents
+  body    : (none - GET; query params below if any)
+  returns : List<ProgressionEventPurchasableXpBoostDTO>
+  note    : site from register pattern; callee not identified
+  note    : verb stashed in builder field
+  note    : service stashed in builder field
+
+api/progressionEvents/{nBBLELEGKIJ}/xpboosts/{bEELGGPOBPD}/previewEarnedXp  [Auth GET]
+  wrapper : NMIOLPEBBHH :: PBFHHMCNAIJ(NBBLELEGKIJ: long, BEELGGPOBPD: Guid) -> PIHPPMDHIHB<int>
+  also touches: api/progressionEvents
+  body    : (none - GET; query params below if any)
+  returns : DHGKIHNLHNC<int>
+  note    : site from register pattern; callee not identified
+  note    : verb stashed in builder field
+  note    : service stashed in builder field
+
+api/quickPlay/v1/getandclear  [Auth GET]
+  wrapper : DAOGKDBKNFP :: IBFCDKAFHGN() -> KAHDNIHNJDF
+  body    : (none - GET; query params below if any)
+  returns : INJINOIGFAG
+  note    : site from register pattern; callee not identified
+  note    : verb stashed in builder field
+  note    : service stashed in builder field
+
+api/relationships/  [Auth POST]
+  wrapper : OMBEADGOHDL :: EDEPNABCELA(MJKFFNJHGFE: string, KEOJINBLLLG: int) -> KAHDNIHNJDF
+  body    : RelationshipsRequest (synthesized)
+  field   : PlayerId: object [candidate]
+  maybe   : PlayerId (candidate query key)
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from register pattern; callee not identified
+  note    : verb from window before call (any reg)
+  note    : service from builder field store
+  note    : request DTO synthesized from candidate
+
+api/relationships/mutualfriends  [Auth GET]
+  wrapper : OMBEADGOHDL :: DEAAICCBEED(KEOJINBLLLG: int) -> PIHPPMDHIHB<List<JPEMMJOMHNP>>
+  body    : (none - GET; query params below if any)
+  returns : List<JPEMMJOMHNP>
+  note    : site from register pattern; callee not identified
+  note    : verb stashed in builder field
+  note    : service stashed in builder field
+
+api/relationships/sendfriendintroductions  [Auth POST]
+  wrapper : OMBEADGOHDL :: DKBCOLBEBBJ(HKAHAELAHBK: List<int>, PGICFLEHPBG: int) -> PIHPPMDHIHB<HOLEFKGMIEN>
+  body    : SendFriendIntroductionsRequest
+  returns : HOLEFKGMIEN
+  note    : site from register pattern; callee not identified
+  note    : verb stashed in builder field
+  note    : service stashed in builder field
+
+api/relationships/v1/addfriendwithcode  [Auth GET]
+  wrapper : OMBEADGOHDL :: LCMILHOCNDM(KKAKJFAKCOH: string, KLCFDAPKGEC: IENFLJKPGEB) -> PIHPPMDHIHB<JPEMMJOMHNP>
+  body    : RelationshipsV1AddfriendwithcodeRequest (synthesized)
+  field   : code: object [candidate]
+  maybe   : code (candidate query key)
+  returns : JPEMMJOMHNP
+  note    : site from register pattern; callee not identified
+  note    : verb stashed in builder field
+  note    : service stashed in builder field
+  note    : request DTO synthesized from candidate
+
+api/relationships/v1/bulkignoreplatformusers  [Auth POST]
+  wrapper : OMBEADGOHDL :: BBBNPKKJDDI(FHCAFFIDDPJ: GHHMILOBDCH, EGELKCOPJID: List<string>) -> void
+  body    : BulkBlockPlatformUsersRequest
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from register pattern; callee not identified
+  note    : verb stashed in builder field
+  note    : service stashed in builder field
+
+api/relationships/v1/favorite  [Auth GET]
+  wrapper : OMBEADGOHDL :: CHCJKCHGKEK(KEOJINBLLLG: int, GDPAODFJPMK: string) -> PIHPPMDHIHB<bool>
+  body    : (none - GET; query params below if any)
+  returns : JPEMMJOMHNP
+  note    : site from register pattern; callee not identified
+  note    : verb stashed in builder field
+  note    : service stashed in builder field
+
+api/relationships/v1/unfavorite  [Auth GET]
+  wrapper : OMBEADGOHDL :: PKNEHOPADPN(KEOJINBLLLG: int) -> PIHPPMDHIHB<bool>
+  body    : (none - GET; query params below if any)
+  returns : JPEMMJOMHNP
+  note    : site from register pattern; callee not identified
+  note    : verb stashed in builder field
+  note    : service stashed in builder field
+
+api/relationships/v2/acceptfriendrequest  [Auth GET]
+  wrapper : OMBEADGOHDL :: IIPKHABPEJB(KEOJINBLLLG: int) -> PIHPPMDHIHB<JPEMMJOMHNP>
+  body    : (none - GET; query params below if any)
+  returns : JPEMMJOMHNP
+  note    : site from register pattern; callee not identified
+  note    : verb stashed in builder field
+  note    : service stashed in builder field
+
+api/relationships/v2/addfriend  [Auth GET]
+  wrapper : OMBEADGOHDL :: NGGOOHDABJC(KEOJINBLLLG: int, KLCFDAPKGEC: IENFLJKPGEB) -> PIHPPMDHIHB<JPEMMJOMHNP>
+  body    : (none - GET; query params below if any)
+  returns : JPEMMJOMHNP
+  note    : site from register pattern; callee not identified
+  note    : verb stashed in builder field
+  note    : service stashed in builder field
+
+api/relationships/v2/get  [Auth GET]
+  wrapper : OMBEADGOHDL :: CPBDMIEEDID() -> void
+  body    : (none - GET; query params below if any)
+  returns : List<JPEMMJOMHNP>
+  note    : site from register pattern; callee not identified
+  note    : verb stashed in builder field
+  note    : service stashed in builder field
+
+api/relationships/v2/removefriend  [Auth GET]
+  wrapper : OMBEADGOHDL :: NPLBMEGILJO(KEOJINBLLLG: int) -> PIHPPMDHIHB<JPEMMJOMHNP>
+  body    : (none - GET; query params below if any)
+  returns : JPEMMJOMHNP
+  note    : site from register pattern; callee not identified
+  note    : verb stashed in builder field
+  note    : service stashed in builder field
+
+api/relationships/v2/sendfriendrequest  [Auth GET]
+  wrapper : OMBEADGOHDL :: KAHMCDGJEAJ(KEOJINBLLLG: int, KLCFDAPKGEC: KPNNCOEMCGB) -> PIHPPMDHIHB<JPEMMJOMHNP>
+  body    : (none - GET; query params below if any)
+  returns : JPEMMJOMHNP
+  note    : site from register pattern; callee not identified
+  note    : verb stashed in builder field
+  note    : service stashed in builder field
+
+api/roomCurrencies/v2/purchase  [WWW POST]
+  wrapper : MAHGJBCPOII :: PGLOMJOJDIH(IBFCEPBPCGL: Guid, HFBEKBPFHEH: long, MGGLOHHALKO: long) -> PIHPPMDHIHB<AKCFMKMLHKB>
+  body    : RoomCurrenciesV2PurchaseRequest (synthesized)
+  field   : IBFCEPBPCGL: Guid [wrapper]
+  field   : PurchaseOfferId: object [candidate]
+  field   : RequestedPrice: object [candidate]
+  field   : RequestedAmount: object [candidate]
+  maybe   : PurchaseOfferId (candidate query key)
+  maybe   : RequestedPrice (candidate query key)
+  maybe   : RequestedAmount (candidate query key)
+  returns : GCHGIGLMILD<AKCFMKMLHKB>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from candidate+wrapper
+
+api/roomEarningsDistributions/v1/earningsDistribution  [WWW POST]
+  wrapper : JNIMDJFLHHK :: HBCOPCJEHCP(MMNCPOOFGEF: long, HMFENIGMBOJ: HJBGNEIOOBM, JJJBOFEBCJI: Dictionary<int, byte>) -> KAHDNIHNJDF
+  body    : AFLANLMBNOP
+    - <GLBGDACAKAI>k__BackingField: long
+    - <BEEJBHMMEPK>k__BackingField: Dictionary<int, byte>
+    - <KAJFHGOIAIA>k__BackingField: HJBGNEIOOBM
+  returns : GCHGIGLMILD<AFLANLMBNOP>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/roomEarningsDistributions/v1/earningsDistribution/{mMNCPOOFGEF}  [WWW GET]
+  wrapper : JNIMDJFLHHK :: FMIDPAHPHDD(MMNCPOOFGEF: long) -> PIHPPMDHIHB<AFLANLMBNOP>
+  also touches: api/roomEarningsDistributions
+  body    : (none - GET; query params below if any)
+  returns : GCHGIGLMILD<AFLANLMBNOP>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/roomconsumables  [WWW PUT]
+  wrapper : GPMIOEOKMPB :: ANDHEDNJOJB(DBOKMPAPKBI: Guid) -> PIHPPMDHIHB<KEIGOFNPFBA>
+  also touches: api/roomconsumables/v1/roomConsumable/{dBOKMPAPKBI}
+  wrapper : GPMIOEOKMPB :: COBPPKFAENK(DBOKMPAPKBI: Guid, OEMHPMEKDOI: Guid?) -> PIHPPMDHIHB<GMIHDCBMEJE>
+  wrapper : GPMIOEOKMPB :: JBMLIMEFEJK(DBOKMPAPKBI: Guid) -> PIHPPMDHIHB<bool>
+  also touches: api/roomconsumables/v1/roomConsumable/{dBOKMPAPKBI}/isOwned
+  wrapper : GPMIOEOKMPB/DKEDJPKILEF :: MoveNext(...)
+  also touches: api/roomconsumables/v1/roomConsumable/room/{roomId}
+  wrapper : GPMIOEOKMPB/NGFCAEOMLNK :: MoveNext(...)
+  also touches: api/roomconsumables/v1/roomConsumable/room/{roomId}/me
+  body    : LOOKBCJMPOC
+    - <MCKJPDIAFDM>k__BackingField: Guid?
+    - <FHAILPCCEPB>k__BackingField: Guid
+  returns : GMIHDCBMEJE
+  note    : site from register pattern; callee not identified
+  note    : verb from window before call (any reg)
+  note    : service filled from same-area sibling
+
+api/roomconsumables/v1/roomConsumable  [WWW PUT]
+  wrapper : GPMIOEOKMPB :: AADAOPPNKMC(DBOKMPAPKBI: Guid, EPPPGDEIJCI: string, KFMEELLINJF: string, GGHFEPFKDAK: string, PIDLLHEIKHK: long, NPPJNAOALIP: Guid?) -> PIHPPMDHIHB<PDAPKGBIHCE>
+  wrapper : GPMIOEOKMPB :: DEPLPHHNHNG(MMNCPOOFGEF: long, EPPPGDEIJCI: string, KFMEELLINJF: string, GGHFEPFKDAK: string, PIDLLHEIKHK: long, NPPJNAOALIP: Guid?) -> PIHPPMDHIHB<PDAPKGBIHCE>
+  body    : HJOEFBHMKPK
+    - <OGGHDLLLCPN>k__BackingField: Guid?
+    - <GLBGDACAKAI>k__BackingField: long?
+    - <OKALIFKJOOM>k__BackingField: string
+    - <LBIJKLJACFK>k__BackingField: string
+    - <MADILCJEGCE>k__BackingField: string
+    - <DLFHMIFJJAN>k__BackingField: PDNOMEEMHNP
+  returns : PDAPKGBIHCE
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/roomconsumables/v1/roomConsumable/awardBulk  [WWW POST]
+  wrapper : GPMIOEOKMPB/ODJMCEAHIFF :: MoveNext(...)
+  body    : EIJAFOADBAE
+    - <MMHHBOMKAPI>k__BackingField: Dictionary<Guid, NDLBOEFMMGF>
+  returns : FGBAMGNHNDD
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/roomconsumables/v1/roomConsumable/room/{roomId}  [WWW GET]
+  wrapper : GPMIOEOKMPB/DKEDJPKILEF :: MoveNext(...)
+  also touches: api/roomconsumables
+  body    : (none - GET; query params below if any)
+  returns : List<IAGOBLGBBDJ>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/roomconsumables/v1/roomConsumable/room/{roomId}/me  [WWW GET]
+  wrapper : GPMIOEOKMPB/NGFCAEOMLNK :: MoveNext(...)
+  also touches: api/roomconsumables
+  body    : (none - GET; query params below if any)
+  returns : List<EKJIJLNDGAK>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/roomconsumables/v1/roomConsumable/{dBOKMPAPKBI}  [WWW DELETE]
+  wrapper : GPMIOEOKMPB :: ANDHEDNJOJB(DBOKMPAPKBI: Guid) -> PIHPPMDHIHB<KEIGOFNPFBA>
+  also touches: api/roomconsumables
+  body    : (none - GET; query params below if any)
+  returns : PDAPKGBIHCE
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/roomconsumables/v1/roomConsumable/{dBOKMPAPKBI}/isOwned  [WWW GET]
+  wrapper : GPMIOEOKMPB :: JBMLIMEFEJK(DBOKMPAPKBI: Guid) -> PIHPPMDHIHB<bool>
+  also touches: api/roomconsumables
+  body    : (none - GET; query params below if any)
+  returns : bool
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/roomconsumables/v1/roomconsumable/{roomconsumableId}/purchase/currency  [WWW PUT]
+  wrapper : MAHGJBCPOII :: EILKFAMBMLN(DBOKMPAPKBI: Guid, MGGLOHHALKO: long, CNANAJFOHHB: Guid, OEMHPMEKDOI: Guid?, LNKBLOMPPCK: int) -> PIHPPMDHIHB<ADMMGHLLMHG>
+  body    : GGPODCNAHID
+    - <AEHCBMKJGIF>k__BackingField: LOOKBCJMPOC
+    - <OJLIHDKBIGK>k__BackingField: PDNOMEEMHNP
+    - <JGBEHIPLHJB>k__BackingField: int
+  returns : ADMMGHLLMHG
+  note    : site from register pattern; callee not identified
+  note    : verb from window before call (any reg)
+  note    : service from weaker record
+
+api/roomconsumables/v1/roomconsumable/{roomconsumableId}/purchase/tokens  [WWW PUT]
+  wrapper : MAHGJBCPOII :: IBGACBNJPOH(DBOKMPAPKBI: Guid, MGGLOHHALKO: long, OEMHPMEKDOI: Guid?, LNKBLOMPPCK: int) -> PIHPPMDHIHB<GFCIMAAECKF>
+  body    : GGPODCNAHID
+    - <AEHCBMKJGIF>k__BackingField: LOOKBCJMPOC
+    - <OJLIHDKBIGK>k__BackingField: PDNOMEEMHNP
+    - <JGBEHIPLHJB>k__BackingField: int
+  returns : GFCIMAAECKF
+  note    : site from register pattern; callee not identified
+  note    : verb from window before call (any reg)
+  note    : service from weaker record
+
+api/roomcurrencies/v1/awardCurrency/bulk  [WWW POST]
+  wrapper : GGIILODACPC :: OKCGPNLFIEC(GDDKGDPHFEB: List<JLOHCKIFOKH>) -> PIHPPMDHIHB<List<POLPBLFAJID>>
+  body    : JLOHCKIFOKH
+    - <BFCNJFHPFPN>k__BackingField: Guid
+    - <MDKFDJAAFLC>k__BackingField: int
+    - <HFJLDKLKLPN>k__BackingField: long
+    - <PKHCPOLHJAH>k__BackingField: Guid
+  returns : List<POLPBLFAJID>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/roomcurrencies/v1/createCurrency  [WWW POST]
+  wrapper : GGIILODACPC :: KNJNBGFIPLG(MMNCPOOFGEF: long, EPPPGDEIJCI: string, KFMEELLINJF: string, AGBAPBGKMGM: long, NIAHBPKKDDI: byte, CIHDHJMCJNM: int, GGHFEPFKDAK: string) -> PIHPPMDHIHB<ILFANNKMMHA>
+  body    : RoomcurrenciesV1CreateCurrencyRequest (synthesized)
+  field   : Color: object [candidate]
+  field   : Name: object [candidate]
+  field   : ImageName: object [candidate]
+  field   : Limit: object [candidate]
+  field   : Shape: object [candidate]
+  maybe   : Color (candidate query key)
+  maybe   : Name (candidate query key)
+  maybe   : ImageName (candidate query key)
+  maybe   : Limit (candidate query key)
+  maybe   : Shape (candidate query key)
+  returns : GCHGIGLMILD<ILFANNKMMHA>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from candidate
+
+api/roomcurrencies/v1/createPurchaseOffer  [WWW POST]
+  wrapper : GGIILODACPC :: DNOJMBPJJNM(NPPJNAOALIP: Guid, EPPPGDEIJCI: string, DDMGFDCDGKA: long, PIDLLHEIKHK: long, JHEKFACMGDI: int) -> PIHPPMDHIHB<ECAPEKCILIP>
+  body    : RoomcurrenciesV1CreatePurchaseOfferRequest (synthesized)
+  field   : NPPJNAOALIP: Guid [wrapper]
+  field   : Price: object [candidate]
+  field   : CurrencyId: object [candidate]
+  field   : Amount: object [candidate]
+  field   : Name: object [candidate]
+  field   : Order: object [candidate]
+  maybe   : Price (candidate query key)
+  maybe   : CurrencyId (candidate query key)
+  maybe   : Amount (candidate query key)
+  maybe   : Name (candidate query key)
+  maybe   : Order (candidate query key)
+  returns : GCHGIGLMILD<ECAPEKCILIP>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from candidate+wrapper
+
+api/roomcurrencies/v1/currencies  [WWW GET]
+  wrapper : GGIILODACPC :: KJKFLBDPKMA(MMNCPOOFGEF: long, LPPDEFJLPOP: bool) -> PIHPPMDHIHB<List<ILFANNKMMHA>>
+  body    : RoomcurrenciesV1CurrenciesRequest (synthesized)
+  field   : roomId: object [candidate]
+  maybe   : roomId (candidate query key)
+  returns : List<ILFANNKMMHA>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from candidate
+
+api/roomcurrencies/v1/deletePurchaseOffer  [WWW POST]
+  wrapper : GGIILODACPC :: GPMHOBHNPJE(BOAIINPFABK: Guid) -> KAHDNIHNJDF
+  body    : RoomcurrenciesV1DeletePurchaseOfferRequest (synthesized)
+  field   : PurchaseOfferId: Guid [wrapper]
+  returns : LMDMKCADPNK
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from wrapper
+
+api/roomcurrencies/v1/getAllBalances  [WWW GET]
+  wrapper : GGIILODACPC :: JIHABNLHBGM(MMNCPOOFGEF: long, LPPDEFJLPOP: bool) -> PIHPPMDHIHB<List<MAMNCDLFFJL>>
+  body    : RoomcurrenciesV1GetAllBalancesRequest (synthesized)
+  field   : roomId: object [candidate]
+  maybe   : roomId (candidate query key)
+  returns : List<MAMNCDLFFJL>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from candidate
+
+api/roomcurrencies/v1/getBalance  [WWW GET]
+  wrapper : GGIILODACPC :: MBEMEAJCBEK(NPPJNAOALIP: Guid, HBNHEKOLHND: int, LPPDEFJLPOP: bool) -> PIHPPMDHIHB<MAMNCDLFFJL>
+  body    : RoomcurrenciesV1GetBalanceRequest (synthesized)
+  field   : accountId: object [candidate]
+  field   : currencyId: object [candidate]
+  maybe   : accountId (candidate query key)
+  maybe   : currencyId (candidate query key)
+  returns : MAMNCDLFFJL
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from candidate
+
+api/roomcurrencies/v1/getPurchaseOffersBatch  [WWW ?]
+  wrapper : GGIILODACPC/JODDABFFIFO :: MoveNext(...)
+  body    : Guid
+    - _a: int
+    - _b: short
+    - _c: short
+    - _d: byte
+    - _e: byte
+    - _f: byte
+    - _g: byte
+    - _h: byte
+    - _i: byte
+    - _j: byte
+    - _k: byte
+  param   : ids: List<Guid>
+  returns : List<HMMCJPDANEL>
+  note    : site from resolved signature
+  note    : service in r8 at call
+  note    : verb chosen at runtime (HttpMethod factory call)
+
+api/roomcurrencies/v1/updateCurrency  [WWW POST]
+  wrapper : GGIILODACPC :: HAMNLIEFCLM(NPPJNAOALIP: Guid, EPPPGDEIJCI: string, KFMEELLINJF: string, AGBAPBGKMGM: long?, NIAHBPKKDDI: byte?, CIHDHJMCJNM: int?, GGHFEPFKDAK: string) -> PIHPPMDHIHB<ILFANNKMMHA>
+  body    : RoomcurrenciesV1UpdateCurrencyRequest (synthesized)
+  field   : NPPJNAOALIP: Guid [wrapper]
+  field   : AGBAPBGKMGM: long? [wrapper]
+  field   : NIAHBPKKDDI: byte? [wrapper]
+  field   : CIHDHJMCJNM: int? [wrapper]
+  field   : Color: object [candidate]
+  field   : CurrencyId: object [candidate]
+  field   : Name: object [candidate]
+  field   : ImageName: object [candidate]
+  field   : Limit: object [candidate]
+  maybe   : Color (candidate query key)
+  maybe   : CurrencyId (candidate query key)
+  maybe   : Name (candidate query key)
+  maybe   : ImageName (candidate query key)
+  maybe   : Limit (candidate query key)
+  returns : GCHGIGLMILD<ILFANNKMMHA>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from candidate+wrapper
+
+api/roomcurrencies/v1/updatePurchaseOffer  [WWW POST]
+  wrapper : GGIILODACPC :: GPJDEJNCEJE(IBFCEPBPCGL: Guid, EPPPGDEIJCI: string, DDMGFDCDGKA: long?, PIDLLHEIKHK: long?, JHEKFACMGDI: int?) -> PIHPPMDHIHB<ECAPEKCILIP>
+  body    : RoomcurrenciesV1UpdatePurchaseOfferRequest (synthesized)
+  field   : IBFCEPBPCGL: Guid [wrapper]
+  field   : DDMGFDCDGKA: long? [wrapper]
+  field   : PIDLLHEIKHK: long? [wrapper]
+  field   : JHEKFACMGDI: int? [wrapper]
+  field   : Price: object [candidate]
+  field   : Amount: object [candidate]
+  field   : Name: object [candidate]
+  field   : PurchaseOfferId: object [candidate]
+  field   : Order: object [candidate]
+  maybe   : Price (candidate query key)
+  maybe   : Amount (candidate query key)
+  maybe   : Name (candidate query key)
+  maybe   : PurchaseOfferId (candidate query key)
+  maybe   : Order (candidate query key)
+  returns : GCHGIGLMILD<ECAPEKCILIP>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from candidate+wrapper
+
+api/roomcurrencies/v1/{roomCurrencyId}/setBalance  [WWW POST]
+  wrapper : GGIILODACPC :: EAKIMBMJIJG(NPPJNAOALIP: Guid, DDMGFDCDGKA: long) -> PIHPPMDHIHB<MAMNCDLFFJL>
+  also touches: api/roomcurrencies
+  body    : LBMMDNHMIOF
+    - <PKHCPOLHJAH>k__BackingField: Guid
+    - <ONEHOBLHBAH>k__BackingField: long
+  returns : GCHGIGLMILD<MAMNCDLFFJL>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/roomkeys/  [WWW DELETE]
+  wrapper : NEKIHFKBPPA :: AIGLOPLPKDL(HMKPLAEMHHD: JAONJADFMJM) -> PIHPPMDHIHB<FLFAPFGGHPD>
+  also touches: api/roomkeys/v1/delete/{hMKPLAEMHHD}
+  wrapper : NEKIHFKBPPA :: LMBPICFCJDI(MMNCPOOFGEF: long) -> string
+  also touches: api/roomkeys/v1/room
+  wrapper : NEKIHFKBPPA :: PFKIGLBNODA(OJKGCHNCPCI: long) -> PIHPPMDHIHB<bool>
+  also touches: api/roomkeys/v1/purchased/{oJKGCHNCPCI}
+  candidate: NEKIHFKBPPA :: KHBNEOCIIDL(PMLADICLECP: IEnumerable<IKIFDKIBJFL>, DDNLBFLLCLM: CancellationToken) -> Task<List<GCHGIGLMILD<BDBHMKBELLN>>>
+  candidate: NEKIHFKBPPA :: BNIJNEECCMP(PLNMPDNPHKM: AJMGNFEEBKK, DDNLBFLLCLM: CancellationToken) -> Task<LMDMKCADPNK>
+  candidate: NEKIHFKBPPA :: JIJFCNIFFAL(DDNLBFLLCLM: CancellationToken) -> Task
+  candidate: NEKIHFKBPPA :: KJHBBNGLGFN(DDNJBBOHJCD: IReadOnlyList<CDMAEHFPFMN>, DDNLBFLLCLM: CancellationToken) -> Task<List<BOPLMIMGBCL>>
+  candidate: NEKIHFKBPPA :: KHBNEOCIIDL(PMLADICLECP: IEnumerable<IKIFDKIBJFL>, DDNLBFLLCLM: CancellationToken) -> Task<List<GCHGIGLMILD<BDBHMKBELLN>>>
+  candidate: NEKIHFKBPPA :: BNIJNEECCMP(PLNMPDNPHKM: AJMGNFEEBKK, DDNLBFLLCLM: CancellationToken) -> Task<LMDMKCADPNK>
+  candidate: NEKIHFKBPPA :: JIJFCNIFFAL(DDNLBFLLCLM: CancellationToken) -> Task
+  candidate: NEKIHFKBPPA :: KJHBBNGLGFN(DDNJBBOHJCD: IReadOnlyList<CDMAEHFPFMN>, DDNLBFLLCLM: CancellationToken) -> Task<List<BOPLMIMGBCL>>
+  candidate: NEKIHFKBPPA :: KHBNEOCIIDL(PMLADICLECP: IEnumerable<IKIFDKIBJFL>, DDNLBFLLCLM: CancellationToken) -> Task<List<GCHGIGLMILD<BDBHMKBELLN>>>
+  candidate: NEKIHFKBPPA :: BNIJNEECCMP(PLNMPDNPHKM: AJMGNFEEBKK, DDNLBFLLCLM: CancellationToken) -> Task<LMDMKCADPNK>
+  body    : (none - GET; query params below if any)
+  returns : FLFAPFGGHPD
+  note    : site from register pattern; callee not identified
+  note    : verb from window before call (any reg)
+  note    : service filled from same-area sibling
+
+api/roomkeys/v1/  [WWW PUT]
+  wrapper : NEKIHFKBPPA :: JOKMOCHIFNB(DKAAOMNOJOH: string, OJKGCHNCPCI: long, JGJLGBDNBOB: IEnumerable<KeyValuePair<string, string>>) -> PIHPPMDHIHB<CKKDDLPAGCK>
+  body    : RoomkeysV1Request (synthesized)
+  field   : JGJLGBDNBOB: IEnumerable<KeyValuePair<string, string>> [wrapper]
+  field   : RoomKeyId: object [candidate]
+  maybe   : RoomKeyId (candidate query key)
+  returns : CKKDDLPAGCK
+  note    : site from register pattern; callee not identified
+  note    : verb from window before call (any reg)
+  note    : service from builder field store
+  note    : request DTO synthesized from candidate+wrapper
+
+api/roomkeys/v1/awardbulk  [WWW POST]
+  wrapper : NEKIHFKBPPA :: KHBNEOCIIDL(PMLADICLECP: IEnumerable<IKIFDKIBJFL>, DDNLBFLLCLM: CancellationToken) -> Task<List<GCHGIGLMILD<BDBHMKBELLN>>>
+  body    : IKIFDKIBJFL
+    - <BEDLFGOJLNB>k__BackingField: long
+    - <FDCJJPLACHI>k__BackingField: int
+  returns : List<GCHGIGLMILD<BDBHMKBELLN>>
+  note    : site from register pattern; callee not identified
+  note    : verb stashed in builder field
+  note    : service stashed in builder field
+
+api/roomkeys/v1/create  [WWW POST]
+  wrapper : NEKIHFKBPPA :: ECEPIKAIGNI(EIHDAHDDDEG: DNACDFKCJNC, EPPPGDEIJCI: string, KFMEELLINJF: string, PIDLLHEIKHK: int, GGHFEPFKDAK: string, AHBGJIENDEH: Guid?) -> PIHPPMDHIHB<CKKDDLPAGCK>
+  wrapper : NEKIHFKBPPA :: ECEPIKAIGNI(EPPPGDEIJCI: string, KFMEELLINJF: string, PIDLLHEIKHK: int, GGHFEPFKDAK: string, AHBGJIENDEH: Guid?) -> PIHPPMDHIHB<CKKDDLPAGCK>
+  body    : RoomkeysV1CreateRequest (synthesized)
+  field   : EIHDAHDDDEG: DNACDFKCJNC [wrapper]
+  field   : AHBGJIENDEH: Guid? [wrapper]
+  field   : Price: object [candidate]
+  field   : Name: object [candidate]
+  field   : ImageName: object [candidate]
+  field   : Type: object [candidate]
+  field   : RoomId: object [candidate]
+  maybe   : Price (candidate query key)
+  maybe   : Name (candidate query key)
+  maybe   : ImageName (candidate query key)
+  maybe   : Type (candidate query key)
+  maybe   : RoomId (candidate query key)
+  returns : CKKDDLPAGCK
+  note    : site from register pattern; callee not identified
+  note    : verb stashed in builder field
+  note    : service stashed in builder field
+  note    : request DTO synthesized from candidate+wrapper
+
+api/roomkeys/v1/delete/{hMKPLAEMHHD}  [WWW DELETE]
+  wrapper : NEKIHFKBPPA :: AIGLOPLPKDL(HMKPLAEMHHD: JAONJADFMJM) -> PIHPPMDHIHB<FLFAPFGGHPD>
+  also touches: api/roomkeys/
+  body    : (none - GET; query params below if any)
+  returns : FLFAPFGGHPD
+  note    : site from register pattern; callee not identified
+  note    : verb stashed in builder field
+  note    : service stashed in builder field
+
+api/roomkeys/v1/mine  [WWW GET]
+  wrapper : NEKIHFKBPPA :: NFMJCPJPNHB() -> PIHPPMDHIHB<List<JAONJADFMJM>>
+  body    : (none - GET; query params below if any)
+  returns : List<JAONJADFMJM>
+  note    : site from register pattern; callee not identified
+  note    : verb stashed in builder field
+  note    : service stashed in builder field
+
+api/roomkeys/v1/owns  [WWW GET]
+  wrapper : NEKIHFKBPPA :: APMPKHNFFFK(KEOJINBLLLG: int, HMKPLAEMHHD: JAONJADFMJM) -> PIHPPMDHIHB<bool>
+  body    : RoomkeysV1OwnsRequest (synthesized)
+  field   : playerId: object [candidate]
+  field   : roomKeyId: object [candidate]
+  maybe   : playerId (candidate query key)
+  maybe   : roomKeyId (candidate query key)
+  returns : bool
+  note    : site from register pattern; callee not identified
+  note    : verb stashed in builder field
+  note    : service stashed in builder field
+  note    : request DTO synthesized from candidate
+
+api/roomkeys/v1/owns/bulk  [WWW POST]
+  wrapper : NEKIHFKBPPA/GKLBJFDGJKH :: MoveNext(...)
+  body    : CDMAEHFPFMN
+    - BGPOEMNEDHA: int
+    - EHCDEMHOBLO: long
+  returns : List<BOPLMIMGBCL>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/roomkeys/v1/purchased/{oJKGCHNCPCI}  [WWW GET]
+  wrapper : NEKIHFKBPPA :: PFKIGLBNODA(OJKGCHNCPCI: long) -> PIHPPMDHIHB<bool>
+  also touches: api/roomkeys/
+  body    : (none - GET; query params below if any)
+  returns : bool
+  note    : site from register pattern; callee not identified
+  note    : verb stashed in builder field
+  note    : service stashed in builder field
+
+api/roomkeys/v1/revoke  [WWW POST]
+  wrapper : NEKIHFKBPPA :: BNIJNEECCMP(PLNMPDNPHKM: AJMGNFEEBKK, DDNLBFLLCLM: CancellationToken) -> Task<LMDMKCADPNK>
+  body    : AJMGNFEEBKK
+    - <BEDLFGOJLNB>k__BackingField: long
+    - <FDCJJPLACHI>k__BackingField: int
+  returns : LMDMKCADPNK
+  note    : site from register pattern; callee not identified
+  note    : verb stashed in builder field
+  note    : service stashed in builder field
+
+api/roomkeys/v1/room  [WWW ?]
+  wrapper : NEKIHFKBPPA :: LMBPICFCJDI(MMNCPOOFGEF: long) -> string
+  also touches: api/roomkeys/
+  candidate: NEKIHFKBPPA :: KHBNEOCIIDL(PMLADICLECP: IEnumerable<IKIFDKIBJFL>, DDNLBFLLCLM: CancellationToken) -> Task<List<GCHGIGLMILD<BDBHMKBELLN>>>
+  candidate: NEKIHFKBPPA :: BNIJNEECCMP(PLNMPDNPHKM: AJMGNFEEBKK, DDNLBFLLCLM: CancellationToken) -> Task<LMDMKCADPNK>
+  candidate: NEKIHFKBPPA :: JIJFCNIFFAL(DDNLBFLLCLM: CancellationToken) -> Task
+  candidate: NEKIHFKBPPA :: KJHBBNGLGFN(DDNJBBOHJCD: IReadOnlyList<CDMAEHFPFMN>, DDNLBFLLCLM: CancellationToken) -> Task<List<BOPLMIMGBCL>>
+  body    : ? (verb unknown; params below if any)
+  returns : ? (wrappers non-generic - likely no content)
+  note    : no call site found consuming this literal
+  note    : service filled from same-area sibling
+
+api/rooms/v1/verifyRole  [Auth POST]
+  wrapper : MPDMDOKFGGK :: DLLBLAGPNDD(GFIAFOEJCDD: string) -> KAHDNIHNJDF
+  body    : RoomsV1VerifyRoleRequest (synthesized)
+  field   : roomId: object [candidate]
+  field   : role: object [candidate]
+  field   : context: object [candidate]
+  maybe   : roomId (candidate query key)
+  maybe   : role (candidate query key)
+  maybe   : context (candidate query key)
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from candidate
+
+api/rooms/v2/report  [Auth POST]
+  wrapper : MPDMDOKFGGK :: OJDGKBONKOL(MMNCPOOFGEF: long, DNLJBHKECFG: INJOFAOHPLJ, OJKGCHNCPCI: long?, FAOJDNOALDB: string, AHMGCGHGIOJ: Guid?, CCHNEMOAKNJ: int?) -> KAHDNIHNJDF
+  body    : RoomsV2ReportRequest (synthesized)
+  field   : DNLJBHKECFG: INJOFAOHPLJ [wrapper]
+  field   : OJKGCHNCPCI: long? [wrapper]
+  field   : AHMGCGHGIOJ: Guid? [wrapper]
+  field   : CCHNEMOAKNJ: int? [wrapper]
+  field   : RoomOfferVersion: object [candidate]
+  field   : ReportCategory: object [candidate]
+  field   : RoomOfferId: object [candidate]
+  field   : RoomId: object [candidate]
+  field   : RoomKeyId: object [candidate]
+  maybe   : RoomOfferVersion (candidate query key)
+  maybe   : ReportCategory (candidate query key)
+  maybe   : RoomOfferId (candidate query key)
+  maybe   : RoomId (candidate query key)
+  maybe   : RoomKeyId (candidate query key)
+  returns : HOLEFKGMIEN
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from candidate+wrapper
+
+api/royale/v1/current  [WWW GET]
+  wrapper : GHLEOOPONNG :: FLDGBGACECI() -> PIHPPMDHIHB<KOGIJCNLLAN>
+  body    : (none - GET; query params below if any)
+  returns : KOGIJCNLLAN
+  note    : site from register pattern; callee not identified
+  note    : verb stashed in builder field
+  note    : service stashed in builder field
+
+api/royale/v2/matchcomplete  [WWW POST]
+  wrapper : GHLEOOPONNG :: IGMCODNOJBG(BHIMJCHDHDF: MatchCompleteStats) -> PIHPPMDHIHB<LNKPOAOBOBF>
+  body    : MatchCompleteStats
+  returns : LNKPOAOBOBF
+  note    : site from register pattern; callee not identified
+  note    : verb stashed in builder field
+  note    : service stashed in builder field
+
+api/sanitize/v1  [Auth POST]
+  wrapper : GPLBNODNGEI :: LIJDMIDFDIA(OJIAAJCCCDM: string, GFIAFOEJCDD: string, NCBINMINJPC: char, FDJHLAEMLPF: EHMLLMBHHMK, NCBMPLJBHFC: FGMKADGHCIE, PNAFCMANNKH: bool) -> PIHPPMDHIHB<FGBHECJDGCJ>
+  body    : PurifyStringRequest
+  returns : string
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/sanitize/v1/isPure  [Auth POST]
+  wrapper : GPLBNODNGEI/OKLNCNILOCL :: MoveNext(...)
+  body    : IsStringPureRequest
+  returns : APHHBFBLDCD
+  note    : site from resolved signature
+  note    : service in r8 at call
+  note    : verb inferred: body present, unanimous POST among sanitize/v1 siblings
+
+api/screensharereports/v1/report  [Auth POST]
+  wrapper : ELNLCFKLDLE :: HILEBEFANGG(GGHFEPFKDAK: string, DEGIDBADEHN: int, FAOJDNOALDB: string) -> KAHDNIHNJDF
+  body    : ScreensharereportsV1ReportRequest (synthesized)
+  field   : ReportedPlayerId: object [candidate]
+  field   : RoomInstanceId: object [candidate]
+  field   : ImageName: object [candidate]
+  field   : RoomInstanceType: object [candidate]
+  field   : RoomId: object [candidate]
+  maybe   : ReportedPlayerId (candidate query key)
+  maybe   : RoomInstanceId (candidate query key)
+  maybe   : ImageName (candidate query key)
+  maybe   : RoomInstanceType (candidate query key)
+  maybe   : RoomId (candidate query key)
+  returns : HOLEFKGMIEN
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from candidate
+
+api/storefronts/  [WWW GET]
+  wrapper : MAHGJBCPOII :: DDPHPPFJKAG(OOJMOOCMOPD: OKOOMAENFBD) -> PIHPPMDHIHB<GNAPOOPEEMI>
+  also touches: api/storefronts/v1/season/{oOJMOOCMOPD}
+  wrapper : MAHGJBCPOII :: FIEMKOGEHKK(AFHIECOPNHI: HCNPLKDEFAF, DCCIDABNANG: PFJHLKGMGLI) -> PIHPPMDHIHB<DAGIDDGCBOB>
+  also touches: api/storefronts/v1/balanceAddType/{aFHIECOPNHI}/{dCCIDABNANG}
+  wrapper : MAHGJBCPOII :: IELMNDHIJHF(AFHIECOPNHI: HCNPLKDEFAF) -> PIHPPMDHIHB<long>
+  also touches: api/storefronts/v4/balance/{aFHIECOPNHI}
+  candidate: MAHGJBCPOII :: DLOOIIPMGAC(IPDFHHJLAFM: List<MBPHGABEHHH>) -> Task
+  candidate: MAHGJBCPOII :: AFKEIEIGCHF(OOJMOOCMOPD: OKOOMAENFBD, BOGKJCBPHKK: bool, FFGKLFAMNFL: CHNKLDKEILP, DDNLBFLLCLM: CancellationToken) -> Task<ILNFMOKHPMI>
+  candidate: MAHGJBCPOII :: KOMOKJLBEFA(NFCADPHGMCH: int, DDNLBFLLCLM: CancellationToken) -> Task<MBPHGABEHHH>
+  candidate: MAHGJBCPOII :: LOBLDDHGHLO(PNEPLOMLFAO: int, DDNLBFLLCLM: CancellationToken) -> Task<MBPHGABEHHH>
+  candidate: MAHGJBCPOII :: BOAFGIJEGPH(IHAHOKHEHPK: IReadOnlyList<int>, DDNLBFLLCLM: CancellationToken) -> Task<List<MBPHGABEHHH>>
+  candidate: MAHGJBCPOII :: NNOKMDAIJKA(JAMCJDGACCC: IReadOnlyList<int>, DDNLBFLLCLM: CancellationToken) -> Task<List<MBPHGABEHHH>>
+  candidate: MAHGJBCPOII :: DLOOIIPMGAC(IPDFHHJLAFM: List<MBPHGABEHHH>) -> Task
+  candidate: MAHGJBCPOII :: AFKEIEIGCHF(OOJMOOCMOPD: OKOOMAENFBD, BOGKJCBPHKK: bool, FFGKLFAMNFL: CHNKLDKEILP, DDNLBFLLCLM: CancellationToken) -> Task<ILNFMOKHPMI>
+  candidate: MAHGJBCPOII :: KOMOKJLBEFA(NFCADPHGMCH: int, DDNLBFLLCLM: CancellationToken) -> Task<MBPHGABEHHH>
+  candidate: MAHGJBCPOII :: LOBLDDHGHLO(PNEPLOMLFAO: int, DDNLBFLLCLM: CancellationToken) -> Task<MBPHGABEHHH>
+  body    : (none - GET; query params below if any)
+  returns : GNAPOOPEEMI
+  note    : site from register pattern; callee not identified
+  note    : verb from window before call (any reg)
+  note    : service filled from same-area sibling
+
+api/storefronts/v1/PurchaseRoomKeyWithCurrency  [WWW POST]
+  wrapper : MAHGJBCPOII :: IDNGMKFOHJC(OJKGCHNCPCI: long, MGGLOHHALKO: long, EJGKLEICCKL: Guid) -> PIHPPMDHIHB<RoomKeyPurchaseWithCurrencyResponseDTO>
+  body    : StorefrontsV1PurchaseRoomKeyWithCurrencyRequest (synthesized)
+  field   : EJGKLEICCKL: Guid [wrapper]
+  field   : RequestedPurchaseCurrencyId: object [candidate]
+  field   : RequestedPrice: object [candidate]
+  field   : RoomKeyId: object [candidate]
+  maybe   : RequestedPurchaseCurrencyId (candidate query key)
+  maybe   : RequestedPrice (candidate query key)
+  maybe   : RoomKeyId (candidate query key)
+  returns : RoomKeyPurchaseWithCurrencyResponseDTO
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from candidate+wrapper
+
+api/storefronts/v1/adcarouselitems  [WWW GET]
+  wrapper : MAHGJBCPOII :: JPGBOJPEGLP() -> PIHPPMDHIHB<List<StorefrontAdCarouselItem>>
+  body    : (none - GET; query params below if any)
+  returns : List<StorefrontAdCarouselItem>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/storefronts/v1/balanceAddType/{aFHIECOPNHI}/{dCCIDABNANG}  [WWW GET]
+  wrapper : MAHGJBCPOII :: FIEMKOGEHKK(AFHIECOPNHI: HCNPLKDEFAF, DCCIDABNANG: PFJHLKGMGLI) -> PIHPPMDHIHB<DAGIDDGCBOB>
+  also touches: api/storefronts/
+  body    : (none - GET; query params below if any)
+  returns : DAGIDDGCBOB
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/storefronts/v1/buyForFreeGiftButton  [WWW POST]
+  wrapper : MAHGJBCPOII :: DDCFJKAHMEO(NFCADPHGMCH: int, LHCCCFBIAMO: long?, NDEFEFEFLCE: int, IJAOLCPMABD: long, ALJDJALAAAJ: int) -> KAHDNIHNJDF
+  body    : RequestPurchaseForFreeGiftButtonDTO
+  returns : GCHGIGLMILD<BalanceResponseDTO>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/storefronts/v1/buyProgressionEventXpBoost  [WWW POST]
+  wrapper : MAHGJBCPOII :: PFCNKCJJHGF(MCGEBBCEJDD: long, LFNKMOGNNIL: Guid, MGGLOHHALKO: int, EHALPLGPHPC: int) -> PIHPPMDHIHB<BalanceUpdateResponseDTO<PurchasedProgressionEventXpBoostDTO>>
+  body    : StorefrontsV1BuyProgressionEventXpBoostRequest (synthesized)
+  field   : LFNKMOGNNIL: Guid [wrapper]
+  field   : progressionEventId: object [candidate]
+  field   : requestedPrice: object [candidate]
+  field   : purchasableXpBoostId: object [candidate]
+  field   : expectedXp: object [candidate]
+  maybe   : progressionEventId (candidate query key)
+  maybe   : requestedPrice (candidate query key)
+  maybe   : purchasableXpBoostId (candidate query key)
+  maybe   : expectedXp (candidate query key)
+  returns : BalanceUpdateResponseDTO<PurchasedProgressionEventXpBoostDTO>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from candidate+wrapper
+
+api/storefronts/v1/buyPurchaseReminder  [WWW POST]
+  wrapper : MAHGJBCPOII :: EFLNGKKCFBG(HLDOBBPHPBB: int, MGGLOHHALKO: long) -> PIHPPMDHIHB<HOEFJKBBECK>
+  body    : StorefrontsV1BuyPurchaseReminderRequest (synthesized)
+  field   : purchaseReminderId: object [candidate]
+  field   : requestedPrice: object [candidate]
+  maybe   : purchaseReminderId (candidate query key)
+  maybe   : requestedPrice (candidate query key)
+  returns : GCHGIGLMILD<HOEFJKBBECK>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from candidate
+
+api/storefronts/v1/buyRoomKey  [WWW GET]
+  wrapper : MAHGJBCPOII :: FEANHIGLHEH(OJKGCHNCPCI: long, MGGLOHHALKO: long) -> PIHPPMDHIHB<RoomKeyPurchaseResponseDTO>
+  body    : StorefrontsV1BuyRoomKeyRequest (synthesized)
+  field   : RequestedPrice: object [candidate]
+  field   : RoomKeyId: object [candidate]
+  maybe   : RequestedPrice (candidate query key)
+  maybe   : RoomKeyId (candidate query key)
+  returns : RoomKeyPurchaseResponseDTO
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from candidate
+
+api/storefronts/v1/objectives  [WWW POST]
+  wrapper : MAHGJBCPOII :: MAIEFIDJKEH(BCPOCAFHLIK: List<NCCICCHDCOC>) -> void
+  body    : NCCICCHDCOC
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/storefronts/v1/season/{oOJMOOCMOPD}  [WWW GET]
+  wrapper : MAHGJBCPOII :: DDPHPPFJKAG(OOJMOOCMOPD: OKOOMAENFBD) -> PIHPPMDHIHB<GNAPOOPEEMI>
+  also touches: api/storefronts/
+  body    : (none - GET; query params below if any)
+  returns : GNAPOOPEEMI
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/storefronts/v1/toptoday  [WWW GET]
+  wrapper : MAHGJBCPOII :: EKIOIJBICHG() -> PIHPPMDHIHB<IReadOnlyList<int>>
+  body    : (none - GET; query params below if any)
+  returns : List<int>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/storefronts/v1/trialInvention  [WWW POST]
+  wrapper : MAHGJBCPOII :: GEDODCBIDFH(EEGPJCABCPF: long) -> PIHPPMDHIHB<CHMIDPMDMJO>
+  body    : StorefrontsV1TrialInventionRequest (synthesized)
+  field   : inventionId: long [wrapper]
+  returns : BIIKCHNMPGB
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from wrapper
+
+api/storefronts/v1/trialInvention/duration  [WWW GET]
+  wrapper : MAHGJBCPOII :: MNEIPAOHFJI() -> PIHPPMDHIHB<int>
+  body    : (none - GET; query params below if any)
+  returns : NHMPBLAMDBG
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/storefronts/v2/balance  [WWW POST]
+  wrapper : MAHGJBCPOII :: KELAJHKKFEC(AFHIECOPNHI: HCNPLKDEFAF, IGDCHKCFLIE: IEnumerable<GrantBalanceRequest>) -> PIHPPMDHIHB<BalanceUpdateResponseDTO<RewardBalanceModificationDTO>>
+  body    : GrantBalanceRewardDTO
+  returns : BalanceUpdateResponseDTO<RewardBalanceModificationDTO>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/storefronts/v2/buyElite  [WWW POST]
+  wrapper : MAHGJBCPOII :: JNDKNIOKFDE(OOJMOOCMOPD: OKOOMAENFBD, AFHIECOPNHI: HCNPLKDEFAF, NFCADPHGMCH: int, MGGLOHHALKO: long) -> PIHPPMDHIHB<PurchaseBalanceUpdateResponseDTO<NIBHFOAJOCD>>
+  body    : RequestPurchaseItemDTO
+  returns : PurchaseBalanceUpdateResponseDTO<NIBHFOAJOCD>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/storefronts/v2/buyInvention  [WWW GET]
+  wrapper : MAHGJBCPOII :: AFIEJDNHOJJ(EEGPJCABCPF: long, MGGLOHHALKO: int) -> PIHPPMDHIHB<InventionPurchaseResponseDTO>
+  body    : StorefrontsV2BuyInventionRequest (synthesized)
+  field   : requestedPrice: object [candidate]
+  field   : inventionId: object [candidate]
+  maybe   : requestedPrice (candidate query key)
+  maybe   : inventionId (candidate query key)
+  returns : InventionPurchaseResponseDTO
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from candidate
+
+api/storefronts/v2/buyItem  [WWW POST]
+  wrapper : MAHGJBCPOII :: DKKHFPNJJHP(OOJMOOCMOPD: OKOOMAENFBD, AFHIECOPNHI: HCNPLKDEFAF, NFCADPHGMCH: int, MGGLOHHALKO: long, LHCCCFBIAMO: long?, HLHPEGBENCC: GiftItemDTO) -> PIHPPMDHIHB<PurchaseBalanceUpdateResponseDTO<NIBHFOAJOCD>>
+  body    : RequestPurchaseItemDTO
+  returns : PurchaseBalanceUpdateResponseDTO<NIBHFOAJOCD>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/storefronts/v2/buyItems/bulk  [WWW POST]
+  wrapper : MAHGJBCPOII :: INJCPKIBBGO(OOJMOOCMOPD: OKOOMAENFBD, AFHIECOPNHI: HCNPLKDEFAF, IHAHOKHEHPK: List<int>, DLEAMJNLLGA: List<long>, PDCAPLNPOMC: List<GiftItemDTO>, BEHDMGEMHFA: int?) -> PIHPPMDHIHB<PurchaseBalanceUpdateResponseDTO<NIBHFOAJOCD>>
+  body    : RequestBulkPurchaseItemsDTO
+  returns : PurchaseBalanceUpdateResponseDTO<NIBHFOAJOCD>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/storefronts/v2/buyTier  [WWW POST]
+  wrapper : MAHGJBCPOII :: OLCNJBPAKMB(OOJMOOCMOPD: OKOOMAENFBD, AFHIECOPNHI: HCNPLKDEFAF, NFCADPHGMCH: int, MGGLOHHALKO: long) -> PIHPPMDHIHB<PurchaseBalanceUpdateResponseDTO<NIBHFOAJOCD>>
+  body    : RequestPurchaseItemDTO
+  returns : PurchaseBalanceUpdateResponseDTO<NIBHFOAJOCD>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/storefronts/v4/balance/{aFHIECOPNHI}  [WWW GET]
+  wrapper : MAHGJBCPOII :: IELMNDHIJHF(AFHIECOPNHI: HCNPLKDEFAF) -> PIHPPMDHIHB<long>
+  also touches: api/storefronts/
+  body    : (none - GET; query params below if any)
+  returns : List<BalanceResponseDTO>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/subscriptionseasons/v1/seasons/current  [WWW GET]
+  wrapper : GKMODEBPNJB :: HEFADPNBABM(LPPDEFJLPOP: bool) -> PIHPPMDHIHB<NGAIHAEEJPJ>
+  body    : (none - GET; query params below if any)
+  returns : NGAIHAEEJPJ
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/testcasemanagement/  [Auth GET]
+  wrapper : CPDABLCPDPJ :: BPFHCJFCICK(MHMAFIBKDFF: uint) -> PIHPPMDHIHB<GIFEOOCCJHH>
+  also touches: api/testcasemanagement/v1/testpass/{mHMAFIBKDFF}
+  wrapper : GLJNPPPPCFD :: BPFHCJFCICK(MHMAFIBKDFF: uint) -> PIHPPMDHIHB<GIFEOOCCJHH>
+  also touches: api/testcasemanagement/v1/testpass/{mHMAFIBKDFF}
+  body    : (none - GET; query params below if any)
+  returns : GIFEOOCCJHH
+  note    : site from register pattern; callee not identified
+  note    : verb from window before call (any reg)
+  note    : service filled from same-area sibling
+
+api/testcasemanagement/v1/testcase/  [Auth POST]
+  wrapper : CPDABLCPDPJ :: ANNFIPMMNAC(MDKOPIPBPNA: string) -> KAHDNIHNJDF
+  wrapper : CPDABLCPDPJ :: CIDFBILFNEF(MHMAFIBKDFF: string) -> PIHPPMDHIHB<BGCGEPPCNBG>
+  wrapper : CPDABLCPDPJ :: JHIMKEICJHO(MDKOPIPBPNA: string) -> KAHDNIHNJDF
+  wrapper : CPDABLCPDPJ :: LLFFFMOOOBJ(MDKOPIPBPNA: string, LDIEGLGOGHH: string) -> KAHDNIHNJDF
+  wrapper : CPDABLCPDPJ :: LNKMCNEEEHM(MDKOPIPBPNA: string, BGGNGAAMFLF: OLICAHLGJDB) -> KAHDNIHNJDF
+  wrapper : GLJNPPPPCFD :: CIDFBILFNEF(MHMAFIBKDFF: string) -> PIHPPMDHIHB<BGCGEPPCNBG>
+  body    : TestcasemanagementV1TestcaseRequest (synthesized)
+  field   : BGGNGAAMFLF: OLICAHLGJDB [wrapper]
+  returns : BGCGEPPCNBG
+  note    : site from register pattern; callee not identified
+  note    : verb from window before call (any reg)
+  note    : service filled from same-area sibling
+  note    : verb conflict: using POST
+
+api/testcasemanagement/v1/testpass/{mHMAFIBKDFF}  [Auth GET]
+  wrapper : CPDABLCPDPJ :: BPFHCJFCICK(MHMAFIBKDFF: uint) -> PIHPPMDHIHB<GIFEOOCCJHH>
+  also touches: api/testcasemanagement/
+  wrapper : GLJNPPPPCFD :: BPFHCJFCICK(MHMAFIBKDFF: uint) -> PIHPPMDHIHB<GIFEOOCCJHH>
+  also touches: api/testcasemanagement/
+  body    : (none - GET; query params below if any)
+  returns : GIFEOOCCJHH
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/testcasemanagement/v1/testpasssummary  [Auth GET]
+  wrapper : CPDABLCPDPJ :: FNDFGNOMFBJ() -> PIHPPMDHIHB<List<GIFEOOCCJHH>>
+  body    : (none - GET; query params below if any)
+  returns : List<GIFEOOCCJHH>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/testcasemanagement/v1/testplans  [Auth GET]
+  wrapper : CPDABLCPDPJ :: HDHHDOOPNCG() -> PIHPPMDHIHB<List<JLLLMAPFJNN>>
+  wrapper : GLJNPPPPCFD :: HDHHDOOPNCG() -> PIHPPMDHIHB<List<JLLLMAPFJNN>>
+  body    : (none - GET; query params below if any)
+  returns : List<JLLLMAPFJNN>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/ugcPurchasables/v1/items/bulk  [WWW POST]
+  wrapper : ODFHMKHKPAA/MPEPNDJLOMI :: MoveNext(...)
+  body    : LBNFMNHPLOM
+  returns : List<NIGAKOODBHC>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/ugcPurchasables/v1/items/room/{roomId}  [WWW GET]
+  wrapper : ODFHMKHKPAA/ILGCEKCNHPK :: MoveNext(...)
+  also touches: api/ugcPurchasables
+  body    : (none - GET; query params below if any)
+  returns : List<NIGAKOODBHC>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/versioncheck/islandedversions  [Auth GET]
+  wrapper : GENMNDINIKG :: CLABKMPGACO() -> KAHDNIHNJDF
+  body    : (none - GET; query params below if any)
+  returns : List<string>
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+
+api/versioncheck/v4  [Auth GET]
+  wrapper : GENMNDINIKG :: LPABEEPBCLP(JICKKLEDAKC: int?) -> PIHPPMDHIHB<JBGEELMGLNB>
+  body    : VersioncheckV4Request (synthesized)
+  field   : pid: int? [wrapper]
+  returns : JBGEELMGLNB
+  note    : site from resolved signature
+  note    : verb from HttpMethod argument
+  note    : service in r8 at call
+  note    : request DTO synthesized from wrapper
+

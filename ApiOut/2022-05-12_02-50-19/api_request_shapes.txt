@@ -1,0 +1,2460 @@
+# per-endpoint request/response shapes: wrapper signatures from
+# metadata plus wire body-DTO fields. Wrapper parameters minus
+# CancellationToken are the query/body data the call expects.
+# "also touches" = same wrapper references another route (shared
+# send or shared cache invalidation). "candidate" = Task-returning
+# method on the same client with no send site found (unverified).
+
+api/CampusCard/PS5RecRoomPlusEnabledForAllPlayers  [API GET]
+  wrapper : EFHMGLMEGCM :: LKAEGPODDJM() -> Boolean>
+  body    : (none - GET; query params below if any)
+  returns : bool
+  note    : site from legacy send wrapper PEOLLKOAEAB::HBNKNBKJDFB
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/CampusCard/v1/UpdateAndGetSubscription  [API POST]
+  wrapper : EFHMGLMEGCM :: KFJLNKNKAND(CPEICDENBJE: string) -> CIEHECMGOGE>
+  body    : CampusCardV1UpdateAndGetSubscriptionRequest (synthesized)
+  field   : accessToken: string [wrapper]
+  returns : CIEHECMGOGE
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service from Service argument
+  note    : request DTO synthesized from wrapper
+
+api/PlayerCheer/v1/SetSelectedCheer  [API POST]
+  wrapper : LAJKNHEMEJB :: EFIFKOGICBG(PCGMKLNIIPG: JDFKLOEANIP?) -> DCCNBCFBHAJ
+  body    : PlayerCheerV1SetSelectedCheerRequest (synthesized)
+  field   : CheerCategory: JDFKLOEANIP? [wrapper]
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request DTO synthesized from wrapper
+
+api/PlayerCheer/v1/create  [API POST]
+  wrapper : LAJKNHEMEJB :: PBAPOHMPBBM(BDOBLJEBCGA: long, PCGMKLNIIPG: JDFKLOEANIP, GNOAJBKKAOE: bool) -> DCCNBCFBHAJ
+  body    : PlayerCheerV1CreateRequest (synthesized)
+  field   : PCGMKLNIIPG: JDFKLOEANIP [wrapper]
+  field   : PlayerIdTo: object [candidate]
+  field   : CheerCategory: object [candidate]
+  field   : RoomId: object [candidate]
+  field   : Anonymous: object [candidate]
+  maybe   : PlayerIdTo (candidate query key)
+  maybe   : CheerCategory (candidate query key)
+  maybe   : RoomId (candidate query key)
+  maybe   : Anonymous (candidate query key)
+  returns : EFKOMEOFLGF
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request DTO synthesized from candidate+wrapper
+
+api/PlayerElo/  [API POST]
+  wrapper : RecNet.Elo :: UpdatePlayersElo(NNEKAPIBDBP: PlayersEloUpdateDTO) -> void
+  body    : PlayersEloUpdateDTO
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from register pattern; callee not identified
+  note    : service from weaker record
+  note    : verb from weaker record
+
+api/PlayerReporting/v1/deviceId  [API POST]
+  wrapper : PGEHMMEMOKE :: HPAAJPIHBPF() -> DCCNBCFBHAJ
+  wrapper : PIMNBEMBDPA :: NFHKEGAOCIE(MHNFFMOPAIO: string, DOCOOPCHKAI: DEJOHGPOLEE) -> DCCNBCFBHAJ
+  body    : PlayerReportingV1DeviceIdRequest (synthesized)
+  field   : DOCOOPCHKAI: DEJOHGPOLEE [wrapper]
+  field   : create_account: object [candidate]
+  field   : grant_type: object [candidate]
+  field   : oldDeviceId: object [candidate]
+  field   : newDeviceId: object [candidate]
+  field   : platform: object [candidate]
+  maybe   : create_account (candidate query key)
+  maybe   : grant_type (candidate query key)
+  maybe   : oldDeviceId (candidate query key)
+  maybe   : newDeviceId (candidate query key)
+  maybe   : platform (candidate query key)
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request DTO synthesized from candidate+wrapper
+
+api/PlayerReporting/v1/hile  [API POST]
+  wrapper : PIMNBEMBDPA :: CHCIMHHDKED(HHDFIJECABM: KEKGICHADKK, IOHPBCJMLDB: string, BAFNIDAIPIO: int?) -> DCCNBCFBHAJ
+  body    : PlayerReportingV1HileRequest (synthesized)
+  field   : HHDFIJECABM: KEKGICHADKK [wrapper]
+  field   : BAFNIDAIPIO: int? [wrapper]
+  field   : Message: object [candidate]
+  field   : Type: object [candidate]
+  field   : ReportedPlayer: object [candidate]
+  maybe   : Message (candidate query key)
+  maybe   : Type (candidate query key)
+  maybe   : ReportedPlayer (candidate query key)
+  returns : bool
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request DTO synthesized from candidate+wrapper
+
+api/PlayerReporting/v1/instantKick  [API POST]
+  wrapper : PIMNBEMBDPA :: AAHJLLIOOHP(GEINDFEOBNI: List<int>) -> OIKEDAHIDPO<EFKOMEOFLGF>
+  also touches: api/PlayerReporting/
+  wrapper : PIMNBEMBDPA :: LNLBHAKKAAI(BDOBLJEBCGA: int) -> OIKEDAHIDPO<EFKOMEOFLGF>
+  also touches: api/PlayerReporting/
+  body    : KickPlayerDTO
+    - GameSessionId: long
+    - PlayerIds: List<int>
+  returns : EFKOMEOFLGF
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/PlayerReporting/v1/moderationBlockDetails  [API GET]
+  wrapper : PIMNBEMBDPA :: EDAGCLHHKDL() -> OIKEDAHIDPO<KNPEIEDDIOA>
+  also touches: api/PlayerReporting/
+  body    : (none - GET; query params below if any)
+  returns : KNPEIEDDIOA
+  note    : site from legacy send wrapper BLCGKIDDJIN::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/PlayerReporting/v1/voteToKickReasons  [API GET]
+  wrapper : PIMNBEMBDPA :: FCHJNKAMHLN() -> DCCNBCFBHAJ
+  body    : (none - GET; query params below if any)
+  returns : List<DLJBPHNFLMO>
+  note    : site from legacy send wrapper BLCGKIDDJIN::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/PlayerReporting/v3/create  [API GET]
+  wrapper : PIMNBEMBDPA :: AEJADPFAOAP(BDOBLJEBCGA: int, BKGDDCMJALJ: GFPDAGADAGK, EINIKAEPFEE: string, ELHAKHAPBJP: float, DELOEBJFHOG: float?) -> OIKEDAHIDPO<EFKOMEOFLGF>
+  also touches: api/PlayerReporting/
+  body    : PlayerReportingV3CreateRequest (synthesized)
+  field   : PlayerIdReported: object [candidate]
+  field   : ReportCategory: object [candidate]
+  field   : Details: object [candidate]
+  field   : HeightReporter: object [candidate]
+  field   : HeightReported: object [candidate]
+  maybe   : PlayerIdReported (candidate query key)
+  maybe   : ReportCategory (candidate query key)
+  maybe   : Details (candidate query key)
+  maybe   : HeightReporter (candidate query key)
+  maybe   : HeightReported (candidate query key)
+  returns : EFKOMEOFLGF
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : verb conflict: using GET
+
+api/PlayerReporting/v3/voteToKick  [API POST]
+  wrapper : PIMNBEMBDPA :: AKAKALKLAPK(BDOBLJEBCGA: long, LJEFPGMHDMI: bool, PBEHJLBNKJN: string) -> OIKEDAHIDPO<EFKOMEOFLGF>
+  also touches: api/PlayerReporting/
+  body    : EFKOMEOFLGF
+    - <GMGJCOMNHOG>k__BackingField: bool
+    - <AGBHICNKCIN>k__BackingField: string
+  maybe   : PlayerId (candidate query key)
+  maybe   : Response (candidate query key)
+  maybe   : Reason (candidate query key)
+  maybe   : GameSessionId (candidate query key)
+  returns : EFKOMEOFLGF
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request from weaker record
+
+api/activities/charades/v1/words/{fAIEHILAHEO}  [API GET]
+  wrapper : DNJHNKDPFCC :: LJEMKOPOAEF(FAIEHILAHEO: CGNNKOGBCOO) -> List<MOPMNMHJMAE>>
+  body    : List<MOPMNMHJMAE>
+  returns : List<MOPMNMHJMAE>
+  note    : site from legacy send wrapper PEOLLKOAEAB::DJMDPKNDEAE
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request from weaker record
+
+api/announcement/v1/get  [API GET]
+  wrapper : KLIDPEKCEPO :: HFBMDHKAAKO() -> List<LHKLLDBAGIG>>
+  body    : (none - GET; query params below if any)
+  returns : List<LHKLLDBAGIG>
+  note    : site from legacy send wrapper BLCGKIDDJIN::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/apple/musicpromotion/active  [? GET]
+  wrapper : CDGEHLBAOKE :: CFHKENBKJNI() -> Boolean>
+  body    : (none - GET; query params below if any)
+  returns : bool
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+
+api/apple/musicpromotion/code  [? GET]
+  wrapper : CDGEHLBAOKE :: HMHBJOPHEAC() -> AppleMusicPromotionResponseDTO>
+  body    : (none - GET; query params below if any)
+  returns : AppleMusicPromotionResponseDTO
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+
+api/avatar/v1/defaultunlocked  [API GET]
+  wrapper : MBELEEOBKOA :: JMGOAGEFNKO() -> List<PDOHLJHNMMC>>
+  body    : (none - GET; query params below if any)
+  returns : List<PDOHLJHNMMC>
+  note    : site from legacy send wrapper BLCGKIDDJIN::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/avatar/v1/lockeditems?  [API GET]
+  wrapper : MBELEEOBKOA :: FNLDHPOOPNO(PGPPGFHMBEI: List<string>) -> List<PDOHLJHNMMC>>
+  body    : (none - GET; query params below if any)
+  returns : List<PDOHLJHNMMC>
+  note    : site from legacy send wrapper PEOLLKOAEAB::DJMDPKNDEAE
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/avatar/v2/gifts  [API GET]
+  wrapper : MBELEEOBKOA :: JBBJDKILEOK() -> List<PLBHBEIOMCL>>
+  also touches: api/avatar/
+  body    : List<PLBHBEIOMCL>
+  returns : List<PLBHBEIOMCL>
+  note    : site from legacy send wrapper BLCGKIDDJIN::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request from weaker record
+
+api/avatar/v2/gifts/consume/  [API POST]
+  wrapper : MBELEEOBKOA :: ONAGEDMAFAJ(ACPLMHJDDAK: PLBHBEIOMCL) -> DCCNBCFBHAJ
+  also touches: api/avatar/
+  body    : AvatarV2GiftsConsumeRequest (synthesized)
+  field   : UnlockedLevel: PLBHBEIOMCL [wrapper]
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request DTO synthesized from wrapper
+
+api/avatar/v2/gifts/generate  [API POST]
+  wrapper : MBELEEOBKOA :: IFANHNGFAAC(IJBCJIEGGIM: OHOOCGODAFP, MBEDAFAAHEH: OHOOCGODAFP?, LCFLBLEEIBD: bool, IOHPBCJMLDB: string) -> PLBHBEIOMCL>
+  wrapper : MBELEEOBKOA :: IFANHNGFAAC(IJBCJIEGGIM: OHOOCGODAFP, IOHPBCJMLDB: string) -> PLBHBEIOMCL>
+  also touches: api/avatar/, api/avatar/v3/gifts/generate
+  body    : AvatarV2GiftsGenerateRequest (synthesized)
+  field   : IJBCJIEGGIM: OHOOCGODAFP [wrapper]
+  field   : MBEDAFAAHEH: OHOOCGODAFP? [wrapper]
+  field   : GiftContext: object [candidate]
+  field   : IsGameGift: object [candidate]
+  field   : AlternateGiftContext: object [candidate]
+  field   : Message: object [candidate]
+  maybe   : GiftContext (candidate query key)
+  maybe   : IsGameGift (candidate query key)
+  maybe   : AlternateGiftContext (candidate query key)
+  maybe   : Message (candidate query key)
+  returns : PLBHBEIOMCL
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request DTO synthesized from candidate+wrapper
+
+api/avatar/v2/set  [API POST]
+  wrapper : MBELEEOBKOA :: JCNDEJJJFHN() -> void
+  wrapper : MBELEEOBKOA :: JCNDEJJJFHN(GEOGOLHGGAA: string, MNKNOLKIFCK: string, OGDAHBLDPPC: string, CNKMOBMFHJH: string) -> void
+  also touches: api/avatar/
+  body    : JEKNJKHGBBL
+    - <KBFIFFENOFF>k__BackingField: string
+    - <FNKAOIPJOMM>k__BackingField: string
+    - <FHHEEKJJEPH>k__BackingField: string
+    - <PKILBCIAELG>k__BackingField: string
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/avatar/v2/{mGHNGLOFIEP}  [API GET]
+  wrapper : MBELEEOBKOA :: NMNHGPKOBPJ(MGHNGLOFIEP: int) -> OIKEDAHIDPO<JEKNJKHGBBL>
+  also touches: api/avatar/
+  body    : JEKNJKHGBBL
+    - <KBFIFFENOFF>k__BackingField: string
+    - <FNKAOIPJOMM>k__BackingField: string
+    - <FHHEEKJJEPH>k__BackingField: string
+    - <PKILBCIAELG>k__BackingField: string
+  returns : JEKNJKHGBBL
+  note    : site from legacy send wrapper PEOLLKOAEAB::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request from weaker record
+
+api/avatar/v3/gifts/generate  [API POST]
+  wrapper : MBELEEOBKOA :: IFANHNGFAAC(IJBCJIEGGIM: OHOOCGODAFP, MBEDAFAAHEH: OHOOCGODAFP?, LCFLBLEEIBD: bool, IOHPBCJMLDB: string) -> PLBHBEIOMCL>
+  wrapper : MBELEEOBKOA :: IFANHNGFAAC(IJBCJIEGGIM: OHOOCGODAFP, IOHPBCJMLDB: string) -> PLBHBEIOMCL>
+  also touches: api/avatar/, api/avatar/v2/gifts/generate
+  body    : AvatarV3GiftsGenerateRequest (synthesized)
+  field   : IJBCJIEGGIM: OHOOCGODAFP [wrapper]
+  field   : MBEDAFAAHEH: OHOOCGODAFP? [wrapper]
+  field   : GiftContext: object [candidate]
+  field   : Message: object [candidate]
+  maybe   : GiftContext (candidate query key)
+  maybe   : Message (candidate query key)
+  returns : PLBHBEIOMCL
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request DTO synthesized from candidate+wrapper
+
+api/avatar/v3/saved  [API GET]
+  wrapper : MBELEEOBKOA :: IPGMGAKHPIB(BKKOCCDDHJN: NAGMMPGMPLA) -> DCCNBCFBHAJ
+  also touches: api/avatar/
+  body    : (none - GET; query params below if any)
+  returns : List<ECGGJGBMGOP>
+  note    : site from legacy send wrapper BLCGKIDDJIN::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/avatar/v3/saved/set  [API POST]
+  wrapper : MBELEEOBKOA :: CEPPMFFBBJD(BBKJDCGNLLM: ECGGJGBMGOP) -> DCCNBCFBHAJ
+  also touches: api/avatar/
+  body    : ECGGJGBMGOP
+    - <JGPHKLAAKHL>k__BackingField: int
+    - <NGGEBPDEGFN>k__BackingField: string
+    - <KBFIFFENOFF>k__BackingField: string
+    - <FNKAOIPJOMM>k__BackingField: string
+    - <FHHEEKJJEPH>k__BackingField: string
+    - <PKILBCIAELG>k__BackingField: string
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/avatar/v4/items  [API GET]
+  wrapper : MBELEEOBKOA :: MCAGCLOOOEG() -> List<PDOHLJHNMMC>>
+  also touches: api/avatar/
+  body    : (none - GET; query params below if any)
+  returns : List<PDOHLJHNMMC>
+  note    : site from legacy send wrapper BLCGKIDDJIN::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/banappeal/generateCode  [? GET]
+  wrapper : PIMNBEMBDPA :: MCDOKFOMOMB() -> String>
+  body    : (none - GET; query params below if any)
+  returns : String>
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+
+api/catalog/v1/all?onlyAvailableSkus=true  [API GET]
+  wrapper : EFHMGLMEGCM :: AIHBHNNKEBO(OKEHIOJILCE: bool) -> List<ACKEEAEKGLM>>
+  wrapper : EFHMGLMEGCM :: BEAHDBLDGNJ() -> void
+  wrapper : EFHMGLMEGCM/<>c :: <CancelSubscription>b__50_1(...)
+  body    : (none - GET; query params below if any)
+  returns : List<ACKEEAEKGLM>
+  note    : site from legacy send wrapper PEOLLKOAEAB::DJMDPKNDEAE
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/challenge/v2/getCurrent  [API GET]
+  wrapper : NKKKLDCHENB :: MDPIIPAPGGK(BKKOCCDDHJN: FBKPOFPMKBI<MPMFOIALNJI>) -> IEnumerator
+  also touches: api/challenge/
+  body    : (none - GET; query params below if any)
+  returns : MPMFOIALNJI
+  note    : site from legacy send wrapper BLCGKIDDJIN::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/challenge/v2/updateProgress  [API POST]
+  wrapper : NKKKLDCHENB :: JHNNLKLLNOF(LDIOFCGMEID: int, NCMMGEJGLMH: ININAJBLBOD) -> void
+  also touches: api/challenge/
+  body    : ChallengeV2UpdateProgressRequest (synthesized)
+  field   : NCMMGEJGLMH: ININAJBLBOD [wrapper]
+  field   : UpdateChallengeProgress: object [candidate]
+  field   : ChallengeMapId: object [candidate]
+  field   : ChallengeId: object [candidate]
+  field   : Config: object [candidate]
+  field   : Complete: object [candidate]
+  maybe   : UpdateChallengeProgress (candidate query key)
+  maybe   : ChallengeMapId (candidate query key)
+  maybe   : ChallengeId (candidate query key)
+  maybe   : Config (candidate query key)
+  maybe   : Complete (candidate query key)
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request DTO synthesized from candidate+wrapper
+
+api/checklist/v1/complete  [API POST]
+  wrapper : AMBBONKLDLF :: NPAAODGOBMI(OHBBKGEHNAA: int) -> PLBHBEIOMCL>
+  also touches: api/checklist/
+  body    : ChecklistCompletionDTO
+  returns : PLBHBEIOMCL
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/checklist/v1/current  [API GET]
+  wrapper : AMBBONKLDLF :: MCNOIFFAEKA() -> List<JKLEKPHNECF>>
+  also touches: api/checklist/
+  body    : (none - GET; query params below if any)
+  returns : List<JKLEKPHNECF>
+  note    : site from legacy send wrapper PEOLLKOAEAB::DJMDPKNDEAE
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/clubreporting/v1/report  [API POST]
+  wrapper : PPGNILFKPOI :: GIJKAFCDOLE(DHMCPICAOJF: long, BKGDDCMJALJ: GFPDAGADAGK, EINIKAEPFEE: string) -> DCCNBCFBHAJ
+  body    : ClubreportingV1ReportRequest (synthesized)
+  field   : BKGDDCMJALJ: GFPDAGADAGK [wrapper]
+  field   : clubId: object [candidate]
+  field   : reportCategory: object [candidate]
+  field   : details: object [candidate]
+  maybe   : clubId (candidate query key)
+  maybe   : reportCategory (candidate query key)
+  maybe   : details (candidate query key)
+  returns : EFKOMEOFLGF
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service from Service argument
+  note    : request DTO synthesized from candidate+wrapper
+
+api/communityboard/v2/current  [API GET]
+  wrapper : PFJJILDMCFN :: OMLBKEDCECK() -> OGHILOEJGMO>
+  also touches: api/communityboard/
+  body    : (none - GET; query params below if any)
+  returns : OGHILOEJGMO
+  note    : site from legacy send wrapper BLCGKIDDJIN::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/config/v1/amplitude  [API GET]
+  wrapper : HCOHDCNEFCA :: NNJICGEPLDI() -> DCCNBCFBHAJ
+  also touches: api/config/
+  body    : LMLAEDGLFGE
+    - <GGIPNADFLAI>k__BackingField: string
+    - <DAHLNADFEIP>k__BackingField: string
+    - <CBICDLEIJIB>k__BackingField: bool
+    - <JLMJEPCLBMG>k__BackingField: string
+  returns : LMLAEDGLFGE
+  note    : site from legacy send wrapper BLCGKIDDJIN::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request from weaker record
+
+api/config/v1/cohortnux/{bHJKBHCBPHH}  [API GET]
+  wrapper : HCOHDCNEFCA :: PNEKIAMINFN(BHJKBHCBPHH: int) -> List<OEKCOJNEGAH>>
+  also touches: api/config/
+  body    : List<OEKCOJNEGAH>
+  returns : List<OEKCOJNEGAH>
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service filled from same-area sibling
+  note    : request from weaker record
+
+api/config/v1/freegiftbutton  [API GET]
+  wrapper : HCOHDCNEFCA :: CEHDLBCAECG() -> Boolean>
+  body    : (none - GET; query params below if any)
+  returns : bool
+  note    : site from legacy send wrapper PEOLLKOAEAB::HBNKNBKJDFB
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/consumables/v1/consume  [API POST]
+  wrapper : AGOEIIEAEPN :: MGMIBLHOHIM(BAKPCFJILAJ: BENEANIMHBA, GHPLAIAJFID: int, BKKOCCDDHJN: NAGMMPGMPLA) -> IEnumerator
+  also touches: api/consumables/
+  body    : ConsumableItemRequest
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service from Service argument
+
+api/consumables/v1/getTransferable/{gICMDFBAGDM}  [API GET]
+  wrapper : AGOEIIEAEPN :: DFONKFJHECE(GICMDFBAGDM: int) -> List<BENEANIMHBA>>
+  also touches: api/consumables/
+  body    : (none - GET; query params below if any)
+  returns : List<OBNDKJDLALH>
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service filled from same-area sibling
+
+api/consumables/v1/transfer  [API POST]
+  wrapper : AGOEIIEAEPN :: NDCKGCIEMNM(BAKPCFJILAJ: BENEANIMHBA, GICMDFBAGDM: int) -> DCCNBCFBHAJ
+  also touches: api/consumables/
+  body    : TransferConsumableRequest
+  returns : BJDGEAJIDCE
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service from Service argument
+
+api/consumables/v1/updateActive  [API POST]
+  wrapper : AGOEIIEAEPN :: HIKLCCHMEOP(BAKPCFJILAJ: BENEANIMHBA, CCEPFIEBJEK: bool, BKKOCCDDHJN: NAGMMPGMPLA) -> IEnumerator
+  also touches: api/consumables/
+  body    : ActivateConsumableItemRequest
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/consumables/v2/getUnlocked  [API GET]
+  wrapper : AGOEIIEAEPN :: EGACFOGOFFL(BKKOCCDDHJN: List<BENEANIMHBA>>) -> DCCNBCFBHAJ
+  also touches: api/consumables/
+  body    : (none - GET; query params below if any)
+  returns : List<OBNDKJDLALH>
+  note    : site from legacy send wrapper BLCGKIDDJIN::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/equipment/v1/update  [API POST]
+  wrapper : DMBBDGGPOPM :: PKNIMKAHKBH(MMCOKMLCNLO: IReadOnlyList<JIAKAGEALAF>) -> void
+  also touches: api/equipment/
+  body    : EquipmentV1UpdateRequest (synthesized)
+  field   : Update: IReadOnlyList<JIAKAGEALAF> [wrapper]
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request DTO synthesized from wrapper
+
+api/equipment/v2/getUnlocked  [API GET]
+  wrapper : DMBBDGGPOPM :: OCFPPGJKKLI(BKKOCCDDHJN: List<JIAKAGEALAF>>) -> DCCNBCFBHAJ
+  also touches: api/equipment/
+  body    : (none - GET; query params below if any)
+  returns : List<JIAKAGEALAF>
+  note    : site from legacy send wrapper BLCGKIDDJIN::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/externalfriendinvite/v1/createplatforminvite  [API POST]
+  wrapper : FMMLEMBOLKD :: JJMMLABMHFJ(HEOFJOEJBDB: string) -> DCCNBCFBHAJ
+  body    : BJDGEAJIDCE
+    - <GMGJCOMNHOG>k__BackingField: bool
+    - <OKPEFICIGBC>k__BackingField: string
+  maybe   : platformId (candidate query key)
+  returns : BJDGEAJIDCE
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service from Service argument
+  note    : request from weaker record
+
+api/externalfriendinvite/v1/getplatformreferrers  [API POST]
+  wrapper : FMMLEMBOLKD :: FKOEFJCNNDC() -> List<Int32>>
+  body    : (none - wrappers take no parameters)
+  returns : List<int>
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service filled from same-area sibling
+
+api/externalfriendinvite/v1/gettextmessagereferrers  [API POST]
+  wrapper : FMMLEMBOLKD :: OMKLPJOJAFD() -> List<Int32>>
+  body    : (none - wrappers take no parameters)
+  returns : List<int>
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service filled from same-area sibling
+
+api/externalfriendinvite/v1/sendtextmessageinvite  [API POST]
+  wrapper : FMMLEMBOLKD :: JGOBNCBKPGG(LLHJAAPJLOC: string, HJJFEDFOGCL: string, KIPFGDEFHAO: string) -> DCCNBCFBHAJ
+  body    : BJDGEAJIDCE
+    - <GMGJCOMNHOG>k__BackingField: bool
+    - <OKPEFICIGBC>k__BackingField: string
+  maybe   : phoneNumber (candidate query key)
+  maybe   : friendCode (candidate query key)
+  maybe   : senderName (candidate query key)
+  returns : BJDGEAJIDCE
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service from Service argument
+  note    : request from weaker record
+
+api/freegifts/v1/sendmultiple  [API POST]
+  wrapper : HKKBHFJOENH :: BMNDIDAAOML(JBJKFMLOMOE: List<int>, IOHPBCJMLDB: string, GPKIGKLIEAJ: OHOOCGODAFP) -> DCCNBCFBHAJ
+  body    : MultiRecipientFreeGiftRequestDTO
+    - <ToPlayerIds>k__BackingField: List<int>
+    - <Message>k__BackingField: string
+    - <GiftContext>k__BackingField: OHOOCGODAFP
+  returns : BJDGEAJIDCE
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service from Service argument
+
+api/gameconfigs/v1/all  [? ?]
+  wrapper : HNCLMCDABJA :: .cctor() -> void
+  body    : ? (verb unknown; params below if any)
+  returns : ? (wrappers non-generic - likely no content)
+  note    : no call site found consuming this literal
+
+api/gamerewards/v1/pending  [API GET]
+  wrapper : JEAANJMDAFJ :: IKINMJCLGGA() -> DCCNBCFBHAJ
+  body    : List<HMCGLKNFPHA>
+  returns : List<HMCGLKNFPHA>
+  note    : site from legacy send wrapper BLCGKIDDJIN::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request from weaker record
+
+api/gamerewards/v1/request  [API POST]
+  wrapper : JEAANJMDAFJ :: LGGMGFFOJMF(LINKMLHFLGC: NMIIOJMNNMB, GPKIGKLIEAJ: OHOOCGODAFP?, IOHPBCJMLDB: string) -> DCCNBCFBHAJ
+  body    : GamerewardsV1RequestRequest (synthesized)
+  field   : LINKMLHFLGC: NMIIOJMNNMB [wrapper]
+  field   : GPKIGKLIEAJ: OHOOCGODAFP? [wrapper]
+  field   : rewardType: object [candidate]
+  field   : Message: object [candidate]
+  field   : giftContext: object [candidate]
+  maybe   : rewardType (candidate query key)
+  maybe   : Message (candidate query key)
+  maybe   : giftContext (candidate query key)
+  returns : BJDGEAJIDCE
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request DTO synthesized from candidate+wrapper
+
+api/gamerewards/v1/select  [API POST]
+  wrapper : JEAANJMDAFJ :: GBOKNCOFOJF(GAOAAAPDNEI: HMCGLKNFPHA, LMIBIACGKEM: int) -> DCCNBCFBHAJ
+  body    : GamerewardsV1SelectRequest (synthesized)
+  field   : GAOAAAPDNEI: HMCGLKNFPHA [wrapper]
+  field   : rewardSelectionId: object [candidate]
+  field   : giftDropId: object [candidate]
+  maybe   : rewardSelectionId (candidate query key)
+  maybe   : giftDropId (candidate query key)
+  returns : BJDGEAJIDCE
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request DTO synthesized from candidate+wrapper
+
+api/gamesight/event  [API POST]
+  wrapper : OMJBEENPMGD :: DLAENGNNGKK(DOCOOPCHKAI: string, NDBGIDMBHED: string, EBFGMDFPLBP: string) -> DCCNBCFBHAJ
+  wrapper : OMJBEENPMGD :: HHCKHAKJKFE(DOCOOPCHKAI: string, NDBGIDMBHED: string, EBFGMDFPLBP: string, OPEMCHLHEBC: string, OJHLAAGHGLB: float) -> DCCNBCFBHAJ
+  body    : BJDGEAJIDCE
+    - <GMGJCOMNHOG>k__BackingField: bool
+    - <OKPEFICIGBC>k__BackingField: string
+  maybe   : SendEvent (candidate query key)
+  maybe   : EventData (candidate query key)
+  maybe   : cumulative (candidate query key)
+  maybe   : SendRevenueEvent (candidate query key)
+  returns : BJDGEAJIDCE
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service from Service argument
+  note    : request from weaker record
+
+api/groups/v1/delete/{groupId}  [API POST]
+  wrapper : OABKKFJGFMF :: DMMCDJFEMNI(ELDJBGMAAIJ: long, BKKOCCDDHJN: StatusResponse>) -> DCCNBCFBHAJ
+  also touches: api/groups/
+  body    : GroupsV1DeleteGroupIdRequest (synthesized)
+  field   : BKKOCCDDHJN: StatusResponse> [wrapper]
+  field   : GroupId: object [candidate]
+  maybe   : GroupId (candidate query key)
+  returns : StatusResponse
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request DTO synthesized from candidate+wrapper
+
+api/groups/v1/memberships/{bDOBLJEBCGA}  [API GET]
+  wrapper : OABKKFJGFMF :: GGJPEBLEKHM(BDOBLJEBCGA: long) -> OIKEDAHIDPO<KNHMGPDFJIL>
+  also touches: api/groups/
+  body    : (none - GET; query params below if any)
+  returns : JNPNEEBLODB
+  note    : site from legacy send wrapper PEOLLKOAEAB::DJMDPKNDEAE
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/groups/v1/name/{nameId}  [API GET]
+  wrapper : OABKKFJGFMF :: NPEDEMBBAJD(OIBNDNJIGHC: string, BKKOCCDDHJN: FBKPOFPMKBI<KNHMGPDFJIL>) -> DCCNBCFBHAJ
+  also touches: api/groups/
+  body    : (none - GET; query params below if any)
+  returns : KNHMGPDFJIL
+  note    : site from legacy send wrapper BLCGKIDDJIN::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/groups/v1/{groupId}  [API GET]
+  wrapper : OABKKFJGFMF :: HIDEOLCAFII(ELDJBGMAAIJ: long) -> OIKEDAHIDPO<KNHMGPDFJIL>
+  also touches: api/groups/
+  wrapper : OABKKFJGFMF :: KPJLGFAAAHE(ELDJBGMAAIJ: long, BKKOCCDDHJN: FBKPOFPMKBI<KNHMGPDFJIL>) -> DCCNBCFBHAJ
+  also touches: api/groups/
+  body    : (none - GET; query params below if any)
+  returns : KNHMGPDFJIL
+  note    : site from legacy send wrapper BLCGKIDDJIN::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/images/  [API POST]
+  wrapper : MBHAIFJCCHH :: ANEANGEGDIF(PAAMPHJOCCJ: long, ANCEIFJJPDJ: APDBMNJPHPF, HKMMDKJOLFB: AMBNOGAOPGI, DHDBHECPKII: int?, AHFAMFMIKBG: int?) -> List<APEDFLCGMPP>>
+  wrapper : MBHAIFJCCHH :: BJPPMHKDJCG(FDGNDGGMBEI: string, NMAODJGBKJA: long, NELAIKCDHHL: PKKMJHJELKK) -> DCCNBCFBHAJ
+  also touches: api/images/v1/modifyaccessibility
+  wrapper : MBHAIFJCCHH :: CONJFKILIGG(BKKOCCDDHJN: List<String>>) -> DCCNBCFBHAJ
+  also touches: api/images/v1/listsaved
+  wrapper : MBHAIFJCCHH :: FKEJADEFPFK(FDGNDGGMBEI: string, NMAODJGBKJA: long) -> DCCNBCFBHAJ
+  also touches: api/images/v1/deletesaved
+  wrapper : MBHAIFJCCHH :: GDHJHNDEFLG(NMAODJGBKJA: long) -> DCCNBCFBHAJ
+  also touches: api/images/v1/{nMAODJGBKJA}/report
+  wrapper : MBHAIFJCCHH :: GPACKMELAMN() -> DCCNBCFBHAJ
+  also touches: api/images/v2/named
+  wrapper : MBHAIFJCCHH :: IKIAEICOMKJ() -> MECHGAFJLKI>
+  also touches: api/images/v1/slideshow
+  wrapper : MBHAIFJCCHH :: KFOAFGFJECB(CMFNJFPHIMD: byte[], IMFENKAHMNM: SavedImageMetaDTO) -> String>
+  wrapper : MBHAIFJCCHH :: LOMMMMIDMBM(FDGNDGGMBEI: string, BKKOCCDDHJN: NAGMMPGMPLA) -> IEnumerator
+  also touches: api/images/v1/sendlink
+  wrapper : MBHAIFJCCHH :: PDGDAPLMJBE(NMAODJGBKJA: long) -> IReadOnlyList<Int32>>
+  also touches: api/images/v6/{nMAODJGBKJA}
+  body    : SavedImageMetaDTO
+  returns : OEJHMDENHFM
+  note    : site from register pattern; callee not identified
+  note    : service filled from same-area sibling
+  note    : verb from weaker record
+  note    : response from weaker record
+
+api/images/v1/cheer  [API POST]
+  wrapper : MBHAIFJCCHH :: KLDLNJCCLBO(NMAODJGBKJA: long, FLNOBGOJNMO: bool) -> DCCNBCFBHAJ
+  body    : FLIJBCPMNDP
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/images/v1/deletesaved  [API POST]
+  wrapper : MBHAIFJCCHH :: FKEJADEFPFK(FDGNDGGMBEI: string, NMAODJGBKJA: long) -> DCCNBCFBHAJ
+  also touches: api/images/
+  body    : OEJHMDENHFM
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/images/v1/listsaved  [API GET]
+  wrapper : MBHAIFJCCHH :: CONJFKILIGG(BKKOCCDDHJN: List<String>>) -> DCCNBCFBHAJ
+  also touches: api/images/
+  body    : (none - GET; query params below if any)
+  returns : BDOJEDNHHED
+  note    : site from legacy send wrapper BLCGKIDDJIN::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/images/v1/modifyaccessibility  [API POST]
+  wrapper : MBHAIFJCCHH :: BJPPMHKDJCG(FDGNDGGMBEI: string, NMAODJGBKJA: long, NELAIKCDHHL: PKKMJHJELKK) -> DCCNBCFBHAJ
+  also touches: api/images/
+  body    : DJEKGLEKLCI
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/images/v1/sendlink  [API POST]
+  wrapper : MBHAIFJCCHH :: LOMMMMIDMBM(FDGNDGGMBEI: string, BKKOCCDDHJN: NAGMMPGMPLA) -> IEnumerator
+  also touches: api/images/
+  body    : OEJHMDENHFM
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/images/v1/slideshow  [API GET]
+  wrapper : MBHAIFJCCHH :: IKIAEICOMKJ() -> MECHGAFJLKI>
+  also touches: api/images/
+  body    : (none - GET; query params below if any)
+  returns : MECHGAFJLKI
+  note    : site from legacy send wrapper BLCGKIDDJIN::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/images/v1/{nMAODJGBKJA}/report  [API POST]
+  wrapper : MBHAIFJCCHH :: GDHJHNDEFLG(NMAODJGBKJA: long) -> DCCNBCFBHAJ
+  also touches: api/images/
+  body    : ?
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/images/v2/named  [API GET]
+  wrapper : MBHAIFJCCHH :: GPACKMELAMN() -> DCCNBCFBHAJ
+  also touches: api/images/
+  body    : (none - GET; query params below if any)
+  returns : List<DJPJEMDJEFG>
+  note    : site from legacy send wrapper BLCGKIDDJIN::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/images/v5/bulk  [API ?]
+  wrapper : MBHAIFJCCHH :: OPAHDMOGGEC(KDMHBJEIJHA: IReadOnlyList<long>) -> List<APEDFLCGMPP>>
+  body    : ImagesV5BulkRequest (synthesized)
+  field   : ids: List<long> [param]
+  returns : List<APEDFLCGMPP>
+  note    : site from resolved signature
+  note    : service filled from same-area sibling
+  note    : request DTO synthesized from param
+
+api/images/v5/cheered/bulk  [API ?]
+  wrapper : MBHAIFJCCHH :: JMFCDOKNLCH(KDMHBJEIJHA: IEnumerable<long>) -> List<FFKAKOAHFGP>>
+  body    : ImagesV5CheeredBulkRequest (synthesized)
+  field   : id: List<long> [param]
+  returns : List<FFKAKOAHFGP>
+  note    : site from resolved signature
+  note    : service from Service argument
+  note    : verb chosen at runtime (verb factory call AKJJAPFLAIC::GOIBACFEHDL)
+  note    : request DTO synthesized from param
+
+api/images/v6/{nMAODJGBKJA}  [API GET]
+  wrapper : MBHAIFJCCHH :: PDGDAPLMJBE(NMAODJGBKJA: long) -> IReadOnlyList<Int32>>
+  also touches: api/images/
+  body    : (none - GET; query params below if any)
+  returns : PDEJFOGCCLP
+  note    : site from legacy send wrapper PEOLLKOAEAB::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/incentivizedreferrals/claim  [API POST]
+  wrapper : AKLCPMLEAEM :: LBGHHOKLIFB(JPCOCEKPLLF: int) -> List<HMCGLKNFPHA>>
+  body    : List<HMCGLKNFPHA>
+  maybe   : ReferralRewardId (candidate query key)
+  returns : HMCGLKNFPHA>
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service from Service argument
+  note    : request from weaker record
+
+api/incentivizedreferrals/progress  [API GET]
+  wrapper : AKLCPMLEAEM :: GBOHGEFDOBC() -> OIKEDAHIDPO<EEGDFEDEPHG>
+  body    : (none - GET; query params below if any)
+  returns : EEGDFEDEPHG
+  note    : site from legacy send wrapper PEOLLKOAEAB::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/influencerpartnerprogram/myinfluencer  [API GET]
+  wrapper : CMCCODGADBJ :: HJHMHMEJHJB() -> Int32>?
+  body    : (none - GET; query params below if any)
+  returns : int
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service filled from same-area sibling
+
+api/influencerpartnerprogram/remove  [API POST]
+  wrapper : CMCCODGADBJ :: MEFJDNCHPAG(PPAHPLAMFEM: int) -> DCCNBCFBHAJ
+  body    : InfluencerpartnerprogramRemoveRequest (synthesized)
+  field   : influencerAccountId: int [wrapper]
+  returns : BJDGEAJIDCE
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service from Service argument
+  note    : request DTO synthesized from wrapper
+
+api/influencerpartnerprogram/support  [API POST]
+  wrapper : CMCCODGADBJ :: IJHFONMEHKC(PPAHPLAMFEM: int) -> DCCNBCFBHAJ
+  body    : InfluencerpartnerprogramSupportRequest (synthesized)
+  field   : influencerAccountId: int [wrapper]
+  returns : BJDGEAJIDCE
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service from Service argument
+  note    : request DTO synthesized from wrapper
+
+api/inventions/v1/cheer  [API POST]
+  wrapper : OBHLBNJGJEB :: HCIEDAPDODC(IPLHECGDGOE: long, FLNOBGOJNMO: bool) -> OIKEDAHIDPO<AHGIDJMAAKA>
+  body    : CheerRequest
+    - InventionId: long
+    - Cheer: bool
+  returns : AHGIDJMAAKA
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/inventions/v1/delete  [API GET]
+  wrapper : OBHLBNJGJEB :: BNJLIODDJCI(FLEPFGJNMLO: GCBFJOMLHLL) -> OIKEDAHIDPO<AHGIDJMAAKA>
+  also touches: api/inventions/
+  body    : (none - GET; query params below if any)
+  returns : AHGIDJMAAKA
+  note    : site from legacy send wrapper BLCGKIDDJIN::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/inventions/v1/details  [API GET]
+  wrapper : OBHLBNJGJEB :: EMNDLFJCKJL(IPLHECGDGOE: long) -> void
+  also touches: api/inventions/
+  wrapper : OBHLBNJGJEB :: MFGJCKGAKFJ(IPLHECGDGOE: long) -> OIKEDAHIDPO<GJKBCECDGDG>
+  also touches: api/inventions/
+  body    : (none - GET; query params below if any)
+  returns : GJKBCECDGDG
+  note    : site from legacy send wrapper PEOLLKOAEAB::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/inventions/v1/featured  [API GET]
+  wrapper : OBHLBNJGJEB/<>c :: <GetFeaturedInventions>b__43_0(...)
+  body    : (none - GET; query params below if any)
+  returns : IReadOnlyList<GCBFJOMLHLL>
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service bound to client OBHLBNJGJEB
+
+api/inventions/v1/fromcreators  [API ?]
+  wrapper : OBHLBNJGJEB/DOODLIJHEFK :: <GetInventionsByCreators>b__0(...)
+  body    : InventionsV1FromcreatorsRequest (synthesized)
+  field   : id: List<int> [param]
+  returns : IReadOnlyList<GCBFJOMLHLL>
+  note    : site from resolved signature
+  note    : service bound to client OBHLBNJGJEB
+  note    : verb chosen at runtime (verb factory call AKJJAPFLAIC::GOIBACFEHDL)
+  note    : request DTO synthesized from param
+
+api/inventions/v1/fulllineageowner?  [API GET]
+  wrapper : OBHLBNJGJEB :: OMBLJLAEJJF(FHOGKMMGKGI: List<long>) -> Boolean>
+  body    : (none - GET; query params below if any)
+  returns : bool
+  note    : site from legacy send wrapper PEOLLKOAEAB::HBNKNBKJDFB
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/inventions/v1/personaldetails/{iPLHECGDGOE}  [API GET]
+  wrapper : OBHLBNJGJEB :: DCBLJMJCICC(IPLHECGDGOE: long) -> string
+  also touches: api/inventions/
+  wrapper : OBHLBNJGJEB :: MLGKHHPOJAC(IPLHECGDGOE: long) -> OIKEDAHIDPO<MMBGIIMFIOD>
+  also touches: api/inventions/
+  wrapper : OBHLBNJGJEB/HIHJGHAMIMH :: <CheerInvention>b__0(...)
+  also touches: api/inventions/
+  body    : (none - GET; query params below if any)
+  returns : MMBGIIMFIOD
+  note    : site from legacy send wrapper PEOLLKOAEAB::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/inventions/v1/report  [API POST]
+  wrapper : OBHLBNJGJEB :: JDKIAAMEHCK(IPLHECGDGOE: long, BKGDDCMJALJ: HNHMPBFKJDP, EINIKAEPFEE: string) -> OIKEDAHIDPO<EFKOMEOFLGF>
+  body    : ReportRequest
+    - InventionId: long
+    - Details: string
+    - ReportCategory: HNHMPBFKJDP
+  returns : EFKOMEOFLGF
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/inventions/v1/room  [API GET]
+  wrapper : OBHLBNJGJEB :: BDJADLLIPDC(PAAMPHJOCCJ: long) -> void
+  also touches: api/inventions/
+  wrapper : OBHLBNJGJEB :: IDIOFNBMFDB(PAAMPHJOCCJ: long) -> List<GCBFJOMLHLL>>
+  also touches: api/inventions/
+  wrapper : OBHLBNJGJEB :: KJEHBEDCDLF(PAAMPHJOCCJ: long) -> string
+  also touches: api/inventions/
+  body    : (none - GET; query params below if any)
+  returns : List<GCBFJOMLHLL>
+  note    : site from legacy send wrapper PEOLLKOAEAB::DJMDPKNDEAE
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/inventions/v1/settags  [API POST]
+  wrapper : OBHLBNJGJEB :: JHGANDGAKDJ(IPLHECGDGOE: long, JBGLIFLNFME: List<string>, EMKJHOOMEKJ: List<string>) -> OIKEDAHIDPO<KPNGKEPBGPE>
+  body    : ModifyTagsRequest
+    - InventionId: long
+    - AutoTags: List<string>
+    - CustomTags: List<string>
+  returns : KPNGKEPBGPE
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/inventions/v1/tagfilters  [API GET]
+  wrapper : OBHLBNJGJEB :: FPKDPMIEIHD(CKKAKDMNJFJ: CPFLOJIFBLO) -> List<String>>
+  also touches: api/inventions/
+  body    : (none - GET; query params below if any)
+  returns : MJBCCFPPOAB
+  note    : site from legacy send wrapper PEOLLKOAEAB::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/inventions/v1/toptoday  [API GET]
+  wrapper : OBHLBNJGJEB/<>c :: <GetTopInventionsToday>b__42_0(...)
+  body    : (none - GET; query params below if any)
+  returns : IReadOnlyList<GCBFJOMLHLL>
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service bound to client OBHLBNJGJEB
+
+api/inventions/v1/unpublish  [API GET]
+  wrapper : OBHLBNJGJEB :: EILMCECMPNK(IPLHECGDGOE: long) -> OIKEDAHIDPO<AHGIDJMAAKA>
+  also touches: api/inventions/
+  body    : (none - GET; query params below if any)
+  returns : AHGIDJMAAKA
+  note    : site from legacy send wrapper BLCGKIDDJIN::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/inventions/v1/update  [API GET]
+  wrapper : OBHLBNJGJEB :: APMDCGJOCEJ(IPLHECGDGOE: long, DJNHIJKICJO: string) -> OIKEDAHIDPO<AHGIDJMAAKA>
+  also touches: api/inventions/
+  wrapper : OBHLBNJGJEB :: HCDAHNBNCEA(IPLHECGDGOE: long, DGEGBELNPON: MJOKPFOOKFO) -> OIKEDAHIDPO<AHGIDJMAAKA>
+  also touches: api/inventions/
+  wrapper : OBHLBNJGJEB :: HKFGNGIBJFF(IPLHECGDGOE: long, KABFFODJHGP: string) -> OIKEDAHIDPO<AHGIDJMAAKA>
+  also touches: api/inventions/
+  wrapper : OBHLBNJGJEB :: LHGHELHCPFH(IPLHECGDGOE: long, AFIDHHDMHNB: string) -> OIKEDAHIDPO<AHGIDJMAAKA>
+  also touches: api/inventions/
+  body    : (none - GET; query params below if any)
+  returns : AHGIDJMAAKA
+  note    : site from legacy send wrapper BLCGKIDDJIN::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/inventions/v1/updateprice  [API POST]
+  wrapper : OBHLBNJGJEB :: KGKAKAFMOBA(IPLHECGDGOE: long, EIOOCCCOFBE: int) -> OIKEDAHIDPO<AHGIDJMAAKA>
+  also touches: api/inventions/
+  body    : UpdatePriceRequest
+    - InventionId: long
+    - Price: int
+  returns : AHGIDJMAAKA
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/inventions/v1/version  [API ?]
+  wrapper : OBHLBNJGJEB :: MKGIKNBEOGC(IPLHECGDGOE: long, CEKEGDNCOME: int) -> string
+  also touches: api/inventions/
+  body    : ? (verb unknown; params below if any)
+  returns : ? (wrappers non-generic - likely no content)
+  note    : no call site found consuming this literal
+  note    : service filled from same-area sibling
+
+api/inventions/v1/versions  [API GET]
+  wrapper : OBHLBNJGJEB :: FPFKLBEFGLD(IPLHECGDGOE: long) -> List<LMGINDHCMHB>>
+  also touches: api/inventions/
+  body    : (none - GET; query params below if any)
+  returns : List<LMGINDHCMHB>
+  note    : site from legacy send wrapper BLCGKIDDJIN::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/inventions/v2/batch  [API ?]
+  wrapper : OBHLBNJGJEB :: FHPFANPBMJN(CLCNOBJNBJD: IReadOnlyList<long>) -> List<GCBFJOMLHLL>>
+  body    : InventionsV2BatchRequest (synthesized)
+  field   : id: List<long> [param]
+  returns : List<GCBFJOMLHLL>
+  note    : site from resolved signature
+  note    : service from Service argument
+  note    : verb chosen at runtime (verb factory call AKJJAPFLAIC::GOIBACFEHDL)
+  note    : request DTO synthesized from param
+
+api/inventions/v2/mine  [API ?]
+  wrapper : OBHLBNJGJEB :: .cctor() -> void
+  body    : ? (verb unknown; params below if any)
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from resolved signature
+  note    : service bound to client OBHLBNJGJEB
+
+api/inventions/v2/search  [API GET]
+  wrapper : OBHLBNJGJEB :: AHMHNGGEKLL(EEGOPNHOIHJ: string, DHDBHECPKII: int, AHFAMFMIKBG: int) -> List<GCBFJOMLHLL>>
+  also touches: api/inventions/
+  body    : InventionsV2SearchRequest (synthesized)
+  field   : skip: object [candidate]
+  field   : take: object [candidate]
+  maybe   : skip (candidate query key)
+  maybe   : take (candidate query key)
+  returns : List<GCBFJOMLHLL>
+  note    : site from legacy send wrapper PEOLLKOAEAB::DJMDPKNDEAE
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request DTO synthesized from candidate
+
+api/inventions/v3/publish  [API GET]
+  wrapper : OBHLBNJGJEB :: JIGBIBCCDMH(IPLHECGDGOE: long, LGLLFAKANMC: MJOKPFOOKFO, NELAIKCDHHL: MFEPJJLMBEN, EIOOCCCOFBE: int?) -> OIKEDAHIDPO<AHGIDJMAAKA>
+  also touches: api/inventions/
+  body    : (none - GET; query params below if any)
+  returns : AHGIDJMAAKA
+  note    : site from legacy send wrapper BLCGKIDDJIN::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/inventions/v4/addversion  [API POST]
+  wrapper : OBHLBNJGJEB/LBHFKFHBEIG :: <AddInventionVersion>b__0(...)
+  body    : AddVersionInventionRequestDTO
+    - inventionId: long
+    - instantiationCost: int
+    - lightsCost: int
+    - chipsCost: int
+    - cloudVariablesCost: int
+    - aiCost: int
+    - creationRoomId: long
+    - inventionDataFilename: string
+    - referencedInventions: List<long>
+  returns : AHGIDJMAAKA
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service from Service argument
+
+api/inventions/v6/save  [API POST]
+  wrapper : OBHLBNJGJEB/KILAPMOCGDC :: <UploadNewInvention>b__0(...)
+  body    : NewInventionRequestDTO
+    - name: string
+    - description: string
+    - imageName: string
+    - instantiationCost: int
+    - lightsCost: int
+    - chipsCost: int
+    - cloudVariablesCost: int
+    - aiCost: int
+    - creationRoomId: long
+    - inventionDataFilename: string
+    - referencedInventions: List<long>
+    - creatorAccountRole: OPPHEOHCKPE
+  returns : AHGIDJMAAKA
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service from Service argument
+
+api/itemWishlists/v1/wishlist/me  [API GET]
+  wrapper : PCHJKFLCKJA :: IDJONECMBPO(MGHNGLOFIEP: int) -> List<KMHNCHENMOE>>
+  also touches: api/itemWishlists/v1/wishlist/
+  wrapper : PCHJKFLCKJA/BPDAPHENMOA :: <RemoveFromLocalPlayerWishlist>b__0(...)
+  wrapper : PCHJKFLCKJA/NILBDGJJNIB :: <AddToLocalPlayerWishlist>b__0(...)
+  body    : List<KMHNCHENMOE>
+  returns : List<KMHNCHENMOE>
+  note    : site from legacy send wrapper PEOLLKOAEAB::DJMDPKNDEAE
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request from weaker record
+
+api/itemWishlists/v1/wishlist/me/{oCGGBNIFPPJ}  [API DELETE]
+  wrapper : PCHJKFLCKJA :: HAIOMMNOADB(OCGGBNIFPPJ: int) -> DCCNBCFBHAJ
+  also touches: api/itemWishlists
+  wrapper : PCHJKFLCKJA :: IOKHDJEBMIK(OCGGBNIFPPJ: int) -> OIKEDAHIDPO<KMHNCHENMOE>
+  also touches: api/itemWishlists
+  body    : FNFHMEMCNBM<KMHNCHENMOE>
+  returns : FNFHMEMCNBM<KMHNCHENMOE>
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service filled from same-area sibling
+  note    : request from weaker record
+
+api/messages/v1/favoriteFriendOnlineStatus  [API GET]
+  wrapper : OBJKNOOHKDL :: AJCJEHKLEOO() -> DCCNBCFBHAJ
+  body    : (none - GET; query params below if any)
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from legacy send wrapper BLCGKIDDJIN::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/messages/v1/sendMultiple  [API POST]
+  wrapper : OBJKNOOHKDL :: KIADANJIEFE(GEINDFEOBNI: List<long>, BKKOCCDDHJN: NAGMMPGMPLA) -> IEnumerator
+  also touches: api/messages/
+  wrapper : OBJKNOOHKDL :: MJICPGLDKBI(GEINDFEOBNI: List<long>, MDNEPMJMAFD: HDCADLHBKBM, GGALGOABPMH: string, PAAMPHJOCCJ: long?, BKKOCCDDHJN: NAGMMPGMPLA) -> IEnumerator
+  also touches: api/messages/
+  body    : MessagesV1SendMultipleRequest (synthesized)
+  field   : GEINDFEOBNI: List<long> [wrapper]
+  field   : BKKOCCDDHJN: NAGMMPGMPLA [wrapper]
+  field   : MDNEPMJMAFD: HDCADLHBKBM [wrapper]
+  field   : PAAMPHJOCCJ: long? [wrapper]
+  field   : ToPlayerIds: object [candidate]
+  field   : Type: object [candidate]
+  field   : Data: object [candidate]
+  field   : SendMessageMultiple: object [candidate]
+  field   : RoomId: object [candidate]
+  maybe   : ToPlayerIds (candidate query key)
+  maybe   : Type (candidate query key)
+  maybe   : Data (candidate query key)
+  maybe   : SendMessageMultiple (candidate query key)
+  maybe   : RoomId (candidate query key)
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request DTO synthesized from candidate+wrapper
+
+api/messages/v2/get  [API GET]
+  wrapper : OBJKNOOHKDL :: LEEFGKBHEIL() -> DCCNBCFBHAJ
+  body    : (none - GET; query params below if any)
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from legacy send wrapper BLCGKIDDJIN::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/messages/v2/send  [API POST]
+  wrapper : OBJKNOOHKDL :: NFILOAABFAB(BDOBLJEBCGA: long, MDNEPMJMAFD: HDCADLHBKBM, GGALGOABPMH: string, PAAMPHJOCCJ: long?, BKKOCCDDHJN: NAGMMPGMPLA) -> IEnumerator
+  wrapper : OBJKNOOHKDL :: NFILOAABFAB(BDOBLJEBCGA: long, MDNEPMJMAFD: HDCADLHBKBM, GGALGOABPMH: string, PAAMPHJOCCJ: long?) -> DCCNBCFBHAJ
+  also touches: api/messages/
+  body    : MessagesV2SendRequest (synthesized)
+  field   : MDNEPMJMAFD: HDCADLHBKBM [wrapper]
+  field   : PAAMPHJOCCJ: long? [wrapper]
+  field   : BKKOCCDDHJN: NAGMMPGMPLA [wrapper]
+  field   : ToPlayerId: object [candidate]
+  field   : Type: object [candidate]
+  field   : Data: object [candidate]
+  field   : RoomId: object [candidate]
+  maybe   : ToPlayerId (candidate query key)
+  maybe   : Type (candidate query key)
+  maybe   : Data (candidate query key)
+  maybe   : RoomId (candidate query key)
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request DTO synthesized from candidate+wrapper
+
+api/messages/v3/delete  [API POST]
+  wrapper : OBJKNOOHKDL :: IMNOBNCLBKJ(DNIBLOAEHGA: IEnumerable<long>, BKKOCCDDHJN: NAGMMPGMPLA) -> IEnumerator
+  body    : DeleteMessagesRequestDTO
+    - MessageIds: List<long>
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/objectives/v1/cleargroup  [API POST]
+  wrapper : GIHKNKOFCKM :: CKJHOMLDGAH(BHJKBHCBPHH: int, BKKOCCDDHJN: FBKPOFPMKBI<MMCDGAHKBCE>) -> void
+  also touches: api/objectives/
+  body    : ObjectiveGroupRequest
+  returns : MMCDGAHKBCE
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/objectives/v1/completegroup  [API POST]
+  wrapper : GIHKNKOFCKM/IJIALALNHJC :: MoveNext(...)
+  also touches: api/objectives/, api/objectives/v1/updateobjective
+  body    : ObjectiveGroupRequest
+  returns : MMCDGAHKBCE
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/objectives/v1/myprogress  [API GET]
+  wrapper : GIHKNKOFCKM :: BNAJMDANLJJ(BKKOCCDDHJN: NAGMMPGMPLA) -> DCCNBCFBHAJ
+  also touches: api/objectives/
+  body    : (none - GET; query params below if any)
+  returns : NHHCJGMEGFI
+  note    : site from legacy send wrapper BLCGKIDDJIN::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/objectives/v1/updateobjective  [API POST]
+  wrapper : GIHKNKOFCKM/IJIALALNHJC :: MoveNext(...)
+  also touches: api/objectives/, api/objectives/v1/completegroup
+  body    : OHDBLDCIHDE
+    - <CAEKOOCMDMG>k__BackingField: int
+    - <AFEAEPHAOKM>k__BackingField: int
+    - <IIDLDHLOFEA>k__BackingField: float
+    - <GJNJEMPEKBO>k__BackingField: float
+    - <NBDFCPFDLLP>k__BackingField: bool
+    - <ABNCPONCALJ>k__BackingField: bool
+    - <CCKLLBEMCEF>k__BackingField: bool
+  returns : MMCDGAHKBCE
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/offlineinvite/v1/send  [API POST]
+  wrapper : OBJKNOOHKDL :: FHDLDOANAIM(BDOBLJEBCGA: long, BKKOCCDDHJN: String>) -> DCCNBCFBHAJ
+  also touches: api/offlineinvite/
+  body    : OfflineinviteV1SendRequest (synthesized)
+  field   : BKKOCCDDHJN: String> [wrapper]
+  field   : PlayerId: object [candidate]
+  maybe   : PlayerId (candidate query key)
+  returns : AFDCEOHNOFC
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request DTO synthesized from candidate+wrapper
+
+api/playerevents/v1/all  [API GET]
+  wrapper : LHLKOOJKBLK :: FNFOINCOHNH() -> OIKEDAHIDPO<MNEFKLEGJEG>
+  body    : MNEFKLEGJEG
+    - <FIKJFABJIHK>k__BackingField: List<DCGHDOCPEFO>
+    - <NDLIHJGMNFL>k__BackingField: List<CBDMDKDKOGI>
+  returns : MNEFKLEGJEG
+  note    : site from legacy send wrapper BLCGKIDDJIN::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request from weaker record
+
+api/playerevents/v1/all/{mGHNGLOFIEP}  [API GET]
+  wrapper : LHLKOOJKBLK :: ENACBMAONDE(MGHNGLOFIEP: int) -> List<DCGHDOCPEFO>>
+  also touches: api/playerevents/
+  body    : (none - GET; query params below if any)
+  returns : MNEFKLEGJEG
+  note    : site from legacy send wrapper PEOLLKOAEAB::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/playerevents/v1/bulkInvite  [API POST]
+  wrapper : LHLKOOJKBLK :: ABFKBOFBDKO(CLCBGFIKFPP: long, EJLBHACHGOO: List<int>) -> OIKEDAHIDPO<IHPMFKHDJNM>
+  body    : BulkInviteRequest
+    - PlayerEventId: long
+    - InvitedPlayerIds: List<int>
+  returns : IHPMFKHDJNM
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/playerevents/v1/deleteResponse  [API POST]
+  wrapper : LHLKOOJKBLK :: DPDACKBBAKP(CLCBGFIKFPP: long, ACOJBAOBKBB: BBDNDMGJIKF) -> OIKEDAHIDPO<MLJDMOHLHON>
+  body    : DeleteResponseRequest
+    - PlayerEventId: long
+  returns : HNAKFKJFONM
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/playerevents/v1/report  [API POST]
+  wrapper : LHLKOOJKBLK :: DLKNOHBFACH(CLCBGFIKFPP: long, BKGDDCMJALJ: GFPDAGADAGK, EINIKAEPFEE: string) -> OIKEDAHIDPO<EFKOMEOFLGF>
+  body    : HMNJMLDNIOM
+    - <FCGCIJDKONJ>k__BackingField: GFPDAGADAGK
+    - <CFFABJDMBFI>k__BackingField: long
+    - <CHAGCNPIMAC>k__BackingField: string
+  returns : EFKOMEOFLGF
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/playerevents/v1/respond  [API POST]
+  wrapper : LHLKOOJKBLK :: LDGCCMENPCJ(CLCBGFIKFPP: long, ACOJBAOBKBB: BBDNDMGJIKF) -> OIKEDAHIDPO<MLJDMOHLHON>
+  body    : EMMLHDFBPBE
+    - <CFFABJDMBFI>k__BackingField: long
+    - <KNACANBBLPA>k__BackingField: BBDNDMGJIKF
+  returns : HNAKFKJFONM
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/playerevents/v1/search  [API ?]
+  wrapper : LHLKOOJKBLK :: IKBIHFBNKJG() -> void
+  body    : ? (verb unknown; params below if any)
+  returns : ? (wrappers non-generic - likely no content)
+  note    : no call site found consuming this literal
+  note    : service filled from same-area sibling
+
+api/playerevents/v1/search?  [API GET]
+  wrapper : LHLKOOJKBLK :: NCGCGOEAKML(HHKMEOPNFAO: string, HHACGPIOJNA: DDLFNELHLIO, DENGBAEGAPG: HNBIDKBCCDJ?) -> List<DCGHDOCPEFO>>
+  body    : List<DCGHDOCPEFO>
+  returns : List<DCGHDOCPEFO>
+  note    : site from legacy send wrapper PADKONOAINM::IPKMLGDGHFK
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : verb conflict: using GET
+
+api/playerevents/v1/searchlive?  [API GET]
+  wrapper : LHLKOOJKBLK :: AMHFNKICNHP(HHKMEOPNFAO: string) -> List<PAIAACDOEKL>>
+  body    : List<PAIAACDOEKL>
+  returns : List<PAIAACDOEKL>
+  note    : site from legacy send wrapper PADKONOAINM::IPKMLGDGHFK
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : verb conflict: using GET
+
+api/playerevents/v1/tagfilters  [API GET]
+  wrapper : LHLKOOJKBLK :: AFJCHGCLBFO() -> OIKEDAHIDPO<MJBCCFPPOAB>
+  wrapper : LHLKOOJKBLK :: FPKDPMIEIHD(CKKAKDMNJFJ: CGLIPMEGEJO) -> List<String>>
+  body    : (none - GET; query params below if any)
+  returns : MJBCCFPPOAB
+  note    : site from legacy send wrapper PEOLLKOAEAB::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/playerevents/v1/{eventId}/responses  [API GET]
+  wrapper : LHLKOOJKBLK :: ABPMMPAINLL(ECIKHEPCACP: long) -> string
+  also touches: api/playerevents/
+  wrapper : LHLKOOJKBLK :: BMHIIGHMMMN(CLCBGFIKFPP: long) -> void
+  also touches: api/playerevents/
+  wrapper : LHLKOOJKBLK :: JGNHKDKKLNM(HECBELAKHCG: CBDMDKDKOGI) -> void
+  also touches: api/playerevents/
+  wrapper : LHLKOOJKBLK :: MFJPJJLEOLE(CLCBGFIKFPP: long, OKEHIOJILCE: bool) -> List<OFIECOEPNNH>>
+  also touches: api/playerevents/
+  wrapper : LHLKOOJKBLK :: OKMNNMHLOBG(IOHPBCJMLDB: Dictionary<string, object>) -> void
+  also touches: api/playerevents/
+  body    : (none - GET; query params below if any)
+  returns : List<OFIECOEPNNH>
+  note    : site from legacy send wrapper LHLKOOJKBLK::HHIPOIIJOOH
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/playerevents/v2  [API POST]
+  wrapper : LHLKOOJKBLK :: FAPIFKNPACC(PAAMPHJOCCJ: long, NHPMJHJHNLD: long?, DHMCPICAOJF: long?, AFIDHHDMHNB: string, KABFFODJHGP: string, OKBLPLNOOAH: List<string>, FDGNDGGMBEI: string, JCJELBAPEMM: DateTime, JKJNIFDBJFH: DateTime, NELAIKCDHHL: HOCCIFNGFMI, MJJMFPCGCIE: bool, LFJENLAHDME: bool, LPBENECCOMK: KIHGBGGFKLI, HNPINLPHIEK: KIHGBGGFKLI) -> OIKEDAHIDPO<DIGBOKJOLPH>
+  body    : ONNFOLKJOPB
+    - <KBDJIMPFNKD>k__BackingField: long
+    - <JBGOPIKCNIO>k__BackingField: long?
+    - <MMNMFAJEGEA>k__BackingField: long?
+    - <KPLCFIOMFJP>k__BackingField: string
+    - <ODEICHAFEPK>k__BackingField: string
+    - <MKEFIDKPIMD>k__BackingField: List<string>
+    - <KHMMOLHHAHN>k__BackingField: string
+    - <MDHNLLENGOP>k__BackingField: DateTime
+    - <FHPAFILILOD>k__BackingField: DateTime
+    - <BJPNPKAMKOJ>k__BackingField: HOCCIFNGFMI
+    - <OOFMLECABFH>k__BackingField: bool
+    - <OIBFODLKEOB>k__BackingField: bool
+    - <KPKJDCMJICE>k__BackingField: KIHGBGGFKLI
+    - <DBHEIFBFELM>k__BackingField: KIHGBGGFKLI
+  returns : DIGBOKJOLPH
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/playerevents/v2/delete/{iKPECCBIIOM}  [API POST]
+  wrapper : LHLKOOJKBLK :: MFMPFLOBIGB(IKPECCBIIOM: DCGHDOCPEFO) -> OIKEDAHIDPO<DIGBOKJOLPH>
+  also touches: api/playerevents/
+  body    : PlayereventsV2DeleteIKPECCBIIOMRequest (synthesized)
+  field   : IKPECCBIIOM: DCGHDOCPEFO [wrapper]
+  returns : DIGBOKJOLPH
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request DTO synthesized from wrapper
+
+api/playerevents/v2/{eventId}  [API POST]
+  wrapper : LHLKOOJKBLK :: PBIIHODAAHA(IKPECCBIIOM: DCGHDOCPEFO, PAAMPHJOCCJ: long, NHPMJHJHNLD: long?, AFIDHHDMHNB: string, KABFFODJHGP: string, OKBLPLNOOAH: List<string>, FDGNDGGMBEI: string, JCJELBAPEMM: DateTime, JKJNIFDBJFH: DateTime, NELAIKCDHHL: HOCCIFNGFMI, DHMCPICAOJF: long?, MJJMFPCGCIE: bool) -> OIKEDAHIDPO<DIGBOKJOLPH>
+  also touches: api/playerevents/
+  body    : ONNFOLKJOPB
+    - <KBDJIMPFNKD>k__BackingField: long
+    - <JBGOPIKCNIO>k__BackingField: long?
+    - <MMNMFAJEGEA>k__BackingField: long?
+    - <KPLCFIOMFJP>k__BackingField: string
+    - <ODEICHAFEPK>k__BackingField: string
+    - <MKEFIDKPIMD>k__BackingField: List<string>
+    - <KHMMOLHHAHN>k__BackingField: string
+    - <MDHNLLENGOP>k__BackingField: DateTime
+    - <FHPAFILILOD>k__BackingField: DateTime
+    - <BJPNPKAMKOJ>k__BackingField: HOCCIFNGFMI
+    - <OOFMLECABFH>k__BackingField: bool
+    - <OIBFODLKEOB>k__BackingField: bool
+    - <KPKJDCMJICE>k__BackingField: KIHGBGGFKLI
+    - <DBHEIFBFELM>k__BackingField: KIHGBGGFKLI
+  returns : DIGBOKJOLPH
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/playerevents/v2/{eventId}/accessibility  [API PUT]
+  wrapper : LHLKOOJKBLK :: FMPMIGDKEDF(IKPECCBIIOM: DCGHDOCPEFO, ADBMIBJKFKA: HOCCIFNGFMI) -> OIKEDAHIDPO<DIGBOKJOLPH>
+  also touches: api/playerevents/
+  body    : PlayereventsV2EventIdAccessibilityRequest (synthesized)
+  field   : IKPECCBIIOM: DCGHDOCPEFO [wrapper]
+  field   : ADBMIBJKFKA: HOCCIFNGFMI [wrapper]
+  field   : accessibility: object [candidate]
+  maybe   : accessibility (candidate query key)
+  returns : DIGBOKJOLPH
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service from Service argument
+  note    : request DTO synthesized from candidate+wrapper
+
+api/playerevents/v2/{eventId}/club  [API PUT]
+  wrapper : LHLKOOJKBLK :: EOPGFHLDDOI(IKPECCBIIOM: DCGHDOCPEFO, FLKMNGDBCBG: long?) -> OIKEDAHIDPO<DIGBOKJOLPH>
+  also touches: api/playerevents/
+  body    : PlayereventsV2EventIdClubRequest (synthesized)
+  field   : IKPECCBIIOM: DCGHDOCPEFO [wrapper]
+  field   : FLKMNGDBCBG: long? [wrapper]
+  field   : clubId: object [candidate]
+  maybe   : clubId (candidate query key)
+  returns : DIGBOKJOLPH
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service from Service argument
+  note    : request DTO synthesized from candidate+wrapper
+
+api/playerevents/v2/{eventId}/description  [API PUT]
+  wrapper : LHLKOOJKBLK :: PGFLACHGOJA(IKPECCBIIOM: DCGHDOCPEFO, PBNGGLMGCEF: string) -> OIKEDAHIDPO<DIGBOKJOLPH>
+  also touches: api/playerevents/
+  body    : PlayereventsV2EventIdDescriptionRequest (synthesized)
+  field   : IKPECCBIIOM: DCGHDOCPEFO [wrapper]
+  field   : description: object [candidate]
+  maybe   : description (candidate query key)
+  returns : DIGBOKJOLPH
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service from Service argument
+  note    : request DTO synthesized from candidate+wrapper
+
+api/playerevents/v2/{eventId}/image  [API PUT]
+  wrapper : LHLKOOJKBLK :: DFGIDCBNPCO(IKPECCBIIOM: DCGHDOCPEFO, NDHIAIDIIBN: string) -> OIKEDAHIDPO<DIGBOKJOLPH>
+  also touches: api/playerevents/
+  body    : PlayereventsV2EventIdImageRequest (synthesized)
+  field   : IKPECCBIIOM: DCGHDOCPEFO [wrapper]
+  field   : imageName: object [candidate]
+  maybe   : imageName (candidate query key)
+  returns : DIGBOKJOLPH
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service from Service argument
+  note    : request DTO synthesized from candidate+wrapper
+
+api/playerevents/v2/{eventId}/multiinstance  [API PUT]
+  wrapper : LHLKOOJKBLK :: INMJHEDEKPM(IKPECCBIIOM: DCGHDOCPEFO, PKEDOFFONJE: bool, CCEJCKIDIGA: bool, LPBENECCOMK: KIHGBGGFKLI, OKOEMGGBCBG: KIHGBGGFKLI) -> OIKEDAHIDPO<DIGBOKJOLPH>
+  also touches: api/playerevents/
+  body    : PlayereventsV2EventIdMultiinstanceRequest (synthesized)
+  field   : IKPECCBIIOM: DCGHDOCPEFO [wrapper]
+  field   : LPBENECCOMK: KIHGBGGFKLI [wrapper]
+  field   : OKOEMGGBCBG: KIHGBGGFKLI [wrapper]
+  field   : isMultiInstance: object [candidate]
+  field   : supportsMultiInstanceRoomChat: object [candidate]
+  field   : defaultBroadcastPermissions: object [candidate]
+  field   : canRequestBroadcastPermissions: object [candidate]
+  maybe   : isMultiInstance (candidate query key)
+  maybe   : supportsMultiInstanceRoomChat (candidate query key)
+  maybe   : defaultBroadcastPermissions (candidate query key)
+  maybe   : canRequestBroadcastPermissions (candidate query key)
+  returns : DIGBOKJOLPH
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service from Service argument
+  note    : request DTO synthesized from candidate+wrapper
+
+api/playerevents/v2/{eventId}/name  [API PUT]
+  wrapper : LHLKOOJKBLK :: HBKEBPBBLFN(IKPECCBIIOM: DCGHDOCPEFO, CFPPFAJJFFK: string) -> OIKEDAHIDPO<DIGBOKJOLPH>
+  also touches: api/playerevents/
+  body    : PlayereventsV2EventIdNameRequest (synthesized)
+  field   : IKPECCBIIOM: DCGHDOCPEFO [wrapper]
+  field   : name: object [candidate]
+  maybe   : name (candidate query key)
+  returns : DIGBOKJOLPH
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service from Service argument
+  note    : request DTO synthesized from candidate+wrapper
+
+api/playerevents/v2/{eventId}/room  [API PUT]
+  wrapper : LHLKOOJKBLK :: KJGFEHHEOGK(IKPECCBIIOM: DCGHDOCPEFO, FLANEHFAIJH: long, EADJKMHAHLO: long?) -> OIKEDAHIDPO<DIGBOKJOLPH>
+  also touches: api/playerevents/
+  body    : PlayereventsV2EventIdRoomRequest (synthesized)
+  field   : IKPECCBIIOM: DCGHDOCPEFO [wrapper]
+  field   : EADJKMHAHLO: long? [wrapper]
+  field   : roomId: object [candidate]
+  field   : subRoomId: object [candidate]
+  maybe   : roomId (candidate query key)
+  maybe   : subRoomId (candidate query key)
+  returns : DIGBOKJOLPH
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service from Service argument
+  note    : request DTO synthesized from candidate+wrapper
+
+api/playerevents/v2/{eventId}/tags  [API PUT]
+  wrapper : LHLKOOJKBLK :: IGJMBJMCFAN(IKPECCBIIOM: DCGHDOCPEFO, BHEAHAHAEDO: List<string>) -> OIKEDAHIDPO<DIGBOKJOLPH>
+  also touches: api/playerevents/
+  body    : PlayereventsV2EventIdTagsRequest (synthesized)
+  field   : IKPECCBIIOM: DCGHDOCPEFO [wrapper]
+  field   : BHEAHAHAEDO: List<string> [wrapper]
+  field   : ModifyEventTags: object [candidate]
+  maybe   : ModifyEventTags (candidate query key)
+  returns : DIGBOKJOLPH
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service from Service argument
+  note    : request DTO synthesized from candidate+wrapper
+
+api/playerevents/v2/{eventId}/time  [API PUT]
+  wrapper : LHLKOOJKBLK :: BNGJJBDGFHI(IKPECCBIIOM: DCGHDOCPEFO, OFCMGBFKFJI: DateTime, KFAECKGHBKE: DateTime) -> OIKEDAHIDPO<DIGBOKJOLPH>
+  also touches: api/playerevents/
+  body    : PlayereventsV2EventIdTimeRequest (synthesized)
+  field   : IKPECCBIIOM: DCGHDOCPEFO [wrapper]
+  field   : OFCMGBFKFJI: DateTime [wrapper]
+  field   : KFAECKGHBKE: DateTime [wrapper]
+  field   : startTime: object [candidate]
+  field   : endTime: object [candidate]
+  maybe   : startTime (candidate query key)
+  maybe   : endTime (candidate query key)
+  returns : DIGBOKJOLPH
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service from Service argument
+  note    : request DTO synthesized from candidate+wrapper
+
+api/players/v4/current/contact  [API PUT]
+  wrapper : IOOHLDBLFNI/KHGGKPKEIAP :: <SetEmail>b__0(...)
+  body    : GNLECPCLPLJ
+    - IEGNNBIICLA: HTTPResponse
+    - OJDBNADJGJH: int?
+    - GMDLLIOHAGG: string
+    - JKJABAHJJAB: byte[]
+    - IIPBLLMPODB: string
+  maybe   : SetEmail (candidate query key)
+  returns : GNLECPCLPLJ
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service from Service argument
+  note    : request from weaker record
+
+api/quickPlay/v1/getandclear  [API GET]
+  wrapper : HMFEAOLLADF :: NIKKODPHMAE() -> DCCNBCFBHAJ
+  also touches: api/quickPlay/
+  body    : (none - GET; query params below if any)
+  returns : IHODINMJPLJ
+  note    : site from legacy send wrapper BLCGKIDDJIN::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/relationships/mutualfriends  [API GET]
+  wrapper : OICDHELLAJK :: BHJJJBKDLEK(BDOBLJEBCGA: int) -> List<MAEHGHJKGBG>>
+  also touches: api/relationships
+  body    : (none - GET; query params below if any)
+  returns : List<MAEHGHJKGBG>
+  note    : site from legacy send wrapper PEOLLKOAEAB::DJMDPKNDEAE
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/relationships/sendfriendintroductions  [API POST]
+  wrapper : OICDHELLAJK :: IFCNOFHLDKN(JBJKFMLOMOE: List<int>, DHPFDPDHDKL: int) -> OIKEDAHIDPO<EFKOMEOFLGF>
+  body    : SendFriendIntroductionsRequest
+  returns : EFKOMEOFLGF
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/relationships/v1/addfriendwithcode?code=  [API GET]
+  wrapper : OICDHELLAJK :: JDDMLHHDFPM(JFPLELNHHIA: string, CJIAPCFJKNL: MHIGCFMABEI) -> OIKEDAHIDPO<MAEHGHJKGBG>
+  body    : (none - GET; query params below if any)
+  returns : MAEHGHJKGBG
+  note    : site from legacy send wrapper BLCGKIDDJIN::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/relationships/v1/bulkignoreplatformusers  [API POST]
+  wrapper : OICDHELLAJK :: IBEGBIDAIFK(DOCOOPCHKAI: DEJOHGPOLEE, IHPGKANANCA: List<string>) -> void
+  body    : BulkBlockPlatformUsersRequest
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/relationships/v1/favorite  [API GET]
+  wrapper : OICDHELLAJK :: FKOAMGDKDLI(BDOBLJEBCGA: int, BKKOCCDDHJN: NAGMMPGMPLA) -> bool
+  also touches: api/relationships
+  body    : (none - GET; query params below if any)
+  returns : MAEHGHJKGBG
+  note    : site from legacy send wrapper BLCGKIDDJIN::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/relationships/v1/unfavorite  [API GET]
+  wrapper : OICDHELLAJK :: DBBEIJMMIPM(BDOBLJEBCGA: int, BKKOCCDDHJN: NAGMMPGMPLA) -> bool
+  also touches: api/relationships
+  body    : (none - GET; query params below if any)
+  returns : MAEHGHJKGBG
+  note    : site from legacy send wrapper BLCGKIDDJIN::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/relationships/v2/acceptfriendrequest  [API GET]
+  wrapper : OICDHELLAJK :: JHMDAIDLGCH(BDOBLJEBCGA: int) -> OIKEDAHIDPO<MAEHGHJKGBG>
+  also touches: api/relationships
+  body    : (none - GET; query params below if any)
+  returns : MAEHGHJKGBG
+  note    : site from legacy send wrapper BLCGKIDDJIN::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/relationships/v2/addfriend  [API GET]
+  wrapper : OICDHELLAJK :: CJGDLNMEENE(BDOBLJEBCGA: int, CJIAPCFJKNL: MHIGCFMABEI) -> OIKEDAHIDPO<MAEHGHJKGBG>
+  also touches: api/relationships
+  body    : (none - GET; query params below if any)
+  returns : MAEHGHJKGBG
+  note    : site from legacy send wrapper BLCGKIDDJIN::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/relationships/v2/get  [API GET]
+  wrapper : OICDHELLAJK :: HLMEKADAELA() -> void
+  body    : (none - GET; query params below if any)
+  returns : List<MAEHGHJKGBG>
+  note    : site from legacy send wrapper BLCGKIDDJIN::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/relationships/v2/removefriend  [API GET]
+  wrapper : OICDHELLAJK :: DFPBPIIDJLG(BDOBLJEBCGA: int) -> OIKEDAHIDPO<MAEHGHJKGBG>
+  also touches: api/relationships
+  body    : (none - GET; query params below if any)
+  returns : MAEHGHJKGBG
+  note    : site from legacy send wrapper BLCGKIDDJIN::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/relationships/v2/sendfriendrequest  [API GET]
+  wrapper : OICDHELLAJK :: JOKPOAGGFLK(BDOBLJEBCGA: int, CJIAPCFJKNL: FNMKPADAEBD) -> OIKEDAHIDPO<MAEHGHJKGBG>
+  also touches: api/relationships
+  body    : (none - GET; query params below if any)
+  returns : MAEHGHJKGBG
+  note    : site from legacy send wrapper BLCGKIDDJIN::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/roomCurrencies/v2/purchase  [API POST]
+  wrapper : BEEPPIIHJAE :: BDKHCPOHCCH(LCDABEMLLAF: Guid, BNEFNHIAHNO: long, AANKLBAFBMH: long) -> OIKEDAHIDPO<BFPLIEPGHJF>
+  body    : FNFHMEMCNBM<BFPLIEPGHJF>
+  maybe   : PurchaseOfferId (candidate query key)
+  maybe   : RequestedAmount (candidate query key)
+  maybe   : RequestedPrice (candidate query key)
+  returns : FNFHMEMCNBM<BFPLIEPGHJF>
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request from weaker record
+
+api/roomEarningsDistributions/v1/earningsDistribution  [API POST]
+  wrapper : COGGJIDPJCE :: OFIAOPGHGBK(PAAMPHJOCCJ: long, PHHPNEPFEIA: LHNJEHKAMOM, IDBMLOJPGEP: Dictionary<int, byte>) -> DCCNBCFBHAJ
+  body    : FNFHMEMCNBM<MGKJJJIIHLL>
+  maybe   : SaveEarningsDistribution (candidate query key)
+  returns : FNFHMEMCNBM<MGKJJJIIHLL>
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service from Service argument
+  note    : request from weaker record
+
+api/roomEarningsDistributions/v1/earningsDistribution/{pAAMPHJOCCJ}  [API GET]
+  wrapper : COGGJIDPJCE :: BNJBIDBPMMP(PAAMPHJOCCJ: long) -> OIKEDAHIDPO<MGKJJJIIHLL>
+  also touches: api/roomEarningsDistributions
+  body    : FNFHMEMCNBM<MGKJJJIIHLL>
+  returns : FNFHMEMCNBM<MGKJJJIIHLL>
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service filled from same-area sibling
+  note    : request from weaker record
+
+api/roomconsumables/v1/roomConsumable  [API PUT]
+  wrapper : APBPJFKMEKO :: KPPCPIJNLFF(CLJIDCEPDDA: Guid, AFIDHHDMHNB: string, KABFFODJHGP: string, FDGNDGGMBEI: string, EIOOCCCOFBE: long, NPJCLEJLEEN: Guid?) -> OIKEDAHIDPO<MJCGMNCDFDA>
+  wrapper : APBPJFKMEKO :: LBJGKPPFPDE(PAAMPHJOCCJ: long, AFIDHHDMHNB: string, KABFFODJHGP: string, FDGNDGGMBEI: string, EIOOCCCOFBE: long, NPJCLEJLEEN: Guid?) -> OIKEDAHIDPO<MJCGMNCDFDA>
+  body    : MJCGMNCDFDA
+    - <JFIKNCAGJMK>k__BackingField: EDKEFKBEBOJ
+    - <INCJNFLDLMN>k__BackingField: HMEKKHDOEON
+  maybe   : CreateRoomConsumable (candidate query key)
+  maybe   : EditRoomConsumable (candidate query key)
+  returns : MJCGMNCDFDA
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service from Service argument
+  note    : request from weaker record
+
+api/roomconsumables/v1/roomConsumable/room/{pAAMPHJOCCJ}  [API GET]
+  wrapper : APBPJFKMEKO :: DCJAMGCIHIB(PAAMPHJOCCJ: long) -> List<HMEKKHDOEON>>
+  also touches: api/roomconsumables
+  body    : List<HMEKKHDOEON>
+  returns : List<HMEKKHDOEON>
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service from Service argument
+  note    : request from weaker record
+
+api/roomconsumables/v1/roomConsumable/room/{pAAMPHJOCCJ}/me  [API GET]
+  wrapper : APBPJFKMEKO :: MKNLJEPKFPB(PAAMPHJOCCJ: long) -> List<PFGEANHDOFF>>
+  also touches: api/roomconsumables
+  body    : List<PFGEANHDOFF>
+  returns : List<PFGEANHDOFF>
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service from Service argument
+  note    : request from weaker record
+
+api/roomconsumables/v1/roomConsumable/{cLJIDCEPDDA}  [API DELETE]
+  wrapper : APBPJFKMEKO :: OOLKAKDLMDG(CLJIDCEPDDA: Guid) -> OIKEDAHIDPO<EDKEFKBEBOJ>
+  also touches: api/roomconsumables
+  body    : MJCGMNCDFDA
+    - <JFIKNCAGJMK>k__BackingField: EDKEFKBEBOJ
+    - <INCJNFLDLMN>k__BackingField: HMEKKHDOEON
+  returns : MJCGMNCDFDA
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service from Service argument
+  note    : request from weaker record
+
+api/roomconsumables/v1/roomConsumable/{cLJIDCEPDDA}/isOwned  [API GET]
+  wrapper : APBPJFKMEKO :: KDMLPIIODNG(CLJIDCEPDDA: Guid) -> Boolean>
+  also touches: api/roomconsumables
+  body    : (none - GET; query params below if any)
+  returns : bool
+  note    : site from legacy send wrapper PEOLLKOAEAB::HBNKNBKJDFB
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/roomconsumables/v1/roomConsumable/{roomconsumableId}/consume  [API PUT]
+  wrapper : APBPJFKMEKO :: OAPJOJKACCK(CLJIDCEPDDA: Guid, JAKHGKALFAP: Guid?) -> OIKEDAHIDPO<AIPAJMCBPLC>
+  also touches: api/roomconsumables
+  body    : AIPAJMCBPLC
+    - <JFIKNCAGJMK>k__BackingField: EDKEFKBEBOJ
+    - <CFEMPABILNH>k__BackingField: PFGEANHDOFF
+  maybe   : ConsumeRoomConsumable (candidate query key)
+  returns : AIPAJMCBPLC
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service from Service argument
+  note    : request from weaker record
+
+api/roomconsumables/v1/roomConsumable/{roomconsumableId}/description  [API PUT]
+  wrapper : APBPJFKMEKO :: ECAEIOEKMGJ(CLJIDCEPDDA: Guid, KABFFODJHGP: string) -> OIKEDAHIDPO<MJCGMNCDFDA>
+  also touches: api/roomconsumables
+  body    : MJCGMNCDFDA
+    - <JFIKNCAGJMK>k__BackingField: EDKEFKBEBOJ
+    - <INCJNFLDLMN>k__BackingField: HMEKKHDOEON
+  maybe   : EditRoomConsumableDescription (candidate query key)
+  returns : MJCGMNCDFDA
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service from Service argument
+  note    : request from weaker record
+
+api/roomconsumables/v1/roomConsumable/{roomconsumableId}/image  [API PUT]
+  wrapper : APBPJFKMEKO :: PHFLJJAOGOA(CLJIDCEPDDA: Guid, FDGNDGGMBEI: string) -> OIKEDAHIDPO<MJCGMNCDFDA>
+  also touches: api/roomconsumables
+  body    : MJCGMNCDFDA
+    - <JFIKNCAGJMK>k__BackingField: EDKEFKBEBOJ
+    - <INCJNFLDLMN>k__BackingField: HMEKKHDOEON
+  maybe   : EditRoomConsumableImage (candidate query key)
+  returns : MJCGMNCDFDA
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service from Service argument
+  note    : request from weaker record
+
+api/roomconsumables/v1/roomConsumable/{roomconsumableId}/name  [API PUT]
+  wrapper : APBPJFKMEKO :: HFHEIPPNNMO(CLJIDCEPDDA: Guid, AFIDHHDMHNB: string) -> OIKEDAHIDPO<MJCGMNCDFDA>
+  also touches: api/roomconsumables
+  body    : MJCGMNCDFDA
+    - <JFIKNCAGJMK>k__BackingField: EDKEFKBEBOJ
+    - <INCJNFLDLMN>k__BackingField: HMEKKHDOEON
+  maybe   : EditRoomConsumableName (candidate query key)
+  returns : MJCGMNCDFDA
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service from Service argument
+  note    : request from weaker record
+
+api/roomconsumables/v1/roomConsumable/{roomconsumableId}/price  [API PUT]
+  wrapper : APBPJFKMEKO :: LDEDNOALFCN(CLJIDCEPDDA: Guid, EIOOCCCOFBE: long, NPJCLEJLEEN: Guid?) -> OIKEDAHIDPO<MJCGMNCDFDA>
+  also touches: api/roomconsumables
+  body    : MJCGMNCDFDA
+    - <JFIKNCAGJMK>k__BackingField: EDKEFKBEBOJ
+    - <INCJNFLDLMN>k__BackingField: HMEKKHDOEON
+  maybe   : PriceAndCurrency (candidate query key)
+  maybe   : EditRoomConsumablePrice (candidate query key)
+  returns : MJCGMNCDFDA
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service from Service argument
+  note    : request from weaker record
+
+api/roomconsumables/v1/roomconsumable/{roomconsumableId}/purchase/currency  [API PUT]
+  wrapper : BEEPPIIHJAE :: CAEHNFHMBAB(CLJIDCEPDDA: Guid, AANKLBAFBMH: long, LCFINAMBDDF: Guid, JAKHGKALFAP: Guid?) -> OIKEDAHIDPO<KBNIGKNLGHP>
+  body    : KBNIGKNLGHP
+    - <AEIHDIGGPEJ>k__BackingField: AHJJMDCLFBJ?
+    - <KHJFMOIIKJK>k__BackingField: OPEADODPFFB
+  maybe   : PurchaseRoomConsumableWithCurrency (candidate query key)
+  returns : KBNIGKNLGHP
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service from weaker record
+  note    : request from weaker record
+
+api/roomconsumables/v1/roomconsumable/{roomconsumableId}/purchase/tokens  [API PUT]
+  wrapper : BEEPPIIHJAE :: CENELOLKMIE(CLJIDCEPDDA: Guid, AANKLBAFBMH: long, JAKHGKALFAP: Guid?) -> OIKEDAHIDPO<EBLAGKLNDAF>
+  body    : EBLAGKLNDAF
+    - <AEIHDIGGPEJ>k__BackingField: NFPCFKMPDPM?
+    - <HPKHCJHOJHP>k__BackingField: BalanceResponseDTO
+  maybe   : PurchaseRoomConsumableWithTokens (candidate query key)
+  returns : EBLAGKLNDAF
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service from weaker record
+  note    : request from weaker record
+
+api/roomcurrencies/v1/awardCurrency  [API POST]
+  wrapper : PFPKFJFNNDI :: GANNFFDFKCC(NPJCLEJLEEN: Guid, PHIJFIGLCPK: int, OJHLAAGHGLB: long) -> OIKEDAHIDPO<JEPMKGEMEDD>
+  body    : FNFHMEMCNBM<JEPMKGEMEDD>
+  maybe   : CurrencyId (candidate query key)
+  maybe   : RecipientId (candidate query key)
+  maybe   : Amount (candidate query key)
+  maybe   : TransactionId (candidate query key)
+  returns : FNFHMEMCNBM<JEPMKGEMEDD>
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request from weaker record
+
+api/roomcurrencies/v1/awardCurrency/bulk  [API POST]
+  wrapper : PFPKFJFNNDI :: IBBLADFIJFM(AHIFCHBGKHP: List<ELDIPIONHDN>) -> List<JAOLKLDGLAF>>
+  body    : List<JAOLKLDGLAF>
+  maybe   : AwardCurrencyBulkAsync (candidate query key)
+  returns : List<JAOLKLDGLAF>
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service from Service argument
+  note    : request from weaker record
+
+api/roomcurrencies/v1/betaEnabled  [API GET]
+  wrapper : PFPKFJFNNDI :: AIEJBOCOEOA() -> Boolean>
+  body    : (none - GET; query params below if any)
+  returns : bool
+  note    : site from legacy send wrapper PEOLLKOAEAB::HBNKNBKJDFB
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/roomcurrencies/v1/createCurrency  [API POST]
+  wrapper : PFPKFJFNNDI :: BOOOGGHOAKA(PAAMPHJOCCJ: long, AFIDHHDMHNB: string, KABFFODJHGP: string, NEHFENFFMBG: long, FDGNDGGMBEI: string) -> OIKEDAHIDPO<NHBPPDIPPEC>
+  body    : FNFHMEMCNBM<NHBPPDIPPEC>
+  maybe   : RoomId (candidate query key)
+  maybe   : Name (candidate query key)
+  maybe   : Description (candidate query key)
+  maybe   : Limit (candidate query key)
+  maybe   : ImageName (candidate query key)
+  returns : FNFHMEMCNBM<NHBPPDIPPEC>
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request from weaker record
+
+api/roomcurrencies/v1/createPurchaseOffer  [API POST]
+  wrapper : PFPKFJFNNDI :: AGENECHDNIC(NPJCLEJLEEN: Guid, AFIDHHDMHNB: string, OJHLAAGHGLB: long, EIOOCCCOFBE: long, JABKMEPKCJO: int) -> OIKEDAHIDPO<KPKOIDOHAGO>
+  body    : FNFHMEMCNBM<KPKOIDOHAGO>
+  maybe   : CurrencyId (candidate query key)
+  maybe   : Name (candidate query key)
+  maybe   : Amount (candidate query key)
+  maybe   : Price (candidate query key)
+  maybe   : Order (candidate query key)
+  returns : FNFHMEMCNBM<KPKOIDOHAGO>
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request from weaker record
+
+api/roomcurrencies/v1/currencies  [API GET]
+  wrapper : PFPKFJFNNDI :: FPCEHAJLIOE(PAAMPHJOCCJ: long, GHGCIBNPOLB: bool) -> List<NHBPPDIPPEC>>
+  also touches: api/roomcurrencies
+  body    : List<NHBPPDIPPEC>
+  returns : List<NHBPPDIPPEC>
+  note    : site from legacy send wrapper PEOLLKOAEAB::DJMDPKNDEAE
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request from weaker record
+
+api/roomcurrencies/v1/deletePurchaseOffer  [API POST]
+  wrapper : PFPKFJFNNDI :: AAJDKOCPLMH(FPNCCIJKBIH: Guid) -> DCCNBCFBHAJ
+  body    : BJDGEAJIDCE
+    - <GMGJCOMNHOG>k__BackingField: bool
+    - <OKPEFICIGBC>k__BackingField: string
+  maybe   : PurchaseOfferId (candidate query key)
+  returns : BJDGEAJIDCE
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request from weaker record
+
+api/roomcurrencies/v1/getAllBalances  [API GET]
+  wrapper : PFPKFJFNNDI :: BFGAFGIBJBA(PAAMPHJOCCJ: long, GHGCIBNPOLB: bool) -> List<OPEADODPFFB>>
+  also touches: api/roomcurrencies
+  body    : List<OPEADODPFFB>
+  returns : List<OPEADODPFFB>
+  note    : site from legacy send wrapper PEOLLKOAEAB::DJMDPKNDEAE
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request from weaker record
+
+api/roomcurrencies/v1/getBalance  [API GET]
+  wrapper : PFPKFJFNNDI :: EABJDIDLBNI(NPJCLEJLEEN: Guid, MGHNGLOFIEP: int, GHGCIBNPOLB: bool) -> OIKEDAHIDPO<OPEADODPFFB>
+  also touches: api/roomcurrencies
+  body    : OPEADODPFFB
+    - <NIIBFADFCDG>k__BackingField: int
+    - <NHNOEKDKLOK>k__BackingField: Guid
+    - <GDCIKJBNIFI>k__BackingField: long
+    - <MBENLJOGAFM>k__BackingField: DateTime
+  returns : OPEADODPFFB
+  note    : site from legacy send wrapper PEOLLKOAEAB::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request from weaker record
+
+api/roomcurrencies/v1/getPurchaseOffersBatch  [API ?]
+  wrapper : PFPKFJFNNDI :: GCKGLBEONEH(PBFODELNGGD: IReadOnlyList<Guid>) -> List<BKPJBIGEGFH>>
+  body    : Guid
+    - _a: int
+    - _b: short
+    - _c: short
+    - _d: byte
+    - _e: byte
+    - _f: byte
+    - _g: byte
+    - _h: byte
+    - _i: byte
+    - _j: byte
+    - _k: byte
+  param   : ids: List<Guid>
+  returns : List<BKPJBIGEGFH>
+  note    : site from resolved signature
+  note    : service from Service argument
+  note    : verb chosen at runtime (verb factory call AKJJAPFLAIC::GOIBACFEHDL)
+
+api/roomcurrencies/v1/updateCurrency  [API POST]
+  wrapper : PFPKFJFNNDI :: BGPNKMJEOJN(NPJCLEJLEEN: Guid, AFIDHHDMHNB: string, KABFFODJHGP: string, NEHFENFFMBG: long?, FDGNDGGMBEI: string) -> OIKEDAHIDPO<NHBPPDIPPEC>
+  body    : FNFHMEMCNBM<NHBPPDIPPEC>
+  maybe   : CurrencyId (candidate query key)
+  maybe   : Name (candidate query key)
+  maybe   : Description (candidate query key)
+  maybe   : Limit (candidate query key)
+  maybe   : ImageName (candidate query key)
+  returns : FNFHMEMCNBM<NHBPPDIPPEC>
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request from weaker record
+
+api/roomcurrencies/v1/updatePurchaseOffer  [API POST]
+  wrapper : PFPKFJFNNDI :: BIHKBJIKBKA(LCDABEMLLAF: Guid, AFIDHHDMHNB: string, OJHLAAGHGLB: long?, EIOOCCCOFBE: long?, JABKMEPKCJO: int?) -> OIKEDAHIDPO<KPKOIDOHAGO>
+  body    : FNFHMEMCNBM<KPKOIDOHAGO>
+  maybe   : PurchaseOfferId (candidate query key)
+  maybe   : Name (candidate query key)
+  maybe   : Amount (candidate query key)
+  maybe   : Price (candidate query key)
+  maybe   : Order (candidate query key)
+  returns : FNFHMEMCNBM<KPKOIDOHAGO>
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request from weaker record
+
+api/roomkeys/v1/RoomKeyId  [API PUT]
+  wrapper : CLDIEIKPGJI :: HFBOKGJMGMC(FLJHNELBOEN: string, KCJNANLLAHF: long, INFLOKAIDAB: IEnumerable<KeyValuePair<string, string>>) -> OIKEDAHIDPO<BENCMEPGCJK>
+  also touches: api/roomkeys/v1/
+  body    : RoomkeysV1RoomKeyIdRequest (synthesized)
+  field   : INFLOKAIDAB: IEnumerable<KeyValuePair<string, string>> [wrapper]
+  field   : RoomKeyId: object [candidate]
+  maybe   : RoomKeyId (candidate query key)
+  returns : BENCMEPGCJK
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service from Service argument
+  note    : request DTO synthesized from candidate+wrapper
+
+api/roomkeys/v1/create  [API POST]
+  wrapper : CLDIEIKPGJI :: GCKKJEIAMJC(AFIDHHDMHNB: string, KABFFODJHGP: string, EIOOCCCOFBE: int, FDGNDGGMBEI: string, FHOJPBDDOPA: Guid?) -> OIKEDAHIDPO<BENCMEPGCJK>
+  body    : RoomkeysV1CreateRequest (synthesized)
+  field   : FHOJPBDDOPA: Guid? [wrapper]
+  field   : RoomId: object [candidate]
+  field   : Name: object [candidate]
+  field   : Description: object [candidate]
+  field   : Price: object [candidate]
+  field   : ImageName: object [candidate]
+  maybe   : RoomId (candidate query key)
+  maybe   : Name (candidate query key)
+  maybe   : Description (candidate query key)
+  maybe   : Price (candidate query key)
+  maybe   : ImageName (candidate query key)
+  returns : BENCMEPGCJK
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service from Service argument
+  note    : request DTO synthesized from candidate+wrapper
+
+api/roomkeys/v1/delete/{roomKeyId}  [API DELETE]
+  wrapper : CLDIEIKPGJI :: KFLEANHKHHJ(KCJNANLLAHF: long, EGIMBAPGPNE: Guid?) -> OIKEDAHIDPO<MMPBCHHAECM>
+  also touches: api/roomkeys/
+  body    : (none - GET; query params below if any)
+  returns : MMPBCHHAECM
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service filled from same-area sibling
+
+api/roomkeys/v1/mine  [API GET]
+  wrapper : CLDIEIKPGJI :: MKGAMCHGMLH() -> List<MDOIALCLDII>>
+  body    : (none - GET; query params below if any)
+  returns : List<MDOIALCLDII>
+  note    : site from legacy send wrapper PEOLLKOAEAB::DJMDPKNDEAE
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/roomkeys/v1/owns  [API GET]
+  wrapper : CLDIEIKPGJI :: JMEGONLAKHO(BDOBLJEBCGA: int, JOONMLMDNCG: MDOIALCLDII) -> Boolean>
+  also touches: api/roomkeys/
+  body    : (none - GET; query params below if any)
+  returns : bool
+  note    : site from legacy send wrapper PEOLLKOAEAB::HBNKNBKJDFB
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/roomkeys/v1/purchased/{kCJNANLLAHF}  [API GET]
+  wrapper : CLDIEIKPGJI :: CKCHOAMNOHC(KCJNANLLAHF: long) -> Boolean>
+  also touches: api/roomkeys/
+  body    : (none - GET; query params below if any)
+  returns : bool
+  note    : site from legacy send wrapper PEOLLKOAEAB::HBNKNBKJDFB
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/roomkeys/v1/room  [API GET]
+  wrapper : CLDIEIKPGJI :: DIPGKGOLLKN(PAAMPHJOCCJ: long) -> string
+  also touches: api/roomkeys/
+  wrapper : CLDIEIKPGJI :: HHMOEFNIIHI() -> string
+  also touches: api/roomkeys/
+  wrapper : CLDIEIKPGJI :: OGLEFEBBPMA(PAAMPHJOCCJ: long) -> List<MDOIALCLDII>>
+  also touches: api/roomkeys/
+  body    : (none - GET; query params below if any)
+  returns : List<MDOIALCLDII>
+  note    : site from legacy send wrapper PEOLLKOAEAB::DJMDPKNDEAE
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/rooms/v1/filters  [API GET]
+  wrapper : GPCCCNICDDH/<>c :: <GetFilters>b__133_0(...)
+  body    : (none - GET; query params below if any)
+  returns : MJBCCFPPOAB
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service inferred: unanimous API among rooms/v1 siblings
+
+api/rooms/v1/verifyRole  [API POST]
+  wrapper : GPCCCNICDDH :: GGLNCBDFOHH(IJBCJIEGGIM: string) -> DCCNBCFBHAJ
+  body    : RoomsV1VerifyRoleRequest (synthesized)
+  field   : roomId: object [candidate]
+  field   : role: object [candidate]
+  field   : context: object [candidate]
+  maybe   : roomId (candidate query key)
+  maybe   : role (candidate query key)
+  maybe   : context (candidate query key)
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service from Service argument
+  note    : request DTO synthesized from candidate
+
+api/rooms/v2/report  [API POST]
+  wrapper : GPCCCNICDDH :: BFMNODHDPMF(PAAMPHJOCCJ: long, BKGDDCMJALJ: GFPDAGADAGK, KCJNANLLAHF: long?, EINIKAEPFEE: string) -> DCCNBCFBHAJ
+  body    : EFKOMEOFLGF
+    - <GMGJCOMNHOG>k__BackingField: bool
+    - <AGBHICNKCIN>k__BackingField: string
+  maybe   : RoomId (candidate query key)
+  maybe   : RoomKeyId (candidate query key)
+  maybe   : Details (candidate query key)
+  maybe   : ReportCategory (candidate query key)
+  returns : EFKOMEOFLGF
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service from Service argument
+  note    : request from weaker record
+
+api/royale/v1/current  [API GET]
+  wrapper : OJJAPNIJEOI :: AAOODFEODGA() -> LDEGEEOLKLI>
+  also touches: api/royale/
+  body    : LDEGEEOLKLI
+  returns : LDEGEEOLKLI
+  note    : site from legacy send wrapper BLCGKIDDJIN::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request from weaker record
+
+api/royale/v2/matchcomplete  [API POST]
+  wrapper : OJJAPNIJEOI :: IMHFILNIIGD(MHFMNOCLHML: MatchCompleteStats) -> KBGPHADDPDI>
+  also touches: api/royale/
+  body    : RoyaleV2MatchcompleteRequest (synthesized)
+  field   : MHFMNOCLHML: MatchCompleteStats [wrapper]
+  returns : KBGPHADDPDI
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request DTO synthesized from wrapper
+
+api/sanitize/v1  [API POST]
+  wrapper : CGKDMAFDGJJ :: JKPGBPLJBJE(JHNECJAOKCB: string, IJBCJIEGGIM: string, BBJICOOFOCE: char, NJIABPAKELO: KBDNKJGDFNE) -> ENOEDAMBMND>
+  wrapper : CGKDMAFDGJJ :: JKPGBPLJBJE(JHNECJAOKCB: string, IJBCJIEGGIM: string, BBJICOOFOCE: char, NJIABPAKELO: KBDNKJGDFNE, BKKOCCDDHJN: String>) -> IEnumerator
+  wrapper : CGKDMAFDGJJ/LGAOODJDDDE :: MoveNext(...)
+  body    : PurifyStringRequest
+  returns : string
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/screensharereports/v1/report  [API POST]
+  wrapper : JFNEHABKIOC :: DPHAPDHEACM(FDGNDGGMBEI: string, APAOKCCKBMD: int, EINIKAEPFEE: string) -> DCCNBCFBHAJ
+  body    : ScreensharereportsV1ReportRequest (synthesized)
+  field   : ImageName: object [candidate]
+  field   : ReportedPlayerId: object [candidate]
+  field   : RoomId: object [candidate]
+  field   : RoomInstanceId: object [candidate]
+  field   : RoomInstanceType: object [candidate]
+  maybe   : ImageName (candidate query key)
+  maybe   : ReportedPlayerId (candidate query key)
+  maybe   : RoomId (candidate query key)
+  maybe   : RoomInstanceId (candidate query key)
+  maybe   : RoomInstanceType (candidate query key)
+  returns : EFKOMEOFLGF
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request DTO synthesized from candidate
+
+api/settings/v2/  [API GET]
+  wrapper : DGANPAGDPHL/FFDIGPCOAKF :: CNDLJDGGMPP(...)
+  also touches: api/settings/v2/set
+  wrapper : DGANPAGDPHL/FFDIGPCOAKF :: GIMKHDPMKGD(...)
+  body    : List<LGGCGCFOBIP>
+  returns : List<LGGCGCFOBIP>
+  note    : site from legacy send wrapper BLCGKIDDJIN::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request from weaker record
+
+api/settings/v2/set  [API POST]
+  wrapper : DGANPAGDPHL/FFDIGPCOAKF :: CNDLJDGGMPP(...)
+  also touches: api/settings/v2/
+  body    : LGGCGCFOBIP
+    - <EPDHNPBEBGA>k__BackingField: string
+    - <LMNOJDJODLE>k__BackingField: string
+  returns : NPLLKADJMDC
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/storefronts/v1/PurchaseRoomKeyWithCurrency  [API POST]
+  wrapper : BEEPPIIHJAE :: IPIIBCCKOPC(KCJNANLLAHF: long, AANKLBAFBMH: long, HDAGPDMBEMA: Guid) -> RoomKeyPurchaseWithCurrencyResponseDTO>
+  body    : StorefrontsV1PurchaseRoomKeyWithCurrencyRequest (synthesized)
+  field   : HDAGPDMBEMA: Guid [wrapper]
+  field   : RoomKeyId: object [candidate]
+  field   : RequestedPrice: object [candidate]
+  field   : RequestedPurchaseCurrencyId: object [candidate]
+  maybe   : RoomKeyId (candidate query key)
+  maybe   : RequestedPrice (candidate query key)
+  maybe   : RequestedPurchaseCurrencyId (candidate query key)
+  returns : RoomKeyPurchaseWithCurrencyResponseDTO
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request DTO synthesized from candidate+wrapper
+
+api/storefronts/v1/adcarouselitems  [API GET]
+  wrapper : BEEPPIIHJAE :: GLDCNDJKLBM() -> List<StorefrontAdCarouselItem>>
+  body    : (none - GET; query params below if any)
+  returns : List<StorefrontAdCarouselItem>
+  note    : site from legacy send wrapper PEOLLKOAEAB::DJMDPKNDEAE
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/storefronts/v1/balanceAddType/{balanceaddtypeId}/{id1}  [API GET]
+  wrapper : BEEPPIIHJAE :: HNNNLHCFHPN(EJHEECMHNND: IJGMIOJCDAA, OMBHPHAJAGE: JCNMBLBOPMC, BKKOCCDDHJN: FBKPOFPMKBI<FHICCKDLLNB>) -> void
+  also touches: api/storefronts/
+  body    : (none - GET; query params below if any)
+  returns : FHICCKDLLNB
+  note    : site from legacy send wrapper BLCGKIDDJIN::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/storefronts/v1/buyForFreeGiftButton  [API POST]
+  wrapper : BEEPPIIHJAE :: PPMENIGEPHE(OCGGBNIFPPJ: int, GCFCFKONLLA: long?, LFFBMCJGPOI: int, IGNACJKILOP: long, GICMDFBAGDM: int) -> DCCNBCFBHAJ
+  also touches: api/storefronts/
+  body    : RequestPurchaseForFreeGiftButtonDTO
+  returns : BalanceResponseDTO>
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service from Service argument
+
+api/storefronts/v1/buyRoomKey  [API GET]
+  wrapper : BEEPPIIHJAE :: MECBFMNEMBD(KCJNANLLAHF: long, AANKLBAFBMH: long) -> RoomKeyPurchaseResponseDTO>
+  also touches: api/storefronts/
+  body    : (none - GET; query params below if any)
+  returns : RoomKeyPurchaseResponseDTO
+  note    : site from legacy send wrapper BLCGKIDDJIN::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/storefronts/v1/objectives  [API POST]
+  wrapper : BEEPPIIHJAE :: LAAFHBNDLNK(EFOMNGBNEEO: List<COIEBJPNOBG>) -> void
+  also touches: api/storefronts/
+  body    : StorefrontsV1ObjectivesRequest (synthesized)
+  field   : EFOMNGBNEEO: List<COIEBJPNOBG> [wrapper]
+  field   : objectiveType: object [candidate]
+  field   : completionPercentage: object [candidate]
+  field   : roomId: object [candidate]
+  field   : CompleteObjectives: object [candidate]
+  maybe   : objectiveType (candidate query key)
+  maybe   : completionPercentage (candidate query key)
+  maybe   : roomId (candidate query key)
+  maybe   : CompleteObjectives (candidate query key)
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request DTO synthesized from candidate+wrapper
+
+api/storefronts/v1/season/{seasonId}  [API GET]
+  wrapper : BEEPPIIHJAE :: KJPHPIOPLNG(MOGDAAIIPDB: CGNOFPPOIEB, BKKOCCDDHJN: FBKPOFPMKBI<DLPIOGOGNNE>) -> DCCNBCFBHAJ
+  also touches: api/storefronts/
+  body    : (none - GET; query params below if any)
+  returns : DLPIOGOGNNE
+  note    : site from legacy send wrapper BLCGKIDDJIN::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/storefronts/v1/toptoday  [API GET]
+  wrapper : BEEPPIIHJAE :: KCPGNECNNEK() -> IReadOnlyList<Int32>>
+  body    : (none - GET; query params below if any)
+  returns : IReadOnlyList<int>
+  note    : site from legacy send wrapper PEOLLKOAEAB::MGDGEOLNPPP
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/storefronts/v1/trialInvention  [API POST]
+  wrapper : BEEPPIIHJAE :: AMIIPCBBABF(IPLHECGDGOE: long) -> OIKEDAHIDPO<GCBFJOMLHLL>
+  also touches: api/storefronts/
+  body    : ?
+  returns : AHGIDJMAAKA
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service filled from same-area sibling
+
+api/storefronts/v1/trialInvention/duration  [API GET]
+  wrapper : BEEPPIIHJAE :: BNANPMIBDKM() -> Int32>
+  body    : (none - GET; query params below if any)
+  returns : GDNOHKGMJDP
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service filled from same-area sibling
+
+api/storefronts/v2/balance  [API POST]
+  wrapper : BEEPPIIHJAE :: FPOMOBNOJJC(EJHEECMHNND: IJGMIOJCDAA, KHFIGPFOCKI: IEnumerable<GrantBalanceRequest>) -> BalanceUpdateResponseDTO<RewardBalanceModificationDTO>>
+  also touches: api/storefronts/
+  body    : GrantBalanceRewardDTO
+  returns : BalanceUpdateResponseDTO<RewardBalanceModificationDTO>
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/storefronts/v2/buyElite  [API POST]
+  wrapper : BEEPPIIHJAE :: GIODFJANCHI(MOGDAAIIPDB: CGNOFPPOIEB, EJHEECMHNND: IJGMIOJCDAA, OCGGBNIFPPJ: int, AANKLBAFBMH: long, BKKOCCDDHJN: PurchaseBalanceUpdateResponseDTO<PLBHBEIOMCL>>) -> DCCNBCFBHAJ
+  also touches: api/storefronts/
+  body    : RequestPurchaseItemDTO
+  returns : PurchaseBalanceUpdateResponseDTO<PLBHBEIOMCL>
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/storefronts/v2/buyInvention  [API GET]
+  wrapper : BEEPPIIHJAE :: FIPMAPPCKCE(IPLHECGDGOE: long, AANKLBAFBMH: int) -> InventionPurchaseResponseDTO>
+  also touches: api/storefronts/
+  body    : (none - GET; query params below if any)
+  returns : InventionPurchaseResponseDTO
+  note    : site from legacy send wrapper BLCGKIDDJIN::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/storefronts/v2/buyItem  [API POST]
+  wrapper : BEEPPIIHJAE :: AICOAAOBHBI(MOGDAAIIPDB: CGNOFPPOIEB, EJHEECMHNND: IJGMIOJCDAA, OCGGBNIFPPJ: int, AANKLBAFBMH: long, GCFCFKONLLA: long?, ACPLMHJDDAK: GiftItemDTO) -> PurchaseBalanceUpdateResponseDTO<PLBHBEIOMCL>>
+  also touches: api/storefronts/
+  body    : GiftItemDTO
+  returns : PurchaseBalanceUpdateResponseDTO<PLBHBEIOMCL>
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service from Service argument
+
+api/storefronts/v2/buyTier  [API POST]
+  wrapper : BEEPPIIHJAE :: HPHDKNPPGEC(MOGDAAIIPDB: CGNOFPPOIEB, EJHEECMHNND: IJGMIOJCDAA, OCGGBNIFPPJ: int, AANKLBAFBMH: long, BKKOCCDDHJN: PurchaseBalanceUpdateResponseDTO<PLBHBEIOMCL>>) -> DCCNBCFBHAJ
+  also touches: api/storefronts/
+  body    : RequestPurchaseItemDTO
+  returns : PurchaseBalanceUpdateResponseDTO<PLBHBEIOMCL>
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/storefronts/v3/giftdropstore/{giftdropstoreId}  [API GET]
+  wrapper : BEEPPIIHJAE/PPFACFKPPHC :: <GetStorefront>b__0(...)
+  also touches: api/storefronts/
+  body    : (none - GET; query params below if any)
+  returns : KIIFOABLPAP
+  note    : site from legacy send wrapper BLCGKIDDJIN::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/storefronts/v4/balance/{balanceId}  [API GET]
+  wrapper : BEEPPIIHJAE :: KINDGDFDLDD(EJHEECMHNND: IJGMIOJCDAA, BKKOCCDDHJN: Int64>) -> DCCNBCFBHAJ
+  also touches: api/storefronts/
+  wrapper : BEEPPIIHJAE :: LJPGBKNHALB(EJHEECMHNND: IJGMIOJCDAA, ALDPCHMNFGG: Predicate<CDDCCKDDJBM>) -> long?
+  also touches: api/storefronts/
+  body    : (none - GET; query params below if any)
+  returns : List<BalanceResponseDTO>
+  note    : site from legacy send wrapper BLCGKIDDJIN::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/subscriptionseasons/v1/seasons/current  [API GET]
+  wrapper : OMCEAJEOKOE :: APKGJLENBFO(GHGCIBNPOLB: bool) -> OIKEDAHIDPO<AMHADNNOKCP>
+  body    : (none - GET; query params below if any)
+  returns : AMHADNNOKCP
+  note    : site from legacy send wrapper PEOLLKOAEAB::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/testcasemanagement/v1/testcase/{hCKHMODEOCP}/claim  [API POST]
+  wrapper : FGLCHIHANHK :: KJHDGHFBPPE(HCKHMODEOCP: string) -> DCCNBCFBHAJ
+  also touches: api/testcasemanagement/
+  body    : ?
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/testcasemanagement/v1/testcase/{hCKHMODEOCP}/unclaim  [API POST]
+  wrapper : FGLCHIHANHK :: IPABOHEFODH(HCKHMODEOCP: string) -> DCCNBCFBHAJ
+  also touches: api/testcasemanagement/
+  body    : ?
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/testcasemanagement/v1/testcase/{mGMHKIPIHKD}  [API GET]
+  wrapper : FGLCHIHANHK :: DJMMFKMEKLA(MGMHKIPIHKD: string) -> OIKEDAHIDPO<JAEDIPGIALF>
+  also touches: api/testcasemanagement/
+  body    : (none - GET; query params below if any)
+  returns : JAEDIPGIALF
+  note    : site from legacy send wrapper BLCGKIDDJIN::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/testcasemanagement/v1/testcase/{testcaseId}/comment  [API POST]
+  wrapper : FGLCHIHANHK :: HNAMIBDMGLE(HCKHMODEOCP: string, GNKGDEEOAOH: string) -> DCCNBCFBHAJ
+  also touches: api/testcasemanagement/
+  body    : ?
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/testcasemanagement/v1/testcase/{testcaseId}/status  [API POST]
+  wrapper : FGLCHIHANHK :: AOKBBNCKCBI(HCKHMODEOCP: string, AJHFMMICFGE: GMIJGGCNGEA) -> DCCNBCFBHAJ
+  also touches: api/testcasemanagement/
+  body    : TestcasemanagementV1TestcaseTestcaseIdStatusRequest (synthesized)
+  field   : AJHFMMICFGE: GMIJGGCNGEA [wrapper]
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from legacy send wrapper BLCGKIDDJIN::EBDAAFPAPDP
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request DTO synthesized from wrapper
+
+api/testcasemanagement/v1/testpass/{mGMHKIPIHKD}  [API GET]
+  wrapper : FGLCHIHANHK :: MNMFIPFKGHC(MGMHKIPIHKD: uint) -> OIKEDAHIDPO<DKGLDPKEOBH>
+  also touches: api/testcasemanagement/
+  body    : (none - GET; query params below if any)
+  returns : DKGLDPKEOBH
+  note    : site from legacy send wrapper BLCGKIDDJIN::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/testcasemanagement/v1/testpasssummary  [API GET]
+  wrapper : FGLCHIHANHK :: CNCGEIBOCGM() -> List<DKGLDPKEOBH>>
+  also touches: api/testcasemanagement/
+  body    : (none - GET; query params below if any)
+  returns : List<DKGLDPKEOBH>
+  note    : site from legacy send wrapper BLCGKIDDJIN::CEDINIMJBIG
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/ugcPurchasables/v1/items/room/{pAAMPHJOCCJ}  [API GET]
+  wrapper : EKOHNNMFHJD :: KKHHCHOBBMJ(PAAMPHJOCCJ: long) -> List<LAEIOKFEDIB>>
+  also touches: api/ugcPurchasables
+  body    : List<LAEIOKFEDIB>
+  returns : List<LAEIOKFEDIB>
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+  note    : service from Service argument
+  note    : request from weaker record
+
+api/versioncheck/v4  [? GET]
+  wrapper : AEMOKMBOONF :: FABCALMCEMG() -> OIKEDAHIDPO<MNLGKCFGFAM>
+  also touches: api/versioncheck/v4?v={0}&p={1}
+  body    : (none - GET; query params below if any)
+  returns : OKIHJECLNBM
+  note    : site from resolved signature
+  note    : verb from HTTPMethods argument
+
+api/versioncheck/v4?v={0}&p={1}  [? GET]
+  wrapper : AEMOKMBOONF :: FABCALMCEMG() -> OIKEDAHIDPO<MNLGKCFGFAM>
+  also touches: api/versioncheck/v4
+  body    : (none - GET; query params below if any)
+  returns : ?
+  note    : no call site found consuming this literal
+  note    : verb filled from same-area sibling
+

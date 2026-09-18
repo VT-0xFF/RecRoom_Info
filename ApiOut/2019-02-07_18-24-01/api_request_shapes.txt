@@ -1,0 +1,660 @@
+# per-endpoint request/response shapes: wrapper signatures from
+# metadata plus wire body-DTO fields. Wrapper parameters minus
+# CancellationToken are the query/body data the call expects.
+# "also touches" = same wrapper references another route (shared
+# send or shared cache invalidation). "candidate" = Task-returning
+# method on the same client with no send site found (unverified).
+
+api/Leaderboard/  [API POST]
+  wrapper : RecNet.Leaderboards :: Get(objectiveType: ObjectiveType, sortAscending: bool, limit: int, callback: ApiCallback<Leaderboard>) -> IEnumerator
+  body    : LeaderboardRequest (synthesized)
+  field   : objectiveType: ObjectiveType [wrapper]
+  field   : callback: ApiCallback<Leaderboard> [wrapper]
+  field   : SortAscending: object [candidate]
+  field   : Limit: object [candidate]
+  maybe   : ObjectiveType (candidate query key)
+  maybe   : SortAscending (candidate query key)
+  maybe   : Limit (candidate query key)
+  returns : Leaderboard
+  note    : site from legacy send wrapper RecNet.Core::Post
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request DTO synthesized from candidate+wrapper
+
+api/PlayerCheer/  [API GET]
+  wrapper : RecNet.PlayerCheering :: CreateCheer(playerId: long, cheerCategory: CheerCategory, anonymous: bool, callback: ApiCallback<OkResponse>) -> IEnumerator
+  wrapper : RecNet.PlayerCheering :: UpdateSelectedCheer(cheerCategory: CheerCategory?, callback: ApiCallback) -> IEnumerator
+  body    : OkResponse
+    - <Success>k__BackingField: bool
+    - <Message>k__BackingField: string
+  maybe   : PlayerIdTo (candidate query key)
+  maybe   : CheerCategory (candidate query key)
+  maybe   : RoomId (candidate query key)
+  maybe   : Anonymous (candidate query key)
+  returns : OkResponse
+  note    : site from register pattern; callee not identified
+  note    : verb stashed in builder field
+  note    : service from weaker record
+  note    : request from weaker record
+
+api/PlayerElo/  [API POST]
+  wrapper : RecNet.Elo :: UpdatePlayersElo(update: PlayersEloUpdateDTO) -> void
+  body    : PlayersEloUpdateDTO
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from register pattern; callee not identified
+  note    : service from weaker record
+  note    : verb from weaker record
+
+api/PlayerReporting/  [API GET]
+  wrapper : RecNet.PlayerReporting :: CreateHileWarning(type: HileType, message: string, callback: ApiCallback<OkResponse>) -> IEnumerator
+  wrapper : RecNet.PlayerReporting :: CreateReport(playerId: long, reportCategory: ReportCategory, details: string, heightReported: float?, callback: ApiCallback<OkResponse>) -> IEnumerator
+  wrapper : RecNet.PlayerReporting :: GetModerationBlockDetails(callback: ApiCallback) -> IEnumerator
+  wrapper : RecNet.PlayerReporting :: InstantKickPlayer(playerId: int, callback: ApiCallback<OkResponse>) -> IPromise<OkResponse>
+  wrapper : RecNet.PlayerReporting :: InstantKickPlayers(playerIds: List<int>, callback: ApiCallback<OkResponse>) -> IPromise<OkResponse>
+  wrapper : RecNet.PlayerReporting :: VoteToKickPlayer(playerId: long, response: bool, callback: ApiCallback<OkResponse>) -> IEnumerator
+  body    : OkResponse
+    - <Success>k__BackingField: bool
+    - <Message>k__BackingField: string
+  maybe   : PlayerIdReported (candidate query key)
+  maybe   : ReportCategory (candidate query key)
+  maybe   : Details (candidate query key)
+  maybe   : HeightReporter (candidate query key)
+  maybe   : HeightReported (candidate query key)
+  returns : ModerationBlockDetail
+  note    : site from register pattern; callee not identified
+  note    : verb stashed in builder field
+  note    : service from weaker record
+  note    : request from weaker record
+
+api/PlayersBanned/  [API POST]
+  wrapper : RecNet.Moderation :: LocalRequestPlayerBan(playerId: long, reportCategory: ReportCategory, callback: ApiCallback) -> IEnumerator
+  body    : PlayersBannedRequest (synthesized)
+  field   : reportCategory: ReportCategory [wrapper]
+  field   : callback: ApiCallback [wrapper]
+  field   : PlayerId: object [candidate]
+  field   : Reason: object [candidate]
+  field   : BanType: object [candidate]
+  field   : DisplayReason: object [candidate]
+  field   : BannedUntil: object [candidate]
+  maybe   : PlayerId (candidate query key)
+  maybe   : Reason (candidate query key)
+  maybe   : BanType (candidate query key)
+  maybe   : DisplayReason (candidate query key)
+  maybe   : BannedUntil (candidate query key)
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from legacy send wrapper RecNet.Core::Post
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request DTO synthesized from candidate+wrapper
+
+api/activities/charades/v1/words  [API GET]
+  wrapper : CardBox :: GetWordsAsync() -> IPromise<List<CharadesWord>>
+  wrapper : CardBox :: Start() -> void
+  body    : (none - GET; query params below if any)
+  returns : List<CharadesWord>
+  note    : site from legacy send wrapper RecNet.Cache::GetList
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/avatar/  [API GET]
+  wrapper : RecNet.Avatars :: DowloadGiftPackages(callback: ApiCallback) -> IEnumerator
+  wrapper : RecNet.Avatars :: DowloadSavedOutfitSlots(callback: ApiCallback) -> IEnumerator
+  wrapper : RecNet.Avatars :: DownloadLocalAvatar(callback: ApiCallback) -> IEnumerator
+  wrapper : RecNet.Avatars :: LocalRequestGiftPackage(context: GiftContext, alternateContext: GiftContext?, isGameGift: bool, callback: ApiCallback<GiftPackage>) -> IEnumerator
+  wrapper : RecNet.Avatars :: SaveLocalAvatarSettings() -> void
+  wrapper : RecNet.Avatars :: UpdateSavedOutfit(savedOutfit: SavedOutfit, callback: ApiCallback) -> IEnumerator
+  wrapper : RecNet.Avatars/<DowloadUnlockedAvatarItems>c__Iterator1 :: MoveNext(...)
+  wrapper : RecNet.Avatars/<LocalConsumeGiftPackage>c__Iterator0 :: MoveNext(...)
+  body    : AvatarRequest (synthesized)
+  field   : UnlockedLevel: object [candidate]
+  field   : GiftContext: object [candidate]
+  field   : IsGameGift: object [candidate]
+  field   : AlternateGiftContext: object [candidate]
+  field   : Message: object [candidate]
+  maybe   : UnlockedLevel (candidate query key)
+  maybe   : GiftContext (candidate query key)
+  maybe   : IsGameGift (candidate query key)
+  maybe   : AlternateGiftContext (candidate query key)
+  maybe   : Message (candidate query key)
+  returns : List<GiftPackage>
+  note    : site from legacy send wrapper RecNet.Core::Get
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request DTO synthesized from candidate
+
+api/bugreporting/  [API POST]
+  wrapper : RecNet.BugReporting :: ReportBug(summary: string, description: string, screenshotData: byte[], outputLogData: byte[], testCaseKey: string) -> IPromise
+  body    : BugReportDTO
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from legacy send wrapper RecNet.Core::Post
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/challenge/  [API GET]
+  wrapper : RecNet.Challenges :: GetCurrentChallenges(callback: ApiCallback<ChallengeMapResponse>) -> IEnumerator
+  wrapper : RecNet.Challenges :: GetNextChallenges(callback: ApiCallback<ChallengeMapResponse>) -> IEnumerator
+  wrapper : RecNet.Challenges :: UpdateChallengeProgress(mapId: int, challenge: RecNetChallenge) -> void
+  body    : ChallengeRequest (synthesized)
+  field   : ChallengeMapId: object [candidate]
+  field   : ChallengeId: object [candidate]
+  field   : Config: object [candidate]
+  field   : Complete: object [candidate]
+  maybe   : ChallengeMapId (candidate query key)
+  maybe   : ChallengeId (candidate query key)
+  maybe   : Config (candidate query key)
+  maybe   : Complete (candidate query key)
+  returns : ChallengeMapResponse
+  note    : site from legacy send wrapper RecNet.Core::Get
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request DTO synthesized from candidate
+
+api/chat/  [API POST]
+  wrapper : RecNet.Chats :: AddPlayerToChat(chatId: long, playerToAddId: int) -> IPromise<ChatResults>
+  wrapper : RecNet.Chats :: CreateChat(playerIds: List<int>, messageContents: string) -> IPromise<CreateChatResponse>
+  wrapper : RecNet.Chats :: GetChatById(chatId: long, forceQueryServer: bool) -> IPromise<ChatThread>
+  wrapper : RecNet.Chats :: GetChatByPlayers(playerIds: List<int>) -> IPromise<ChatThread>
+  wrapper : RecNet.Chats :: GetNextNChats(count: int) -> IPromise<List<ChatThread>>
+  wrapper : RecNet.Chats :: GetNextNMessages(chat: ChatThread, count: int) -> IPromise<List<ChatMessage>>
+  wrapper : RecNet.Chats :: LeaveChat(chatId: long) -> IPromise<ModifyChatResponse>
+  wrapper : RecNet.Chats :: OnPushNotificationChannelConnected() -> void
+  wrapper : RecNet.Chats :: ReadMessage(chatId: long, messageId: long) -> IPromise<ChatResults>
+  wrapper : RecNet.Chats :: RenameChat(chatId: long, chatName: string) -> IPromise<ChatResults>
+  wrapper : RecNet.Chats :: SendMessage(chatId: long, messageContents: string) -> IPromise<SendMessageResponse>
+  wrapper : RecNet.Chats :: SnoozeChat(chatId: long, snooze: bool) -> IPromise<ChatResults>
+  body    : AddToChatRequest
+  field   : mode: int
+  field   : count: int
+  field   : ChatId: long
+  field   : Mode: int
+  field   : ReferenceMessageId: long
+  field   : MessageCount: int
+  field   : PlayerIds: IEnumerable<int>
+  returns : List<ChatThread>
+  note    : site from register pattern; callee not identified
+  note    : service from weaker record
+  note    : verb from weaker record
+  note    : request from weaker record
+
+api/checklist/  [API POST]
+  wrapper : RecNet.Checklist :: CompleteChecklistItem(itemIdx: int, callback: ApiCallback) -> IEnumerator
+  wrapper : RecNet.Checklist :: GetCurrentChecklist(callback: ApiCallback) -> IEnumerator
+  body    : ChecklistCompletionDTO
+  returns : BalanceUpdateResponseDTO<RewardBalanceModificationDTO>
+  note    : site from legacy send wrapper RecNet.Core::Post
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/communityboard/  [API GET]
+  wrapper : RecNet.CommunityBoard :: GetCurrentCommunityBoardData() -> IPromise<CommunityBoardDTO>
+  body    : (none - GET; query params below if any)
+  returns : CommunityBoardDTO
+  note    : site from legacy send wrapper RecNet.Core::Get
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/config/  [API GET]
+  wrapper : RecNet.Config :: DownloadAmplitudeSettings(callback: ApiCallback) -> IEnumerator
+  wrapper : RecNet.Config :: DownloadConfigSettings(callback: ApiCallback) -> IEnumerator
+  body    : (none - GET; query params below if any)
+  returns : AmplitudeConfig
+  note    : site from legacy send wrapper RecNet.Core::Get
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/consumables/  [API GET]
+  wrapper : RecNet.Consumables :: ActivateConsumable(consumable: Consumable, isActive: bool, callback: ApiCallback) -> IEnumerator
+  wrapper : RecNet.Consumables :: UseConsumable(consumable: Consumable, deltaCount: int, callback: ApiCallback) -> IEnumerator
+  wrapper : RecNet.Consumables/<DowloadUnlockedConsumables>c__Iterator0 :: MoveNext(...)
+  body    : (none - GET; query params below if any)
+  returns : List<Consumable>
+  note    : site from legacy send wrapper RecNet.Core::Get
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/datablob/  [API POST]
+  wrapper : RecNet.DataBlobs :: UploadTransientData(blobDataType: DataBlobType, bytes: byte[], oldBlobName: string) -> IPromise<string>
+  body    : DatablobRequest (synthesized)
+  field   : blobDataType: int [form]
+  field   : gameSessionId: long [form]
+  field   : oldBlobName: string [form]
+  returns : BlobNameDTO
+  note    : site from register pattern; callee not identified
+  note    : service from weaker record
+  note    : verb from weaker record
+  note    : response from weaker record
+
+api/equipment/  [API GET]
+  wrapper : RecNet.Equipments :: UpdateFavorites() -> void
+  wrapper : RecNet.Equipments/<DowloadUnlockedEquipments>c__Iterator0 :: MoveNext(...)
+  body    : (none - GET; query params below if any)
+  returns : List<Equipment>
+  note    : site from legacy send wrapper RecNet.Core::Get
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/events/  [API GET]
+  wrapper : RecNet.Events :: RefreshEventList() -> IPromise
+  wrapper : RecNet.Events :: RefreshEventStatus(event: Event) -> IEnumerator
+  body    : (none - GET; query params below if any)
+  returns : List<Event>
+  note    : site from legacy send wrapper RecNet.Core::Get
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/gameconfigs/  [? ?]
+  wrapper : RecNet.GameConfigs :: .cctor() -> void
+  body    : ? (verb unknown; params below if any)
+  returns : ? (wrappers non-generic - likely no content)
+  note    : no call site found consuming this literal
+
+api/gamesessions/  [API POST]
+  wrapper : RecNet.GameSessions :: JoinHelper(api: string, request: BaseJoinRequest, expectedPlayerIds: long[]) -> IPromise<JoinGameErrorCode>
+  wrapper : RecNet.GameSessions :: ReportGameJoinResult(gameSession: GameSession, result: GameJoinResult) -> void
+  wrapper : RecNet.GameSessions :: SetGameInProgress(inProgress: bool) -> IEnumerator
+  body    : BaseJoinRequest
+  returns : JoinGameSessionResponse
+  note    : site from register pattern; callee not identified
+  note    : service from weaker record
+  note    : verb from weaker record
+  note    : response from weaker record
+
+api/groups/  [API GET]
+  wrapper : RecNet.Groups :: CreateNewGroup(groupName: string, description: string, imageName: string, callback: ApiCallback<CreateModifyGroupResponse>) -> IEnumerator
+  wrapper : RecNet.Groups :: DeleteGroup(groupId: long, callback: ApiCallback<StatusResponse>) -> IEnumerator
+  wrapper : RecNet.Groups :: GetGroupById(groupId: long, callback: ApiCallback<Group>) -> IEnumerator
+  wrapper : RecNet.Groups :: GetGroupByName(groupName: string, callback: ApiCallback<Group>) -> IEnumerator
+  wrapper : RecNet.Groups :: GetGroupDetails(groupId: long) -> IPromise<Group>
+  wrapper : RecNet.Groups :: GetPrimaryGroupMembership(playerId: long) -> IPromise<Group>
+  body    : CreateGroupRequest
+  maybe   : GroupId (candidate query key)
+  returns : CreateModifyGroupResponse
+  note    : site from legacy send wrapper RecNet.Core::Post
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : verb conflict: using GET
+
+api/images/  [API POST]
+  wrapper : RecNet.Images :: <SetLocalProfileImage>m__1(encodeResults: byte[]) -> IPromise
+  wrapper : RecNet.Images :: CheerImage(imageId: long, cheer: bool, callback: ApiCallback) -> IEnumerator
+  wrapper : RecNet.Images :: DeleteSavedImage(imageName: string, callback: ApiCallback) -> IEnumerator
+  wrapper : RecNet.Images :: DeleteTransientImage(imageName: string, callback: ApiCallback) -> IEnumerator
+  wrapper : RecNet.Images :: DownloadNamedImageMappings() -> IPromise
+  wrapper : RecNet.Images :: GetCurrentSlideshowInfo() -> IPromise<SlideshowInfoDTO>
+  wrapper : RecNet.Images :: GetSavedImageList(callback: ApiCallback<List<string>>) -> IEnumerator
+  wrapper : RecNet.Images :: ModifySavedImageAccessibility(imageName: string, accessibility: SavedImageAccessibility, callback: ApiCallback) -> IEnumerator
+  wrapper : RecNet.Images :: SendImageLink(imageName: string, callback: ApiCallback) -> IEnumerator
+  wrapper : RecNet.Images :: UploadSavedImage(image: byte[], imageMeta: SavedImageMetaDTO) -> IPromise<string>
+  wrapper : RecNet.Images/<UploadTransientImage>c__AnonStorey2 :: <>m__0(...)
+  body    : SavedImageMetaDTO
+  field   : gameSessionId: long
+  field   : oldImageName: string
+  maybe   : image (candidate query key)
+  returns : ImageNameDTO
+  note    : site from register pattern; callee not identified
+  note    : service from weaker record
+  note    : verb from weaker record
+  note    : response from weaker record
+
+api/inventions/  [API GET]
+  wrapper : RecNet.Inventions :: .cctor() -> void
+  wrapper : RecNet.Inventions :: AddInventionVersion(data: byte[], inventionId: long, newInstantiateCost: int, imageList: List<string>, dataBlobList: List<string>, inventionReferences: List<long>, autoTags: List<string>) -> IPromise<InventionResponse>
+  wrapper : RecNet.Inventions :: CheerInvention(inventionId: long, cheer: bool) -> IPromise<InventionResponse>
+  wrapper : RecNet.Inventions :: DeleteInvention(inventionId: long) -> IPromise<InventionResponse>
+  wrapper : RecNet.Inventions :: DownloadInvention(inventionId: long) -> IPromise<InventionResponse>
+  wrapper : RecNet.Inventions :: GetCreatorIdsOfInventionsInRoom(roomId: long) -> IPromise<List<int>>
+  wrapper : RecNet.Inventions :: GetInvention(inventionId: long) -> IPromise<Invention>
+  wrapper : RecNet.Inventions :: GetInventionDetails(inventionId: long) -> IPromise<InventionDetails>
+  wrapper : RecNet.Inventions :: GetInventionRequestUri(inventionId: long) -> string
+  wrapper : RecNet.Inventions :: GetInventionsAsBatch(inventionIds: List<long>) -> IPromise<List<Invention>>
+  wrapper : RecNet.Inventions :: GetPersonalInventionDetails(inventionId: long) -> IPromise<PersonalInventionDetails>
+  wrapper : RecNet.Inventions :: GetPersonalInventionDetailsRequestUri(inventionId: long) -> string
+  wrapper : RecNet.Inventions :: GetTags(tagListType: TagListType) -> IPromise<List<string>>
+  wrapper : RecNet.Inventions :: GetVersionsForInvention(inventionId: long) -> IPromise<List<InventionVersion>>
+  wrapper : RecNet.Inventions :: InvalidateCacheForInvention(inventionId: long) -> void
+  wrapper : RecNet.Inventions :: PublishInvention(inventionId: long, permissionLevel: InventionPermission) -> IPromise<InventionResponse>
+  wrapper : RecNet.Inventions :: RemoveInventionDetailsFromCache(inventionId: long) -> bool
+  wrapper : RecNet.Inventions :: ReportInvention(inventionId: long, reportCategory: InventionReportCategory, details: string) -> IPromise<OkResponse>
+  wrapper : RecNet.Inventions :: RequestInventionVersionURL(inventionId: long, versionNum: int) -> string
+  wrapper : RecNet.Inventions :: SearchInventions(searchQuery: string) -> IPromise<List<Invention>>
+  wrapper : RecNet.Inventions :: SetInventionTags(inventionId: long, autoTags: List<string>, playerAddedTags: List<string>) -> IPromise<ModifyTagsResponse>
+  wrapper : RecNet.Inventions :: UnpublishInvention(inventionId: long) -> IPromise<InventionResponse>
+  wrapper : RecNet.Inventions :: UpdateInventionDescription(inventionId: long, description: string) -> IPromise<InventionResponse>
+  wrapper : RecNet.Inventions :: UpdateInventionGeneralPermission(inventionId: long, newGeneralPermission: InventionPermission) -> IPromise<InventionResponse>
+  wrapper : RecNet.Inventions :: UpdateInventionImage(inventionId: long, imgName: string) -> IPromise<InventionResponse>
+  wrapper : RecNet.Inventions :: UpdateInventionName(inventionId: long, name: string) -> IPromise<InventionResponse>
+  wrapper : RecNet.Inventions :: UploadNewInvention(data: byte[], name: string, description: string, imageName: string, instantiateCost: int, imageList: List<string>, dataBlobList: List<string>, inventionReferences: List<long>, autoTags: List<string>) -> IPromise<InventionResponse>
+  wrapper : RecNet.Inventions/<CheerInvention>c__AnonStoreyD :: <>m__0(...)
+  wrapper : RecNet.Inventions/<SetInventionTags>c__AnonStorey3 :: <>m__0(...)
+  body    : InventionResponse
+    - <Status>k__BackingField: InventionResult
+    - <Invention>k__BackingField: Invention
+    - <InventionVersion>k__BackingField: InventionVersion
+  returns : InventionResponse
+  note    : site from register pattern; callee not identified
+  note    : service from weaker record
+  note    : verb from weaker record
+  note    : response from weaker record
+
+api/messages/  [API POST]
+  wrapper : RecNet.Messages :: DeleteMessage(messageId: long, callback: ApiCallback) -> IEnumerator
+  wrapper : RecNet.Messages :: RefreshList() -> void
+  wrapper : RecNet.Messages :: SendMessage(playerId: long, messageType: MessageType, data: string, roomId: long?, callback: ApiCallback) -> IEnumerator
+  wrapper : RecNet.Messages :: SendMessageMultiple(playerIds: List<long>, messageType: MessageType, data: string, roomId: long?, callback: ApiCallback) -> IEnumerator
+  wrapper : RecNet.Messages :: SendStatusOnlineToFriends(playerIds: List<long>, callback: ApiCallback) -> IEnumerator
+  body    : MessagesRequest (synthesized)
+  field   : callback: ApiCallback [wrapper]
+  field   : messageType: MessageType [wrapper]
+  field   : roomId: long? [wrapper]
+  field   : playerIds: List<long> [wrapper]
+  field   : ToPlayerIds: object [candidate]
+  field   : Type: object [candidate]
+  field   : Data: object [candidate]
+  field   : ToPlayerId: object [candidate]
+  maybe   : ToPlayerIds (candidate query key)
+  maybe   : Type (candidate query key)
+  maybe   : Data (candidate query key)
+  maybe   : RoomId (candidate query key)
+  maybe   : ToPlayerId (candidate query key)
+  returns : List<Message>
+  note    : site from legacy send wrapper RecNet.Core::Get
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : verb conflict: using POST
+
+api/objectives/  [API POST]
+  wrapper : RecNet.Objectives :: ClearGroup(group: int, callback: ApiCallback<ObjectiveGroupProgress>) -> IEnumerator
+  wrapper : RecNet.Objectives :: GetMyObjectiveProgress(callback: ApiCallback) -> IEnumerator
+  wrapper : RecNet.Objectives/<RunSaveObjectivesToRecnet>c__Iterator0 :: MoveNext(...)
+  body    : ObjectiveGroupRequest
+  returns : ObjectiveGroupProgress
+  note    : site from legacy send wrapper RecNet.Core::Post
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/offlineinvite/  [API POST]
+  wrapper : RecNet.Messages :: SendOfflineInvite(playerId: long, callback: ApiCallback<string>) -> IEnumerator
+  body    : OfflineinviteRequest (synthesized)
+  field   : callback: ApiCallback<string> [wrapper]
+  field   : PlayerId: object [candidate]
+  maybe   : PlayerId (candidate query key)
+  returns : OfflineMessageResponse
+  note    : site from legacy send wrapper RecNet.Core::Post
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request DTO synthesized from candidate+wrapper
+
+api/platformlogin/  [API POST]
+  wrapper : RecNet.Login :: DownloadCachedLoginProfiles(callback: ApiCallback<List<Profile>>) -> IEnumerator
+  wrapper : RecNet.Login :: Logout() -> void
+  wrapper : RecNet.Login :: RefreshLogin() -> IEnumerator
+  wrapper : RecNet.Login :: RegisterAccount(email: string, callback: ApiCallback<OkResponse>) -> IEnumerator
+  wrapper : RecNet.Login :: RemoveCachedLogin(callback: ApiCallback) -> IEnumerator
+  wrapper : RecNet.Login/<LoginHelper>c__Iterator0 :: MoveNext(...)
+  body    : BaseLoginRequest
+  maybe   : Platform (candidate query key)
+  maybe   : PlatformId (candidate query key)
+  maybe   : Email (candidate query key)
+  returns : LoginResponse
+  note    : site from legacy send wrapper RecNet.Core::CallApi
+  note    : legacy wrapper takes a body payload
+  note    : service from nearest service-Uri load
+
+api/playerReputation/  [API POST]
+  wrapper : RecNet.Profiles :: UpdateLocalProfileKarma(goodKarmaSeconds: float) -> void
+  body    : PlayerReputationRequest (synthesized)
+  field   : GoodKarmaMinutes: float [wrapper]
+  returns : ? (wrappers non-generic - likely no content)
+  note    : site from legacy send wrapper RecNet.Core::Post
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request DTO synthesized from wrapper
+
+api/playerevents/  [API POST]
+  wrapper : RecNet.PlayerEvents :: CreateEvent(roomId: long, name: string, description: string, startTime: DateTime, endTime: DateTime, accessibility: PlayerEventAccessibility) -> IPromise<CreateModifyPlayerEventResponse>
+  wrapper : RecNet.PlayerEvents :: DeleteEvent(playerEventId: long) -> IPromise<CreateModifyPlayerEventResponse>
+  wrapper : RecNet.PlayerEvents :: DeleteResponse(playerEventId: long, responseValue: PlayerEventResponseType) -> IPromise<CreateModifyPlayerEventStatus>
+  wrapper : RecNet.PlayerEvents :: DownloadPlayerEventList(callback: ApiCallback) -> IEnumerator
+  wrapper : RecNet.PlayerEvents :: GetAllPlayerEventResponses(playerEventId: long) -> IPromise<List<PlayerEventResponse>>
+  wrapper : RecNet.PlayerEvents :: GetEventsURI() -> string
+  wrapper : RecNet.PlayerEvents :: GetPlayerEventById(playerEventId: long) -> IPromise<PlayerEvent>
+  wrapper : RecNet.PlayerEvents :: GetUpcomingEvents() -> IPromise<List<PlayerEvent>>
+  wrapper : RecNet.PlayerEvents :: HandleCreateEvent(playerEvent: PlayerEvent) -> void
+  wrapper : RecNet.PlayerEvents :: HandleDeleteEvent(playerEventId: long) -> void
+  wrapper : RecNet.PlayerEvents :: InvitePlayers(playerEventId: long, invitedPlayerIds: List<int>) -> IPromise<BulkInviteResponse>
+  wrapper : RecNet.PlayerEvents :: ModifyEvent(playerEvent: PlayerEvent, roomId: long, name: string, description: string, startTime: DateTime, endTime: DateTime, accessibility: PlayerEventAccessibility) -> IPromise<CreateModifyPlayerEventResponse>
+  wrapper : RecNet.PlayerEvents :: OnPlayerEventCreated(message: Dictionary<string, object>) -> void
+  wrapper : RecNet.PlayerEvents :: ReportEvent(playerEventId: long, reportCategory: ReportCategory, details: string) -> IPromise<OkResponse>
+  wrapper : RecNet.PlayerEvents :: RespondToEvent(playerEventId: long, responseValue: PlayerEventResponseType) -> IPromise<CreateModifyPlayerEventStatus>
+  wrapper : RecNet.PlayerEvents/<InvitePlayers>c__AnonStorey4 :: <>m__0(...)
+  wrapper : RecNet.PlayerEvents/<ModifyEvent>c__AnonStorey2 :: <>m__0(...)
+  body    : BulkInviteResponse
+    - <FailedInvites>k__BackingField: List<InviteResponse>
+    - <Result>k__BackingField: CreateModifyPlayerEventStatus
+  returns : PlayerEvent
+  note    : site from register pattern; callee not identified
+  note    : service from weaker record
+  note    : verb from weaker record
+  note    : response from weaker record
+
+api/players/  [API POST]
+  wrapper : RecNet.Profiles :: CompleteObjectives(objectiveCompletionRecords: List<ObjectiveCompletionRecord>) -> void
+  wrapper : RecNet.Profiles :: CreateNewProfile(newDisplayName: string, callback: ApiCallback<Profile>) -> IEnumerator
+  wrapper : RecNet.Profiles :: DeleteProfile(password: string, playerId: long, callback: ApiCallback<OkResponse>) -> IEnumerator
+  wrapper : RecNet.Profiles :: GetFromServer(id: long, callback: ApiCallback<Profile>) -> IEnumerator
+  wrapper : RecNet.Profiles :: GetFromServer(ids: List<long>, callback: ApiCallback<List<Profile>>) -> IEnumerator
+  wrapper : RecNet.Profiles :: GetFromServer(platform: PlatformType, platformPlayerIds: List<ulong>) -> IPromise<List<Profile>>
+  wrapper : RecNet.Profiles :: GetNameGenerationOptions(callback: ApiCallback<NameGenDTO>) -> IEnumerator
+  wrapper : RecNet.Profiles :: GetPhoneLastFour(callback: ApiCallback<string>) -> IEnumerator
+  wrapper : RecNet.Profiles :: GetPlayerByUsername(username: string) -> IPromise<Profile>
+  wrapper : RecNet.Profiles :: SearchForPlayer(searchString: string, callback: ApiCallback<List<Profile>>) -> IEnumerator
+  wrapper : RecNet.Profiles :: UpdateAvoidJunior(avoidJuniors: bool, callback: ApiCallback) -> IEnumerator
+  wrapper : RecNet.Profiles :: UpdateLocalProfileBio(newBio: string, callback: ApiCallback<OkResponse>) -> IEnumerator
+  wrapper : RecNet.Profiles :: UpdateLocalProfileBirthday(dateTime: DateTime, callback: ApiCallback<BirthdayUpdateDTO>) -> IEnumerator
+  wrapper : RecNet.Profiles :: UpdateLocalProfileDisplayName(newDisplayName: string, callback: ApiCallback<OkResponse>) -> IEnumerator
+  wrapper : RecNet.Profiles :: UpdateLocalProfilePhoneNumber(phoneNumber: string, callback: ApiCallback<OkResponse>) -> IEnumerator
+  wrapper : RecNet.Profiles :: UpdateLocalProfileReputation(reputationDelta: int, blockedDurationSeconds: int) -> void
+  wrapper : RecNet.Profiles :: VerifyLocalProfilePhoneNumber(verificationCode: string, phoneNumber: string, callback: ApiCallback<OkResponse>) -> IEnumerator
+  wrapper : RecNet.Profiles/<DownloadPendingRequestsCoroutine>c__Iterator0 :: MoveNext(...)
+  body    : PlayersRequest (synthesized)
+  field   : objectiveCompletionRecords: List<ObjectiveCompletionRecord> [wrapper]
+  field   : callback: ApiCallback<Profile> [wrapper]
+  field   : ids: List<long> [wrapper]
+  field   : platform: PlatformType [wrapper]
+  field   : platformPlayerIds: List<ulong> [wrapper]
+  field   : dateTime: DateTime [wrapper]
+  field   : reputationDelta: object [candidate]
+  field   : blockedDuration: object [candidate]
+  field   : Bio: object [candidate]
+  field   : Name: object [candidate]
+  field   : PlayerId: object [candidate]
+  maybe   : reputationDelta (candidate query key)
+  maybe   : blockedDuration (candidate query key)
+  maybe   : Bio (candidate query key)
+  maybe   : Name (candidate query key)
+  maybe   : PlayerId (candidate query key)
+  returns : Profile
+  note    : site from legacy send wrapper RecNet.Core::Post
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request DTO synthesized from candidate+wrapper
+
+api/playersubscriptions/  [API GET]
+  wrapper : RecNet.PlayerSubscriptions :: OnPushNotificationConnectCallback() -> void
+  wrapper : RecNet.PlayerSubscriptions :: RefreshList() -> void
+  wrapper : RecNet.PlayerSubscriptions :: SubscribeTo(playerId: long, callback: ApiCallback) -> IEnumerator
+  wrapper : RecNet.PlayerSubscriptions :: UnsubscribeFrom(playerId: long, callback: ApiCallback) -> IEnumerator
+  body    : PlayersubscriptionsRequest (synthesized)
+  field   : PlayerId: object [candidate]
+  maybe   : PlayerId (candidate query key)
+  returns : List<PlayerSubscription>
+  note    : site from legacy send wrapper RecNet.Core::Get
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request DTO synthesized from candidate
+
+api/presence/v3/heartbeat  [API POST]
+  wrapper : RecNet.Presence/<HeartbeatCoroutine>c__Iterator0 :: MoveNext(...)
+  also touches: api/presence/v3/heartbeatwebsocket
+  body    : PresenceV3HeartbeatRequest (synthesized)
+  field   : UseHeartbeatWebSocket: object [candidate]
+  maybe   : UseHeartbeatWebSocket (candidate query key)
+  returns : HeartbeatResponse
+  note    : site from legacy send wrapper RecNet.Core::Post
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request DTO synthesized from candidate
+
+api/presence/v3/heartbeatwebsocket  [API POST]
+  wrapper : RecNet.Presence/<HeartbeatCoroutine>c__Iterator0 :: MoveNext(...)
+  also touches: api/presence/v3/heartbeat
+  body    : ?
+  returns : ?
+  note    : no call site found consuming this literal
+  note    : verb filled from same-area sibling
+  note    : service filled from same-area sibling
+
+api/quickPlay/  [API GET]
+  wrapper : RecNet.QuickPlays :: GetAndClear() -> IEnumerator
+  body    : (none - GET; query params below if any)
+  returns : PlayerQuickPlayDTO
+  note    : site from legacy send wrapper RecNet.Core::Get
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/relationships/  [API GET]
+  wrapper : RecNet.Relationships :: AcceptFriendRequest(playerId: long, callback: ApiCallback) -> IEnumerator
+  wrapper : RecNet.Relationships :: AddFriend(playerId: long, callback: ApiCallback) -> IEnumerator
+  wrapper : RecNet.Relationships :: BulkIgnorePlatformUsers(platform: PlatformType, platformPlayerIds: List<ulong>) -> void
+  wrapper : RecNet.Relationships :: FavoritePlayer(playerId: long, callback: ApiCallback) -> bool
+  wrapper : RecNet.Relationships :: PostPreferenceChange(route: string, playerId: long, callback: ApiCallback) -> IEnumerator
+  wrapper : RecNet.Relationships :: RefreshList() -> void
+  wrapper : RecNet.Relationships :: RemoveFriend(playerId: long, callback: ApiCallback) -> IEnumerator
+  wrapper : RecNet.Relationships :: SendFriendRequest(playerId: long, callback: ApiCallback) -> IEnumerator
+  wrapper : RecNet.Relationships :: UnfavoritePlayer(playerId: long, callback: ApiCallback) -> bool
+  body    : RelationshipsRequest (synthesized)
+  field   : PlayerId: object [candidate]
+  maybe   : PlayerId (candidate query key)
+  returns : Relationship
+  note    : site from legacy send wrapper RecNet.Core::Get
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : request DTO synthesized from candidate
+
+api/rooms/  [API GET]
+  wrapper : RecNet.Rooms :: .cctor() -> void
+  wrapper : RecNet.Rooms :: BookmarkRoom(room: Room, bookmark: bool, callback: ApiCallback<OkResponse>) -> IEnumerator
+  wrapper : RecNet.Rooms :: CheerRoom(room: Room, cheer: bool, callback: ApiCallback<OkResponse>) -> IEnumerator
+  wrapper : RecNet.Rooms :: CloneRoom(roomIdToClone: long, name: string, callback: ApiCallback<CreateModifyRoomResponse>) -> IEnumerator
+  wrapper : RecNet.Rooms :: GetBaseRooms() -> IPromise<List<Room>>
+  wrapper : RecNet.Rooms :: GetCurrentFeaturedRoomGroup() -> IPromise<FeaturedRoomGroupDTO>
+  wrapper : RecNet.Rooms :: GetFeaturedRoom() -> IPromise<Room>
+  wrapper : RecNet.Rooms :: GetHotRooms(tags: string) -> IPromise<List<Room>>
+  wrapper : RecNet.Rooms :: GetLiveRooms(tags: string) -> IPromise<List<Room>>
+  wrapper : RecNet.Rooms :: GetMyRecentRooms() -> IPromise<List<Room>>
+  wrapper : RecNet.Rooms :: GetMySubscribedRooms(skip: int, take: int) -> IPromise<List<Room>>
+  wrapper : RecNet.Rooms :: GetPersonalRoomDetails(roomId: long) -> IPromise<PersonalRoomDetails>
+  wrapper : RecNet.Rooms :: GetPersonalRoomDetailsRequestUri(roomId: long) -> string
+  wrapper : RecNet.Rooms :: GetRoomById(roomId: long) -> IPromise<Room>
+  wrapper : RecNet.Rooms :: GetRoomByName(name: string) -> IPromise<Room>
+  wrapper : RecNet.Rooms :: GetRoomDataHistory(roomSceneId: long, callback: ApiCallback<List<RoomDataHistoryDTO>>) -> IEnumerator
+  wrapper : RecNet.Rooms :: GetRoomDetails(roomId: long) -> IPromise<RoomDetails>
+  wrapper : RecNet.Rooms :: GetRoomInstanceDetails(roomId: long) -> IPromise<RoomInstanceDetails>
+  wrapper : RecNet.Rooms :: GetTags(getPinned: bool) -> IPromise<List<string>>
+  wrapper : RecNet.Rooms :: ModifyPermission(roomId: long, playerId: int, isCoOwner: RoomPermissionValue?, isHost: RoomPermissionValue?, callback: ApiCallback<CreateModifyRoomResponse>) -> IEnumerator
+  wrapper : RecNet.Rooms :: ModifyRoom(roomId: long, name: string, description: string, accessibility: RoomAccessibility, copyable: bool, disableMicAutoMute: bool, supportedPlayerTypes: List<PlayerType>, allowJuniors: bool, callback: ApiCallback<CreateModifyRoomResponse>) -> IEnumerator
+  wrapper : RecNet.Rooms :: ModifyRoomDescription(roomId: long, newDescription: string, callback: ApiCallback<CreateModifyRoomResponse>) -> IEnumerator
+  wrapper : RecNet.Rooms :: ModifyRoomImageName(roomId: long, newImageName: string, callback: ApiCallback<CreateModifyRoomResponse>) -> IEnumerator
+  wrapper : RecNet.Rooms :: ModifyRoomName(roomId: long, newName: string, callback: ApiCallback<CreateModifyRoomResponse>) -> IEnumerator
+  wrapper : RecNet.Rooms :: ModifyRoomPublishState(roomId: long, newIsPublished: bool, callback: ApiCallback<CreateModifyRoomResponse>) -> IEnumerator
+  wrapper : RecNet.Rooms :: ModifyRoomScene(roomSceneId: long, name: string, maxPlayers: int, canMatchmakeInto: bool, callback: ApiCallback<CreateModifyRoomSceneResponse>) -> IEnumerator
+  wrapper : RecNet.Rooms :: ModifyRoomTags(roomId: long, autoTags: List<string>, playerAddedTags: List<string>, callback: ApiCallback<ModifyTagsResponse>) -> IEnumerator
+  wrapper : RecNet.Rooms :: ModifySceneParent(roomScene: RoomScene, newParentRoomId: long, callback: ApiCallback<CreateModifyRoomResponse>) -> IEnumerator
+  wrapper : RecNet.Rooms :: ReportRoom(room: Room, reportCategory: ReportCategory, details: string, callback: ApiCallback<OkResponse>) -> IEnumerator
+  wrapper : RecNet.Rooms :: RestoreToRoomDataHistory(roomDataHistoryId: long, callback: ApiCallback<CreateModifyRoomSceneResponse>) -> IEnumerator
+  wrapper : RecNet.Rooms :: SearchRooms(query: string) -> IPromise<List<Room>>
+  wrapper : RecNet.Rooms :: UploadLocalRoomSceneData(data: byte[], imageList: List<string>, dataBlobList: List<string>, inventionReferences: Dictionary<long, int>) -> IPromise<RoomScene>
+  wrapper : RecNet.Rooms/<BookmarkRoom>c__AnonStoreyB :: <>m__0(...)
+  wrapper : RecNet.Rooms/<CheerRoom>c__AnonStoreyA :: <>m__0(...)
+  body    : OkResponse
+    - <Success>k__BackingField: bool
+    - <Message>k__BackingField: string
+  maybe   : PlayerId (candidate query key)
+  maybe   : RoomId (candidate query key)
+  maybe   : IsHost (candidate query key)
+  maybe   : IsOwner (candidate query key)
+  returns : FeaturedRoomGroupDTO
+  note    : site from register pattern; callee not identified
+  note    : service from weaker record
+  note    : verb from weaker record
+  note    : response from weaker record
+
+api/royale/  [API GET]
+  wrapper : RecNet.RecNetRecRoyaleStats :: GetLocalPlayerProgress() -> IPromise<RecRoyalePlayerProgress>
+  wrapper : RecNet.RecNetRecRoyaleStats :: GetPlayerProgress(promise: Promise<RecRoyalePlayerProgress>) -> IEnumerator
+  wrapper : RecNet.RecNetRecRoyaleStats :: SendMatchStats(matchStats: MatchCompleteStats) -> IPromise<StatUpdates>
+  body    : (none - GET; query params below if any)
+  returns : RecRoyalePlayerProgress
+  note    : site from legacy send wrapper RecNet.Core::Get
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/sanitize/  [API POST]
+  wrapper : RecNet.StringSanitization :: RequestIsStringPure(stringValue: string, callback: ApiCallback<IsPureStringResponse>) -> IEnumerator
+  body    : SanitizeStringRequest
+  returns : IsPureStringResponse
+  note    : site from legacy send wrapper RecNet.Core::Post
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/settings/  [API GET]
+  wrapper : RecNet.Settings :: StoreLocalPlayerSetting(setting: Setting, callback: ApiCallback) -> IEnumerator
+  wrapper : RecNet.Settings/<DowloadLocalPlayerSettings>c__Iterator0 :: MoveNext(...)
+  body    : (none - GET; query params below if any)
+  returns : List<Setting>
+  note    : site from legacy send wrapper RecNet.Core::Get
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/storefronts/  [API GET]
+  wrapper : RecNet.Storefronts :: CompleteObjectives(objectiveCompletionRecords: List<StorefrontObjectiveCompletionRecord>) -> void
+  wrapper : RecNet.Storefronts :: DownloadStorefrontSeason(storefrontType: StorefrontTypes, callback: ApiCallback<StorefrontSeasonDTO>) -> IEnumerator
+  wrapper : RecNet.Storefronts :: FetchBalance(currencyType: CurrencyType, callback: ApiCallback<long>) -> void
+  wrapper : RecNet.Storefronts :: FetchBalanceAddConfig(currencyType: CurrencyType, balanceAddType: StorefrontBalanceAddTypes, callback: ApiCallback<StorefrontBalanceAddConfigDTO>) -> void
+  wrapper : RecNet.Storefronts :: GetBalance(currencyType: CurrencyType) -> long?
+  wrapper : RecNet.Storefronts :: ModifyBalance(currencyType: CurrencyType, balanceAdds: IEnumerable<GrantBalanceRequest>, callback: ApiCallback<BalanceUpdateResponseDTO<RewardBalanceModificationDTO>>) -> IEnumerator
+  wrapper : RecNet.Storefronts :: PurchaseItem(storefrontType: StorefrontTypes, currencyType: CurrencyType, purchasableItemId: int, couponConsumablePlayingMappingId: long?, callback: ApiCallback<PurchaseBalanceUpdateResponseDTO<GiftPackage>>) -> IEnumerator
+  wrapper : RecNet.Storefronts :: PurchaseSeasonEliteTrack(storefrontType: StorefrontTypes, currencyType: CurrencyType, purchasableItemId: int, callback: ApiCallback<PurchaseBalanceUpdateResponseDTO<GiftPackage>>) -> IEnumerator
+  wrapper : RecNet.Storefronts :: PurchaseSeasonTier(storefrontType: StorefrontTypes, currencyType: CurrencyType, purchasableItemId: int, callback: ApiCallback<PurchaseBalanceUpdateResponseDTO<GiftPackage>>) -> IEnumerator
+  wrapper : RecNet.Storefronts/<GetStorefront>c__AnonStorey1 :: <>m__0(...)
+  body    : GrantBalanceRewardDTO
+  maybe   : objectiveType (candidate query key)
+  maybe   : completionPercentage (candidate query key)
+  maybe   : roomId (candidate query key)
+  returns : BalanceUpdateResponseDTO<RewardBalanceModificationDTO>
+  note    : site from legacy send wrapper RecNet.Core::Post
+  note    : legacy wrapper takes a body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+  note    : verb conflict: using GET
+
+api/testcasemanagement/  [API GET]
+  wrapper : RecNet.TestCaseManagement :: ClaimTestCase(testCaseId: string) -> IPromise
+  wrapper : RecNet.TestCaseManagement :: GetTestCase(id: string) -> IPromise<TestCase>
+  wrapper : RecNet.TestCaseManagement :: GetTestPass(id: int) -> IPromise<TestPass>
+  wrapper : RecNet.TestCaseManagement :: GetTestPassSummaries() -> IPromise<List<TestPass>>
+  wrapper : RecNet.TestCaseManagement :: UnclaimTestCase(testCaseId: string) -> IPromise
+  wrapper : RecNet.TestCaseManagement :: UpdateTestCaseStatus(testCaseId: string, newStatus: TestCaseStatus) -> IPromise
+  body    : (none - GET; query params below if any)
+  returns : TestCase
+  note    : site from legacy send wrapper RecNet.Core::Get
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
+api/versioncheck/v3?v=  [API GET]
+  wrapper : RecNet.Core/<ConnectToRecNet>c__Iterator0 :: MoveNext(...)
+  body    : (none - GET; query params below if any)
+  returns : VersionCheckResponse
+  note    : site from legacy send wrapper RecNet.Core::Get
+  note    : legacy wrapper takes no body payload
+  note    : service defaulted to API (legacy wrapper hides Service)
+
